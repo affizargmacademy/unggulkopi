@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kenalan dengan Biji: Arabica vs Robusta — Unggul Coffe</title>
+  <meta name="description" content="Beda karakter rasa, tingkat kafein, dan cara memilih biji yang cocok untuk selera kamu. Panduan singkat Arabica vs Robusta dari Unggul Coffe."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ====== GLOBAL / TOKENS (SAMA DENGAN BLOG.HTML) ====== */
+    :root{
+      --bg0:#0e0a07;
+      --bg1:#1a120d;
+      --card: rgba(30, 20, 14, .58);
+      --card2: rgba(243, 233, 221, .06);
+      --text:#f6efe7;
+      --muted:#cdbfb2;
+      --line: rgba(255,255,255,.10);
+
+      --cream:#f3e9dd;
+      --copper:#c68b59;
+      --copper2:#b7773c;
+
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 26px;
+
+      --container: 1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:"Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(198,139,89,.25), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(183,119,60,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+    button, input{ font:inherit; }
+
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    /* Noise overlay (premium grain) */
+    .grain{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.10;
+      mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      background-size:180px 180px;
+      z-index:999;
+    }
+
+    /* Utility */
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      padding:.45rem .8rem;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color:var(--cream);
+      font-size:.85rem;
+      letter-spacing:.02em;
+      backdrop-filter: blur(10px);
+    }
+    .section-title{
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      margin:0;
+      letter-spacing:.02em;
+    }
+    .section-sub{
+      margin:.55rem 0 0;
+      color:var(--muted);
+      line-height:1.7;
+      max-width: 62ch;
+    }
+    .divider-line{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(198,139,89,.55), transparent);
+      margin: 18px 0 0;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      padding:.92rem 1.15rem;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary{
+      background: linear-gradient(180deg, rgba(198,139,89,.95), rgba(183,119,60,.95));
+      color:#1a120d;
+      box-shadow: 0 14px 40px rgba(198,139,89,.28);
+    }
+    .btn-primary:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 18px 55px rgba(198,139,89,.34);
+    }
+    .btn-ghost{
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.12);
+      color:var(--cream);
+      backdrop-filter: blur(10px);
+    }
+    .btn-ghost:hover{
+      transform: translateY(-1px);
+      border-color: rgba(198,139,89,.55);
+      box-shadow: 0 16px 44px rgba(0,0,0,.35);
+    }
+    .btn-sm{ padding:.86rem 1rem; }
+
+    /* Glass */
+    .glass{
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      border-radius: var(--radius2);
+      backdrop-filter: blur(14px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- =================== NAVBAR (AMBIL DARI BLOG.HTML) =================== -->
+  <header class="nav-wrap">
+    <nav class="nav container">
+
+      <!-- KIRI: Brand -->
+      <a href="index.html#home" class="brand" aria-label="Unggul Coffe">
+        <span class="brand-mark" aria-hidden="true">☕</span>
+        <span class="brand-text">Unggul Coffe</span>
+      </a>
+
+      <!-- TENGAH: pill menu -->
+      <div class="nav-mid" role="navigation" aria-label="Primary">
+        <div class="nav-links">
+          <a class="nav-link" href="index.html#home">Home</a>
+          <a class="nav-link" href="menu.html">Menu</a>
+          <a class="nav-link" href="#contact">Contact</a>
+          <a class="nav-link active" href="blog.html">Blog</a>
+        </div>
+      </div>
+
+      <!-- KANAN: 2 tombol -->
+      <div class="nav-cta" aria-label="Aksi cepat">
+        <a class="btn btn-ghost btn-sm" href="menu.html" aria-label="Keranjang">
+          <span aria-hidden="true">🧾</span>
+          Keranjang
+          <span class="cart-badge" id="cartCount">0</span>
+        </a>
+        <a class="btn btn-primary btn-sm" href="menu.html">
+          Pesan Sekarang <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </nav>
+  </header>
+
+  <style>
+    /* ====== NAVBAR CSS (AMBIL DARI BLOG.HTML) ====== */
+    .nav-wrap{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(14,10,7,.35);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav{
+      height: 78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.65rem;
+      font-weight: 750;
+      letter-spacing:.01em;
+      flex: 0 0 auto;
+    }
+    .brand-mark{
+      width:36px;
+      height:36px;
+      display:grid;
+      place-items:center;
+      border-radius: 12px;
+      background: rgba(198,139,89,.15);
+      border:1px solid rgba(198,139,89,.35);
+      box-shadow: 0 12px 26px rgba(198,139,89,.10);
+    }
+    .brand-text{ font-size: 1.05rem; }
+
+    .nav-mid{
+      flex: 1 1 auto;
+      display:flex;
+      justify-content:center;
+      min-width: 0;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap: 20px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 16px 40px rgba(0,0,0,.20);
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar{ display:none; }
+
+    .nav-link{
+      color: var(--muted);
+      font-size: .98rem;
+      padding: 8px 10px;
+      border-radius: 12px;
+      position: relative;
+      transition: color .15s ease, background .15s ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover{
+      color: var(--cream);
+      background: rgba(255,255,255,.04);
+    }
+    .nav-link.active::after{
+      content:"";
+      position:absolute;
+      left:10px; right:10px; bottom:4px;
+      height:2px;
+      border-radius:999px;
+      background: linear-gradient(90deg, transparent, rgba(198,139,89,.95), transparent);
+    }
+
+    .nav-cta{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex: 0 0 auto;
+      justify-content:flex-end;
+    }
+
+    .cart-badge{
+      margin-left: 6px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 7px;
+      border-radius: 999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(198,139,89,.25);
+      border: 1px solid rgba(198,139,89,.45);
+      color: var(--cream);
+      font-size:.82rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    @media (max-width: 980px){
+      .nav{ height:auto; padding: 12px 0; flex-wrap:wrap; }
+      .nav-mid{ order: 3; width:100%; justify-content:flex-start; }
+      .nav-links{ width:100%; justify-content:flex-start; }
+      .nav-cta{ order: 2; margin-left:auto; }
+    }
+    @media (max-width: 560px){
+      .nav-cta{ width:100%; }
+      .nav-cta .btn{ flex:1; }
+    }
+  </style>
+
+  <!-- =================== MAIN =================== -->
+  <main id="home">
+
+    <!-- =================== ARTICLE HERO =================== -->
+    <section class="article-hero">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="index.html#home">Home</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <a href="blog.html">Blog</a>
+          <span class="sep" aria-hidden="true">/</span>
+          <span class="here" aria-current="page">Arabica vs Robusta</span>
+        </nav>
+
+        <div class="hero-wrap glass">
+          <div class="hero-media" role="img" aria-label="Foto biji kopi">
+            <img
+              src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=80"
+              alt="Kenalan dengan Biji: Arabica vs Robusta"
+              loading="lazy"
+            />
+            <div class="media-shade" aria-hidden="true"></div>
+          </div>
+
+          <div class="hero-content">
+            <div class="pill">
+              <span aria-hidden="true">☕</span>
+              <span>Dasar Kopi • Biji Kopi</span>
+            </div>
+
+            <h1 class="article-title">Kenalan dengan Biji: Arabica vs Robusta</h1>
+
+            <p class="article-lead">
+              Dua varietas yang paling sering kamu temui di menu—tapi karakternya beda banget.
+              Di artikel ini kita bahas rasa, kafein, body, dan cara memilih yang pas buat selera kamu.
+            </p>
+
+            <div class="meta-row">
+              <span class="meta">
+                <span class="dot" aria-hidden="true"></span>
+                <b>2026</b>
+              </span>
+              <span class="meta">
+                <span class="dot" aria-hidden="true"></span>
+                <b>5 menit</b> baca
+              </span>
+              <span class="meta">
+                <span class="dot" aria-hidden="true"></span>
+                Ditulis oleh <b>Unggul Coffe</b>
+              </span>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#content">Mulai baca <span aria-hidden="true">→</span></a>
+              <a class="btn btn-ghost" href="blog.html">Kembali ke Blog</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* ====== ARTICLE HERO CSS ====== */
+      .article-hero{
+        padding: 18px 0 18px;
+        position:relative;
+      }
+      .article-hero::before{
+        content:"";
+        position:absolute;
+        inset:-120px -40px auto -40px;
+        height: 340px;
+        background: radial-gradient(600px 240px at 30% 40%, rgba(198,139,89,.22), transparent 60%),
+                    radial-gradient(600px 240px at 70% 20%, rgba(183,119,60,.14), transparent 60%);
+        filter: blur(10px);
+        pointer-events:none;
+      }
+
+      .crumbs{
+        display:flex;
+        flex-wrap:wrap;
+        gap: 8px;
+        align-items:center;
+        color: rgba(205,191,178,.9);
+        font-weight: 650;
+        font-size: .92rem;
+        margin: 12px 0 14px;
+      }
+      .crumbs a{ color: rgba(243,233,221,.92); }
+      .crumbs a:hover{ text-decoration: underline; }
+      .crumbs .sep{ opacity:.65; }
+      .crumbs .here{ color: rgba(198,139,89,.95); }
+
+      .hero-wrap{
+        overflow:hidden;
+        border-radius: var(--radius2);
+      }
+      .hero-media{
+        position:relative;
+        height: 320px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+      .hero-media img{
+        width:100%;
+        height:100%;
+        object-fit: cover;
+        transform: scale(1.02);
+      }
+      .media-shade{
+        position:absolute;
+        inset:0;
+        background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.68));
+        pointer-events:none;
+      }
+
+      .hero-content{
+        padding: 18px;
+      }
+      .article-title{
+        font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        font-size: clamp(1.9rem, 2.7vw, 2.6rem);
+        line-height: 1.1;
+        margin: 12px 0 0;
+        letter-spacing:.02em;
+      }
+      .article-lead{
+        margin: 12px 0 0;
+        color: var(--muted);
+        line-height: 1.85;
+        max-width: 70ch;
+        font-size: 1.02rem;
+      }
+
+      .meta-row{
+        display:flex;
+        flex-wrap:wrap;
+        gap: 10px 14px;
+        margin-top: 12px;
+        color: rgba(205,191,178,.92);
+        font-size: .95rem;
+        align-items:center;
+      }
+      .meta{ display:inline-flex; align-items:center; gap: 8px; }
+      .dot{
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(198,139,89,.95);
+        box-shadow: 0 10px 30px rgba(198,139,89,.20);
+      }
+
+      .hero-actions{
+        display:flex;
+        flex-wrap:wrap;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      @media (max-width: 560px){
+        .hero-media{ height: 240px; }
+      }
+    </style>
+
+    <!-- =================== ARTICLE CONTENT =================== -->
+    <section id="content" class="article">
+      <div class="container article-grid">
+
+        <article class="post glass" aria-label="Isi artikel">
+          <div class="post-inner">
+            <h2 class="h2">1) Bedanya Arabica dan Robusta (yang paling kerasa)</h2>
+            <p>
+              Secara umum, <b>Arabica</b> dikenal dengan rasa yang lebih kompleks: bisa floral, fruity, hingga nutty.
+              Sementara <b>Robusta</b> cenderung lebih “tegas”: pahitnya lebih dominan, body lebih berat, dan aftertaste lebih panjang.
+            </p>
+
+            <div class="callout">
+              <div class="call-ic" aria-hidden="true">✦</div>
+              <div>
+                <div class="call-title">Quick rule</div>
+                <div class="call-desc">
+                  Kalau kamu suka rasa “wangi & clean” → coba Arabica. Kalau kamu suka “bold & strong” → Robusta bisa cocok.
+                </div>
+              </div>
+            </div>
+
+            <h2 class="h2">2) Kafein: siapa yang lebih tinggi?</h2>
+            <p>
+              Pada kebanyakan kasus, <b>Robusta punya kafein lebih tinggi</b> dibanding Arabica.
+              Efeknya: Robusta lebih “nendang”, dan profil rasanya juga lebih pahit karena kafein berkontribusi ke bitterness.
+            </p>
+
+            <h2 class="h2">3) Body, aroma, dan crema</h2>
+            <ul class="ul">
+              <li><b>Arabica:</b> aroma cenderung lebih wangi, acidity bisa lebih terasa, body medium.</li>
+              <li><b>Robusta:</b> body lebih tebal, crema espresso bisa lebih “berani”, namun aroma cenderung lebih sederhana.</li>
+            </ul>
+
+            <blockquote class="quote">
+              “Yang penting bukan Arabica atau Robusta-nya—tapi <b>kamu suka rasa yang mana</b> dan diseduh dengan cara apa.”
+              <span class="qby">— Barista note</span>
+            </blockquote>
+
+            <h2 class="h2">4) Cara milih biji yang pas buat kamu</h2>
+            <div class="cards">
+              <div class="mini">
+                <div class="mini-h">Kalau kamu pemula</div>
+                <div class="mini-p">Mulai dari medium roast Arabica (lebih “aman”), atau blend Arabica-Robusta biar seimbang.</div>
+              </div>
+              <div class="mini">
+                <div class="mini-h">Kalau suka kopi susu</div>
+                <div class="mini-p">Robusta/blend biasanya enak buat milk-based karena rasanya tetap “muncul” meski dicampur susu.</div>
+              </div>
+              <div class="mini">
+                <div class="mini-h">Kalau suka manual brew</div>
+                <div class="mini-p">Arabica single origin sering lebih “keluar” karakternya di V60 / filter.</div>
+              </div>
+            </div>
+
+            <h2 class="h2">5) Rekomendasi seduh cepat</h2>
+            <div class="table glass">
+              <div class="trow thead">
+                <div>Metode</div>
+                <div>Rekomendasi</div>
+              </div>
+              <div class="trow">
+                <div>V60 / Filter</div>
+                <div>Arabica, grind medium, rasio 1:15–1:16</div>
+              </div>
+              <div class="trow">
+                <div>Espresso</div>
+                <div>Blend Arabica-Robusta untuk body + crema</div>
+              </div>
+              <div class="trow">
+                <div>Kopi susu</div>
+                <div>Robusta/blend medium-dark biar tetap bold</div>
+              </div>
+            </div>
+
+            <div class="divider-line"></div>
+
+            <div class="post-foot">
+              <div class="tags" aria-label="Tag artikel">
+                <span class="tag hot">biji kopi</span>
+                <span class="tag">arabica</span>
+                <span class="tag">robusta</span>
+              </div>
+
+              <div class="share" aria-label="Bagikan artikel">
+                <button class="sbtn" id="copyLink" type="button">Salin Link</button>
+                <a class="sbtn" href="blog.html">Artikel lain</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <aside class="side" aria-label="Sidebar artikel">
+          <div class="side-box glass">
+            <div class="side-h">Ringkasan</div>
+            <p class="side-p">
+              Arabica cenderung wangi & kompleks, Robusta lebih bold dan kafeinnya biasanya lebih tinggi.
+              Pilih berdasarkan selera dan metode seduh.
+            </p>
+
+            <div class="side-actions">
+              <a class="btn btn-primary" href="menu.html">Coba menu kami <span aria-hidden="true">→</span></a>
+              <a class="btn btn-ghost" href="blog.html">Kembali ke blog</a>
+            </div>
+          </div>
+
+          <div class="side-box glass">
+            <div class="side-h">Artikel Terkait</div>
+
+            <a class="rel" href="artikel2.html">
+              <span class="rel-ic" aria-hidden="true">🧠</span>
+              <span>
+                <span class="rel-t">Panduan Espresso di Rumah (Tanpa Ribet)</span>
+                <span class="rel-s">grind size, dose, rasio, crema stabil</span>
+              </span>
+            </a>
+
+            <a class="rel" href="artikel3.html">
+              <span class="rel-ic" aria-hidden="true">💧</span>
+              <span>
+                <span class="rel-t">Manual Brew: V60 untuk Rasa Clean & Floral</span>
+                <span class="rel-s">suhu, blooming, pour pattern</span>
+              </span>
+            </a>
+
+            <a class="rel" href="artikel6.html">
+              <span class="rel-ic" aria-hidden="true">🔥</span>
+              <span>
+                <span class="rel-t">Di Balik Roasting: Small Batch Lebih Konsisten</span>
+                <span class="rel-s">roast level, development time</span>
+              </span>
+            </a>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <style>
+      /* ====== ARTICLE CONTENT CSS ====== */
+      .article{
+        padding: 10px 0 40px;
+      }
+      .article-grid{
+        display:grid;
+        grid-template-columns: 1fr 340px;
+        gap: 16px;
+        align-items:start;
+      }
+
+      .post{
+        border-radius: var(--radius2);
+        overflow:hidden;
+      }
+      .post-inner{
+        padding: 18px;
+      }
+
+      .h2{
+        font-size: 1.28rem;
+        margin: 14px 0 0;
+        letter-spacing:.01em;
+      }
+      .post p{
+        margin: 10px 0 0;
+        color: rgba(243,233,221,.92);
+        line-height: 1.9;
+      }
+
+      .ul{
+        margin: 10px 0 0;
+        padding-left: 18px;
+        color: rgba(243,233,221,.92);
+        line-height: 1.9;
+      }
+      .ul li{ margin: 6px 0 0; color: rgba(243,233,221,.92); }
+
+      .callout{
+        margin-top: 12px;
+        display:flex;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 18px;
+        background: rgba(255,255,255,.03);
+        border: 1px solid rgba(255,255,255,.10);
+      }
+      .call-ic{
+        width: 38px;
+        height: 38px;
+        border-radius: 14px;
+        display:grid;
+        place-items:center;
+        background: rgba(198,139,89,.14);
+        border:1px solid rgba(198,139,89,.30);
+        flex: 0 0 auto;
+      }
+      .call-title{ font-weight: 850; }
+      .call-desc{ color: var(--muted); line-height: 1.75; margin-top: 2px; }
+
+      .quote{
+        margin: 14px 0 0;
+        padding: 14px 14px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(0,0,0,.18);
+        backdrop-filter: blur(12px);
+        line-height: 1.85;
+        color: rgba(243,233,221,.95);
+      }
+      .qby{
+        display:block;
+        margin-top: 8px;
+        color: rgba(198,139,89,.95);
+        font-weight: 750;
+        font-size: .92rem;
+      }
+
+      .cards{
+        margin-top: 12px;
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .mini{
+        padding: 12px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.03);
+      }
+      .mini-h{ font-weight: 850; }
+      .mini-p{ margin-top: 6px; color: var(--muted); line-height: 1.75; }
+
+      .table{
+        margin-top: 12px;
+        padding: 10px;
+        border-radius: 20px;
+        background: rgba(30, 20, 14, .45);
+      }
+      .trow{
+        display:grid;
+        grid-template-columns: 180px 1fr;
+        gap: 12px;
+        padding: 10px 10px;
+        border-radius: 14px;
+      }
+      .trow + .trow{ margin-top: 8px; }
+      .thead{
+        background: rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.10);
+        font-weight: 850;
+      }
+      .trow:not(.thead){
+        border:1px solid rgba(255,255,255,.08);
+        background: rgba(255,255,255,.02);
+        color: rgba(243,233,221,.92);
+      }
+
+      .post-foot{
+        margin-top: 12px;
+        display:flex;
+        justify-content:space-between;
+        gap: 12px;
+        flex-wrap:wrap;
+        align-items:center;
+      }
+      .tags{
+        display:flex;
+        flex-wrap:wrap;
+        gap: 8px;
+      }
+      .tag{
+        font-size:.82rem;
+        padding: .38rem .6rem;
+        border-radius: 999px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        white-space:nowrap;
+      }
+      .tag.hot{
+        border-color: rgba(198,139,89,.55);
+        background: rgba(198,139,89,.14);
+      }
+
+      .share{
+        display:flex;
+        gap: 10px;
+        flex-wrap:wrap;
+      }
+      .sbtn{
+        padding: .62rem .85rem;
+        border-radius: 14px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        cursor:pointer;
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+      }
+      .sbtn:hover{
+        transform: translateY(-1px);
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 16px 44px rgba(0,0,0,.35);
+      }
+
+      .side{
+        display:flex;
+        flex-direction:column;
+        gap: 12px;
+      }
+      .side-box{
+        padding: 16px;
+      }
+      .side-h{
+        font-weight: 900;
+        letter-spacing:.01em;
+      }
+      .side-p{
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .side-actions{
+        display:flex;
+        flex-direction:column;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .side-actions .btn{ width:100%; }
+
+      .rel{
+        margin-top: 10px;
+        display:flex;
+        gap: 10px;
+        align-items:flex-start;
+        padding: 12px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.03);
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+      }
+      .rel:hover{
+        transform: translateY(-2px);
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.42);
+      }
+      .rel-ic{
+        width:36px; height:36px;
+        border-radius: 14px;
+        display:grid; place-items:center;
+        background: rgba(198,139,89,.14);
+        border:1px solid rgba(198,139,89,.28);
+        flex: 0 0 auto;
+      }
+      .rel-t{ display:block; font-weight: 850; line-height: 1.35; }
+      .rel-s{ display:block; margin-top: 4px; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+
+      @media (max-width: 980px){
+        .article-grid{ grid-template-columns: 1fr; }
+      }
+      @media (max-width: 760px){
+        .cards{ grid-template-columns: 1fr; }
+        .trow{ grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- =================== FOOTER (AMBIL DARI BLOG.HTML) =================== -->
+    <footer id="contact" class="footer">
+      <div class="container footer-top">
+        <div class="foot-brandline">
+          <div class="foot-logo">
+            <span class="brand-mark" aria-hidden="true">☕</span>
+            <div>
+              <div class="foot-title">Unggul Coffe</div>
+              <div class="foot-sub">Kopi premium, suasana hangat, rasa konsisten.</div>
+            </div>
+          </div>
+
+          <div class="foot-social" aria-label="Social links">
+            <a class="soc" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6"/>
+                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6"/>
+                <path d="M17.6 6.4h.01" stroke="rgba(243,233,221,.9)" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </a>
+
+            <a class="soc" href="#" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 3v10.2a4.8 4.8 0 1 1-4-4.74" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 3c.8 2.7 2.9 4.7 5.6 5.1" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <a class="soc" href="#" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 11.6a8 8 0 0 1-11.9 7L4 20l1.5-4.3A8 8 0 1 1 20 11.6Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M9.2 9.3c.2-.6.7-.8 1.3-.6l.5.2c.3.1.5.3.6.6l.2.7c.1.4 0 .8-.3 1.1l-.3.3c.5 1 1.3 1.8 2.3 2.3l.3-.3c.3-.3.7-.4 1.1-.3l.7.2c.3.1.5.3.6.6l.2.5c.2.6 0 1.1-.6 1.3-.5.2-1.1.3-1.7.1-2-.7-3.7-2.3-4.4-4.4-.2-.6-.1-1.2.1-1.7Z"
+                      fill="rgba(243,233,221,.18)"/>
+              </svg>
+            </a>
+
+            <a class="soc" href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 8.2a3 3 0 0 0-2.1-2.1C17 5.6 12 5.6 12 5.6s-5 0-6.9.5A3 3 0 0 0 3 8.2 31 31 0 0 0 3 12a31 31 0 0 0 .1 3.8 3 3 0 0 0 2.1 2.1c1.9.5 6.9.5 6.9.5s5 0 6.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 21 12a31 31 0 0 0 0-3.8Z"
+                      stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M10.6 9.7 15 12l-4.4 2.3V9.7Z" fill="rgba(198,139,89,.85)"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-grid">
+          <div class="foot-col">
+            <div class="foot-h">Jam Operasional</div>
+            <div class="foot-p">Senin–Jumat: <b>10.00–22.00</b></div>
+            <div class="foot-p">Sabtu–Minggu: <b>09.00–23.00</b></div>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Alamat</div>
+            <div class="foot-p">Jl. Kopi Hangat No. 12, Kota Kamu</div>
+            <a class="foot-link" href="#">Buka Maps →</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Kontak</div>
+            <div class="foot-p">WhatsApp: +62 812-0000-0000</div>
+            <div class="foot-p">Email: hello@unggulcoffe.com</div>
+            <a class="foot-link" href="#">Hubungi Kami →</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Navigasi</div>
+            <div class="foot-links">
+              <a class="foot-link" href="index.html#home">Home</a>
+              <a class="foot-link" href="menu.html">Menu</a>
+              <a class="foot-link" href="index.html#testimoni">Testimoni</a>
+              <a class="foot-link" href="index.html#galeri">Gallery</a>
+              <a class="foot-link" href="blog.html">Blog</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container foot-bottom">
+        <span>© 2026 Unggul Coffe • All rights reserved</span>
+        <span class="muted">Made with ☕ & copper glow</span>
+      </div>
+    </footer>
+
+    <style>
+      /* ====== FOOTER CSS (AMBIL DARI BLOG.HTML) ====== */
+      .footer{
+        padding: 44px 0 24px;
+        background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35));
+        border-top: 1px solid rgba(198,139,89,.18);
+      }
+      .footer-top{ padding: 0 0 22px; }
+
+      .foot-brandline{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap: 16px;
+        padding: 6px 0 18px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        margin-bottom: 18px;
+      }
+      .foot-logo{ display:flex; gap: 10px; align-items:flex-start; }
+
+      .foot-title{ font-weight: 900; letter-spacing:.01em; font-size: 1.1rem; }
+      .foot-sub{ margin-top: 4px; color: var(--muted); line-height: 1.7; max-width: 44ch; }
+
+      .foot-social{ display:flex; gap: 10px; align-items:center; flex-wrap:wrap; }
+      .soc{
+        width:42px;
+        height:42px;
+        display:grid;
+        place-items:center;
+        border-radius: 14px;
+        background: rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.10);
+        color: var(--cream);
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .soc:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 16px 44px rgba(0,0,0,.35);
+        transform: translateY(-1px);
+        background: rgba(198,139,89,.10);
+      }
+
+      .footer-grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 18px;
+      }
+
+      .foot-h{ font-weight: 820; margin-bottom: 10px; }
+      .foot-p{ color: var(--muted); line-height: 1.7; margin: 6px 0 0; }
+      .foot-link{ display:inline-block; margin-top: 10px; color: rgba(198,139,89,.95); }
+      .foot-link:hover{ text-decoration: underline; }
+
+      .foot-links{
+        display:flex;
+        flex-direction:column;
+        gap: 8px;
+        margin-top: 2px;
+      }
+      .foot-links .foot-link{ margin-top: 0; width: fit-content; }
+
+      .foot-bottom{
+        border-top: 1px solid rgba(255,255,255,.08);
+        padding-top: 14px;
+        display:flex;
+        justify-content:space-between;
+        gap: 12px;
+        color: var(--muted);
+        flex-wrap:wrap;
+      }
+      .muted{ color: rgba(205,191,178,.8); }
+
+      @media (max-width: 980px){
+        .footer-grid{ grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 680px){
+        .foot-brandline{ flex-direction:column; }
+        .foot-social{ justify-content:flex-start; }
+      }
+      @media (max-width: 560px){
+        .footer-grid{ grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- FLOAT TO TOP -->
+    <button class="toTop" id="toTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+
+    <style>
+      .toTop{
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        cursor:pointer;
+        display:none;
+        z-index: 60;
+        backdrop-filter: blur(10px);
+      }
+      .toTop:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+      }
+    </style>
+
+  </main>
+
+  <script>
+    // ===== Copy link =====
+    const copyBtn = document.getElementById('copyLink');
+    copyBtn?.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(window.location.href);
+        copyBtn.textContent = "Tersalin ✓";
+        setTimeout(() => (copyBtn.textContent = "Salin Link"), 1400);
+      }catch(e){
+        copyBtn.textContent = "Gagal salin";
+        setTimeout(() => (copyBtn.textContent = "Salin Link"), 1400);
+      }
+    });
+
+    // ===== To Top =====
+    const toTop = document.getElementById('toTop');
+    function toggleTop(){
+      if(!toTop) return;
+      toTop.style.display = window.scrollY > 650 ? 'grid' : 'none';
+    }
+    window.addEventListener('scroll', toggleTop, { passive:true });
+    toggleTop();
+    toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ===== Cart badge sync (SAMA DENGAN BLOG.HTML) =====
+    function syncCartBadge(){
+      const count = Number(localStorage.getItem('cartCount') || 0);
+      const el = document.getElementById('cartCount');
+      if(el) el.textContent = String(count);
+    }
+    syncCartBadge();
+    window.addEventListener('storage', syncCartBadge);
+  </script>
+</body>
+</html>

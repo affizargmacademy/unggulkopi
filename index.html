@@ -1,0 +1,1301 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unggul Coffe — Kopi yang Dibuat Serius</title>
+  <meta name="description" content="Unggul Coffe — coffee shop premium bernuansa hangat dengan best seller, rekomendasi menu, testimoni, dan galeri."/>
+  <style>
+    /* ====== GLOBAL / TOKENS ====== */
+    :root{
+      --bg0:#0e0a07;
+      --bg1:#1a120d;
+      --card: rgba(30, 20, 14, .58);
+      --text:#f6efe7;
+      --muted:#cdbfb2;
+      --line: rgba(255,255,255,.10);
+
+      --cream:#f3e9dd;
+      --copper:#c68b59;
+      --copper2:#b7773c;
+
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 26px;
+
+      --container: 1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(198,139,89,.25), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(183,119,60,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+    button{ font:inherit; }
+
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    .grain{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.10;
+      mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      background-size:180px 180px;
+      z-index:999;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      padding:.45rem .8rem;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color:var(--cream);
+      font-size:.85rem;
+      letter-spacing:.02em;
+      backdrop-filter: blur(10px);
+    }
+    .section-title{
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      margin:0;
+      letter-spacing:.02em;
+    }
+    .section-sub{
+      margin:.55rem 0 0;
+      color:var(--muted);
+      line-height:1.7;
+      max-width: 62ch;
+    }
+    .divider-line{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(198,139,89,.55), transparent);
+      margin: 18px 0 0;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      padding:.92rem 1.15rem;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary{
+      background: linear-gradient(180deg, rgba(198,139,89,.95), rgba(183,119,60,.95));
+      color:#1a120d;
+      box-shadow: 0 14px 40px rgba(198,139,89,.28);
+    }
+    .btn-primary:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 18px 55px rgba(198,139,89,.34);
+    }
+    .btn-ghost{
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.12);
+      color:var(--cream);
+      backdrop-filter: blur(10px);
+    }
+    .btn-ghost:hover{
+      transform: translateY(-1px);
+      border-color: rgba(198,139,89,.55);
+      box-shadow: 0 16px 44px rgba(0,0,0,.35);
+    }
+    .btn-sm{ padding:.86rem 1rem; }
+
+    /* Glass */
+    .glass{
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      border-radius: var(--radius2);
+      backdrop-filter: blur(14px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- =================== NAVBAR (SAMA PERSIS DENGAN HALAMAN YANG KAMU KIRIM) =================== -->
+  <header class="nav-wrap">
+    <nav class="nav container">
+
+      <!-- KIRI: Brand -->
+      <a href="index.html" class="brand" aria-label="Unggul Coffe">
+        <span class="brand-mark" aria-hidden="true">☕</span>
+        <span class="brand-text">Unggul Coffe</span>
+      </a>
+
+      <!-- TENGAH: pill menu (Home/Menu/Contact) -->
+      <div class="nav-mid" role="navigation" aria-label="Primary">
+        <div class="nav-links">
+          <a class="nav-link active" href="index.html">Home</a>
+          <a class="nav-link" href="menu.html">Menu</a>
+          <a class="nav-link" href="kontak.html">Contact</a>
+          <a class="nav-link" href="blog.html">Blog</a>
+        </div>
+      </div>
+
+      <!-- KANAN: 2 tombol -->
+      <div class="nav-cta" aria-label="Aksi cepat">
+        <a class="btn btn-ghost btn-sm" href="menu.html" aria-label="Keranjang">
+          <span aria-hidden="true">🧾</span>
+          Keranjang
+          <span class="cart-badge" id="cartCount">0</span>
+        </a>
+        <a class="btn btn-primary btn-sm" href="menu.html">
+          Pesan Sekarang <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </nav>
+  </header>
+
+  <style>
+    /* ====== NAVBAR CSS (SAMA PERSIS) ====== */
+    .nav-wrap{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(14,10,7,.35);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav{
+      height: 78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.65rem;
+      font-weight: 750;
+      letter-spacing:.01em;
+      flex: 0 0 auto;
+    }
+    .brand-mark{
+      width:36px;
+      height:36px;
+      display:grid;
+      place-items:center;
+      border-radius: 12px;
+      background: rgba(198,139,89,.15);
+      border:1px solid rgba(198,139,89,.35);
+      box-shadow: 0 12px 26px rgba(198,139,89,.10);
+    }
+    .brand-text{ font-size: 1.05rem; }
+
+    .nav-mid{
+      flex: 1 1 auto;
+      display:flex;
+      justify-content:center;
+      min-width: 0;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap: 20px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 16px 40px rgba(0,0,0,.20);
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar{ display:none; }
+
+    .nav-link{
+      color: var(--muted);
+      font-size: .98rem;
+      padding: 8px 10px;
+      border-radius: 12px;
+      position: relative;
+      transition: color .15s ease, background .15s ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover{
+      color: var(--cream);
+      background: rgba(255,255,255,.04);
+    }
+    .nav-link.active::after{
+      content:"";
+      position:absolute;
+      left:10px; right:10px; bottom:4px;
+      height:2px;
+      border-radius:999px;
+      background: linear-gradient(90deg, transparent, rgba(198,139,89,.95), transparent);
+    }
+
+    .nav-cta{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex: 0 0 auto;
+      justify-content:flex-end;
+    }
+
+    .cart-badge{
+      margin-left: 6px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 7px;
+      border-radius: 999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(198,139,89,.25);
+      border: 1px solid rgba(198,139,89,.45);
+      color: var(--cream);
+      font-size:.82rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    /* Responsive: tanpa hamburger, jadi wrap yang rapi */
+    @media (max-width: 980px){
+      .nav{ height:auto; padding: 12px 0; flex-wrap:wrap; }
+      .nav-mid{ order: 3; width:100%; justify-content:flex-start; }
+      .nav-links{ width:100%; justify-content:flex-start; }
+      .nav-cta{ order: 2; margin-left:auto; }
+    }
+    @media (max-width: 560px){
+      .nav-cta{ width:100%; }
+      .nav-cta .btn{ flex:1; }
+    }
+  </style>
+
+  <!-- =================== HERO =================== -->
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <!-- Left -->
+        <div class="hero-left">
+          <div class="pill">
+            <span aria-hidden="true">☕</span>
+            <span>Small Batch Roastery • Since 2026</span>
+          </div>
+
+          <h1 class="hero-title">
+            Kopi yang Dibuat Serius,<br/>
+            untuk Momen yang Berarti.
+          </h1>
+
+          <p class="hero-desc">
+            Unggul Coffe menghadirkan rasa yang konsisten dari biji pilihan hingga cangkir.
+            Setiap racikan diseduh dengan presisi, dipadukan menu makanan yang cocok untuk menemani
+            obrolan, kerja, atau rehat sejenak. Di sini, kopi bukan sekadar minuman—tapi pengalaman.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="menu.html">
+              Lihat Menu <span aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn-ghost" href="#contact">Reservasi Meja</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-ic" aria-hidden="true">★</span>
+              <div>
+                <div class="stat-val">4.8/5</div>
+                <div class="stat-lbl">Rating</div>
+              </div>
+            </div>
+            <div class="stat">
+              <span class="stat-ic" aria-hidden="true">☕</span>
+              <div>
+                <div class="stat-val">500+</div>
+                <div class="stat-lbl">Cup/hari</div>
+              </div>
+            </div>
+            <div class="stat">
+              <span class="stat-ic" aria-hidden="true">🕒</span>
+              <div>
+                <div class="stat-val">10.00–22.00</div>
+                <div class="stat-lbl">Setiap hari</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <aside class="hero-right glass">
+          <div class="best-header">
+            <h2 class="best-title">Best Seller Minggu Ini</h2>
+            <p class="best-sub">Favorit pelanggan, cepat habis.</p>
+            <div class="divider-line"></div>
+          </div>
+
+          <div class="best-list">
+            <article class="best-item">
+              <img class="best-img"
+                src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=500&q=70"
+                alt="Es Kopi Gula Aren" loading="lazy"/>
+              <div class="best-info">
+                <div class="best-name">Es Kopi Gula Aren</div>
+                <div class="best-sold">Terjual: <b>1.965</b></div>
+              </div>
+              <span class="tag tag-top">Top 1</span>
+            </article>
+
+            <article class="best-item">
+              <img class="best-img"
+                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=70"
+                alt="Caramel Latte" loading="lazy"/>
+              <div class="best-info">
+                <div class="best-name">Caramel Latte</div>
+                <div class="best-sold">Terjual: <b>1.284</b></div>
+              </div>
+              <span class="tag tag-trend">Trending</span>
+            </article>
+
+            <article class="best-item">
+              <img class="best-img"
+                src="https://images.unsplash.com/photo-1530610476181-d83430b64dcd?auto=format&fit=crop&w=500&q=70"
+                alt="Croissant Butter" loading="lazy"/>
+              <div class="best-info">
+                <div class="best-name">Croissant Butter</div>
+                <div class="best-sold">Terjual: <b>987</b></div>
+              </div>
+              <span class="tag tag-fav">Favorite</span>
+            </article>
+          </div>
+
+          <div class="best-foot">
+            <div class="mini-note">
+              <span class="spark" aria-hidden="true">✦</span>
+              <span>Tip: dateng sebelum jam 17.00 biar kebagian best seller.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <style>
+      /* ====== HERO CSS ====== */
+      .hero{ position:relative; padding: 44px 0 34px; }
+      .hero::before{
+        content:"";
+        position:absolute;
+        inset:-120px -40px auto -40px;
+        height: 380px;
+        background: radial-gradient(600px 240px at 30% 40%, rgba(198,139,89,.22), transparent 60%),
+                    radial-gradient(600px 240px at 70% 20%, rgba(183,119,60,.14), transparent 60%);
+        filter: blur(8px);
+        pointer-events:none;
+      }
+      .hero-grid{
+        display:grid;
+        grid-template-columns: 1.05fr .95fr;
+        gap: 26px;
+        align-items:stretch;
+      }
+      .hero-left{ padding: 18px 0; }
+      .hero-title{
+        font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        font-size: clamp(2.05rem, 3.2vw, 3.15rem);
+        line-height: 1.07;
+        margin: 14px 0 0;
+        letter-spacing:.02em;
+      }
+      .hero-desc{
+        margin: 14px 0 0;
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 64ch;
+        font-size: 1.02rem;
+      }
+      .hero-cta{
+        display:flex;
+        flex-wrap:wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .hero-stats{
+        margin-top: 18px;
+        display:flex;
+        flex-wrap:wrap;
+        gap: 12px;
+      }
+      .stat{
+        display:flex;
+        gap: 10px;
+        align-items:center;
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: rgba(255,255,255,.03);
+        border:1px solid rgba(255,255,255,.08);
+        backdrop-filter: blur(10px);
+      }
+      .stat-ic{
+        width:34px; height:34px;
+        display:grid; place-items:center;
+        border-radius: 12px;
+        background: rgba(198,139,89,.15);
+        border:1px solid rgba(198,139,89,.28);
+      }
+      .stat-val{ font-weight: 700; }
+      .stat-lbl{ color: var(--muted); font-size:.85rem; margin-top:2px; }
+
+      .hero-right{ padding: 18px; position:relative; overflow:hidden; }
+      .hero-right::after{
+        content:"";
+        position:absolute;
+        inset: -2px;
+        border-radius: var(--radius2);
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(198,139,89,.50), rgba(255,255,255,.08), rgba(183,119,60,.35));
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events:none;
+      }
+
+      .best-header{ margin-bottom: 14px; }
+      .best-title{
+        margin:0;
+        font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        letter-spacing:.02em;
+        font-size: 1.45rem;
+      }
+      .best-sub{
+        margin: 6px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: .95rem;
+      }
+
+      .best-list{ display:flex; flex-direction:column; gap: 12px; margin-top: 14px; }
+      .best-item{
+        display:grid;
+        grid-template-columns: 92px 1fr auto;
+        align-items:center;
+        gap: 12px;
+        padding: 10px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.03);
+        transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+        position:relative;
+      }
+      .best-item:hover{
+        transform: translateY(-2px);
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.42);
+      }
+      .best-img{
+        width:92px;
+        height:64px;
+        border-radius: 14px;
+        object-fit: cover;
+        border:1px solid rgba(255,255,255,.10);
+      }
+      .best-name{ font-weight: 750; letter-spacing:.01em; }
+      .best-sold{ color: var(--muted); margin-top:4px; font-size:.92rem; }
+      .tag{
+        font-size:.78rem;
+        padding: .35rem .55rem;
+        border-radius: 999px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        white-space:nowrap;
+      }
+      .tag-top{ border-color: rgba(198,139,89,.55); background: rgba(198,139,89,.14); }
+      .tag-trend{ border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.05); }
+      .tag-fav{ border-color: rgba(183,119,60,.55); background: rgba(183,119,60,.12); }
+
+      .best-foot{
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255,255,255,.08);
+      }
+      .mini-note{
+        display:flex;
+        gap: 10px;
+        align-items:flex-start;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size:.92rem;
+      }
+      .spark{ color: rgba(198,139,89,.95); margin-top: 2px; }
+
+      @media (max-width: 960px){
+        .hero-grid{ grid-template-columns: 1fr; }
+        .hero-right{ margin-top: 6px; }
+      }
+    </style>
+
+    <!-- =================== REKOMENDASI =================== -->
+    <section id="rekomendasi" class="reco">
+      <div class="container">
+        <header class="reco-head">
+          <h2 class="section-title">Rekomendasi untuk Kamu</h2>
+          <p class="section-sub">Paduan kopi & makanan yang paling sering bikin balik lagi.</p>
+          <div class="divider-line"></div>
+        </header>
+
+        <div class="reco-grid">
+          <article class="reco-card card">
+            <img class="reco-img" src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=700&q=70" alt="Cappuccino" loading="lazy"/>
+            <div class="reco-body">
+              <div class="reco-name">Cappuccino</div>
+              <div class="reco-meta">
+                <span class="price">28k</span>
+                <span class="badge">Chef’s pick</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="reco-card card">
+            <img class="reco-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=70" alt="Americano Ice" loading="lazy"/>
+            <div class="reco-body">
+              <div class="reco-name">Americano Ice</div>
+              <div class="reco-meta">
+                <span class="price">25k</span>
+                <span class="badge">Fresh</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="reco-card card">
+            <img class="reco-img" src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=70" alt="Matcha Latte" loading="lazy"/>
+            <div class="reco-body">
+              <div class="reco-name">Matcha Latte</div>
+              <div class="reco-meta">
+                <span class="price">30k</span>
+                <span class="badge">Smooth</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="reco-card card">
+            <img class="reco-img" src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=70" alt="Chocolate Cookies" loading="lazy"/>
+            <div class="reco-body">
+              <div class="reco-name">Chocolate Cookies</div>
+              <div class="reco-meta">
+                <span class="price">18k</span>
+                <span class="badge">Bestsnack</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="reco-card card">
+            <img class="reco-img" src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=70" alt="Chicken Sandwich" loading="lazy"/>
+            <div class="reco-body">
+              <div class="reco-name">Chicken Sandwich</div>
+              <div class="reco-meta">
+                <span class="price">35k</span>
+                <span class="badge">Filling</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="reco-card card">
+            <img class="reco-img" src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=700&q=70" alt="Donut Sugar" loading="lazy"/>
+            <div class="reco-body">
+              <div class="reco-name">Donut Sugar</div>
+              <div class="reco-meta">
+                <span class="price">15k</span>
+                <span class="badge">Sweet</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="reco-card card">
+            <img class="reco-img" src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?auto=format&fit=crop&w=700&q=70" alt="Espresso" loading="lazy"/>
+            <div class="reco-body">
+              <div class="reco-name">Espresso</div>
+              <div class="reco-meta">
+                <span class="price">20k</span>
+                <span class="badge">Bold</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="reco-card card">
+            <img class="reco-img" src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2f5f3?auto=format&fit=crop&w=700&q=70" alt="Pasta Creamy" loading="lazy"/>
+            <div class="reco-body">
+              <div class="reco-name">Pasta Creamy</div>
+              <div class="reco-meta">
+                <span class="price">40k</span>
+                <span class="badge">Hot</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="reco-cta">
+          <a class="btn btn-primary" href="menu.html">Lihat Menu Lengkap <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* ====== REKOMENDASI CSS ====== */
+      .reco{ padding: 34px 0 40px; }
+      .reco-head{ margin-bottom: 18px; }
+      .reco-grid{
+        margin-top: 18px;
+        display:grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+      .reco-card{
+        overflow:hidden;
+        border-radius: 20px;
+        background: rgba(255,255,255,.035);
+      }
+      .reco-img{
+        width:100%;
+        height: 150px;
+        object-fit: cover;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+      .reco-body{ padding: 12px 12px 14px; }
+      .reco-name{ font-weight: 780; letter-spacing:.01em; }
+      .reco-meta{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-top: 8px;
+        gap: 10px;
+      }
+      .price{
+        color: var(--cream);
+        font-weight: 700;
+        padding: .32rem .55rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.10);
+      }
+      .badge{
+        color: rgba(198,139,89,.95);
+        font-size: .82rem;
+        letter-spacing:.01em;
+      }
+      .reco-cta{ display:flex; justify-content:center; margin-top: 18px; }
+
+      @media (max-width: 980px){
+        .reco-grid{ grid-template-columns: repeat(2, 1fr); }
+        .reco-img{ height: 160px; }
+      }
+      @media (max-width: 520px){
+        .reco-grid{ grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- =================== TESTIMONI =================== -->
+    <section id="testimoni" class="testi">
+      <div class="container">
+        <header class="testi-head">
+          <h2 class="section-title">Apa Kata Mereka?</h2>
+          <p class="section-sub">Cerita singkat dari pelanggan yang balik lagi.</p>
+          <div class="divider-line"></div>
+        </header>
+
+        <div class="testi-wrap glass">
+          <button class="nav-arrow" id="prevTesti" aria-label="Testimoni sebelumnya" type="button">‹</button>
+          <article class="testi-card" id="testiCard" aria-live="polite"></article>
+          <button class="nav-arrow" id="nextTesti" aria-label="Testimoni berikutnya" type="button">›</button>
+        </div>
+
+        <div class="dots" id="dots" aria-label="Indicator testimoni"></div>
+      </div>
+    </section>
+
+    <style>
+      /* ====== TESTIMONI CSS ====== */
+      .testi{ padding: 34px 0 40px; }
+      .testi-wrap{
+        margin-top: 18px;
+        padding: 16px;
+        display:grid;
+        grid-template-columns: 44px 1fr 44px;
+        gap: 12px;
+        align-items:center;
+        position:relative;
+        overflow:hidden;
+      }
+      .testi-wrap::before{
+        content:"";
+        position:absolute;
+        inset:-40px;
+        background: radial-gradient(500px 180px at 40% 30%, rgba(198,139,89,.18), transparent 60%),
+                    radial-gradient(500px 180px at 70% 70%, rgba(183,119,60,.12), transparent 60%);
+        pointer-events:none;
+        filter: blur(8px);
+      }
+      .nav-arrow{
+        width:44px;
+        height:44px;
+        border-radius: 16px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        font-size: 1.6rem;
+        cursor:pointer;
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+        z-index:2;
+      }
+      .nav-arrow:hover{
+        transform: translateY(-1px);
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      }
+
+      .testi-card{
+        z-index:2;
+        border-radius: 22px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(0,0,0,.18);
+        backdrop-filter: blur(12px);
+        padding: 18px 18px;
+        box-shadow: 0 18px 60px rgba(0,0,0,.35);
+        min-height: 170px;
+        display:flex;
+        gap: 16px;
+        align-items:flex-start;
+        transition: opacity .18s ease, transform .18s ease;
+      }
+      .ava{
+        width:72px;
+        height:72px;
+        border-radius: 999px;
+        object-fit: cover;
+        border:1px solid rgba(255,255,255,.12);
+      }
+      .t-name{ font-weight: 800; letter-spacing:.01em; }
+      .t-role{ color: var(--muted); margin-top: 2px; font-size: .92rem; }
+      .stars{
+        margin-top: 8px;
+        color: rgba(198,139,89,.95);
+        letter-spacing: .08em;
+        font-size: .95rem;
+      }
+      blockquote{
+        margin: 10px 0 0;
+        color: var(--cream);
+        line-height: 1.75;
+        font-size: 1.02rem;
+      }
+
+      .dots{
+        margin-top: 12px;
+        display:flex;
+        justify-content:center;
+        gap: 8px;
+      }
+      .dot{
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        border:1px solid rgba(255,255,255,.18);
+        background: rgba(255,255,255,.06);
+        cursor:pointer;
+      }
+      .dot.active{
+        background: rgba(198,139,89,.85);
+        border-color: rgba(198,139,89,.95);
+        box-shadow: 0 10px 30px rgba(198,139,89,.25);
+      }
+
+      @media (max-width: 760px){
+        .testi-wrap{ grid-template-columns: 40px 1fr 40px; }
+        .testi-card{ flex-direction:column; }
+        .ava{ width:62px; height:62px; }
+      }
+    </style>
+
+    <!-- =================== GALERI =================== -->
+    <section id="galeri" class="gallery">
+      <div class="container">
+        <header class="gal-head">
+          <h2 class="section-title">Galeri Terbaru</h2>
+          <p class="section-sub">Momen kecil di Unggul Coffe.</p>
+          <div class="divider-line"></div>
+        </header>
+
+        <div class="gal-grid">
+          <a class="gal-card card" href="#" aria-label="Lihat foto 1">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=70" alt="Suasana cafe" loading="lazy"/>
+            <span class="overlay">View</span>
+          </a>
+          <a class="gal-card card" href="#" aria-label="Lihat foto 2">
+            <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=70" alt="Bar kopi" loading="lazy"/>
+            <span class="overlay">View</span>
+          </a>
+          <a class="gal-card card" href="#" aria-label="Lihat foto 3">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=70" alt="Latte art" loading="lazy"/>
+            <span class="overlay">View</span>
+          </a>
+          <a class="gal-card card" href="#" aria-label="Lihat foto 4">
+            <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=70" alt="Peralatan barista" loading="lazy"/>
+            <span class="overlay">View</span>
+          </a>
+          <a class="gal-card card" href="#" aria-label="Lihat foto 5">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=70" alt="Interior hangat" loading="lazy"/>
+            <span class="overlay">View</span>
+          </a>
+          <a class="gal-card card" href="#" aria-label="Lihat foto 6">
+            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=70" alt="Coffee shop malam hari" loading="lazy"/>
+            <span class="overlay">View</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* ====== GALERI CSS ====== */
+      .gallery{ padding: 34px 0 46px; }
+      .gal-grid{
+        margin-top: 18px;
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .gal-card{
+        position:relative;
+        overflow:hidden;
+        border-radius: 20px;
+        display:block;
+        aspect-ratio: 4 / 3;
+      }
+      .gal-card img{
+        width:100%;
+        height:100%;
+        object-fit: cover;
+        transform: scale(1.02);
+        transition: transform .25s ease;
+      }
+      .gal-card:hover img{ transform: scale(1.08); }
+
+      .overlay{
+        position:absolute;
+        inset:auto 12px 12px 12px;
+        padding: .55rem .75rem;
+        border-radius: 14px;
+        background: rgba(0,0,0,.40);
+        border:1px solid rgba(255,255,255,.12);
+        color: var(--cream);
+        font-size:.92rem;
+        backdrop-filter: blur(10px);
+        opacity:0;
+        transform: translateY(8px);
+        transition: opacity .22s ease, transform .22s ease, border-color .22s ease;
+      }
+      .gal-card:hover .overlay{
+        opacity:1;
+        transform: translateY(0);
+        border-color: rgba(198,139,89,.55);
+      }
+
+      @media (max-width: 980px){
+        .gal-grid{ grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 560px){
+        .gal-grid{ grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- =================== FOOTER (SAMA PERSIS DENGAN HALAMAN YANG KAMU KIRIM) =================== -->
+    <footer id="contact" class="footer">
+      <div class="container footer-top">
+        <div class="foot-brandline">
+          <div class="foot-logo">
+            <span class="brand-mark" aria-hidden="true">☕</span>
+            <div>
+              <div class="foot-title">Unggul Coffe</div>
+              <div class="foot-sub">Kopi premium, suasana hangat, rasa konsisten.</div>
+            </div>
+          </div>
+
+          <div class="foot-social" aria-label="Social links">
+            <a class="soc" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6"/>
+                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6"/>
+                <path d="M17.6 6.4h.01" stroke="rgba(243,233,221,.9)" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </a>
+
+            <a class="soc" href="#" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 3v10.2a4.8 4.8 0 1 1-4-4.74" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 3c.8 2.7 2.9 4.7 5.6 5.1" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <a class="soc" href="#" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 11.6a8 8 0 0 1-11.9 7L4 20l1.5-4.3A8 8 0 1 1 20 11.6Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M9.2 9.3c.2-.6.7-.8 1.3-.6l.5.2c.3.1.5.3.6.6l.2.7c.1.4 0 .8-.3 1.1l-.3.3c.5 1 1.3 1.8 2.3 2.3l.3-.3c.3-.3.7-.4 1.1-.3l.7.2c.3.1.5.3.6.6l.2.5c.2.6 0 1.1-.6 1.3-.5.2-1.1.3-1.7.1-2-.7-3.7-2.3-4.4-4.4-.2-.6-.1-1.2.1-1.7Z"
+                      fill="rgba(243,233,221,.18)"/>
+              </svg>
+            </a>
+
+            <a class="soc" href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 8.2a3 3 0 0 0-2.1-2.1C17 5.6 12 5.6 12 5.6s-5 0-6.9.5A3 3 0 0 0 3 8.2 31 31 0 0 0 3 12a31 31 0 0 0 .1 3.8 3 3 0 0 0 2.1 2.1c1.9.5 6.9.5 6.9.5s5 0 6.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 21 12a31 31 0 0 0 0-3.8Z"
+                      stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M10.6 9.7 15 12l-4.4 2.3V9.7Z" fill="rgba(198,139,89,.85)"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-grid">
+          <div class="foot-col">
+            <div class="foot-h">Jam Operasional</div>
+            <div class="foot-p">Senin–Jumat: <b>10.00–22.00</b></div>
+            <div class="foot-p">Sabtu–Minggu: <b>09.00–23.00</b></div>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Alamat</div>
+            <div class="foot-p">Jl. Kopi Hangat No. 12, Kota Kamu</div>
+            <a class="foot-link" href="#">Buka Maps →</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Kontak</div>
+            <div class="foot-p">WhatsApp: +62 812-0000-0000</div>
+            <div class="foot-p">Email: hello@unggulcoffe.com</div>
+            <a class="foot-link" href="#">Hubungi Kami →</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Navigasi</div>
+            <div class="foot-links">
+              <a class="foot-link" href="index.html#home">Home</a>
+              <a class="foot-link" href="menu.html">Menu</a>
+              <a class="foot-link" href="index.html#testimoni">Testimoni</a>
+              <a class="foot-link" href="index.html#galeri">Gallery</a>
+              <a class="foot-link" href="blog.html">Blog</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container foot-bottom">
+        <span>© 2026 Unggul Coffe • All rights reserved</span>
+        <span class="muted">Made with ☕ & copper glow</span>
+      </div>
+    </footer>
+
+    <style>
+      /* ====== FOOTER CSS (SAMA PERSIS) ====== */
+      .footer{
+        padding: 44px 0 24px;
+        background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35));
+        border-top: 1px solid rgba(198,139,89,.18);
+      }
+      .footer-top{ padding: 0 0 22px; }
+
+      .foot-brandline{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap: 16px;
+        padding: 6px 0 18px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        margin-bottom: 18px;
+      }
+      .foot-logo{ display:flex; gap: 10px; align-items:flex-start; }
+
+      .foot-title{ font-weight: 900; letter-spacing:.01em; font-size: 1.1rem; }
+      .foot-sub{ margin-top: 4px; color: var(--muted); line-height: 1.7; max-width: 44ch; }
+
+      .foot-social{ display:flex; gap: 10px; align-items:center; flex-wrap:wrap; }
+      .soc{
+        width:42px;
+        height:42px;
+        display:grid;
+        place-items:center;
+        border-radius: 14px;
+        background: rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.10);
+        color: var(--cream);
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .soc:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 16px 44px rgba(0,0,0,.35);
+        transform: translateY(-1px);
+        background: rgba(198,139,89,.10);
+      }
+
+      .footer-grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 18px;
+      }
+
+      .foot-h{ font-weight: 820; margin-bottom: 10px; }
+      .foot-p{ color: var(--muted); line-height: 1.7; margin: 6px 0 0; }
+      .foot-link{ display:inline-block; margin-top: 10px; color: rgba(198,139,89,.95); }
+      .foot-link:hover{ text-decoration: underline; }
+
+      .foot-links{
+        display:flex;
+        flex-direction:column;
+        gap: 8px;
+        margin-top: 2px;
+      }
+      .foot-links .foot-link{ margin-top: 0; width: fit-content; }
+
+      .foot-bottom{
+        border-top: 1px solid rgba(255,255,255,.08);
+        padding-top: 14px;
+        display:flex;
+        justify-content:space-between;
+        gap: 12px;
+        color: var(--muted);
+        flex-wrap:wrap;
+      }
+      .muted{ color: rgba(205,191,178,.8); }
+
+      @media (max-width: 980px){
+        .footer-grid{ grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 680px){
+        .foot-brandline{ flex-direction:column; }
+        .foot-social{ justify-content:flex-start; }
+      }
+      @media (max-width: 560px){
+        .footer-grid{ grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- FLOAT TO TOP (opsional biar enak) -->
+    <button class="toTop" id="toTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+
+    <style>
+      .toTop{
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        cursor:pointer;
+        display:none;
+        z-index: 60;
+        backdrop-filter: blur(10px);
+      }
+      .toTop:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+      }
+    </style>
+  </main>
+
+  <!-- =================== JAVASCRIPT =================== -->
+  <script>
+    // ===== BLOG DATA + SEARCH =====
+    const blogGrid = document.getElementById('blogGrid');
+    const blogHint = document.getElementById('blogHint');
+    const blogEmpty = document.getElementById('blogEmpty');
+    const blogReset = document.getElementById('blogReset');
+    const searchBlog = document.getElementById('searchBlog');
+    const clearSearch = document.getElementById('clearSearch');
+
+    const blogPosts = [
+      {
+        title: "Kenalan dengan Biji: Arabica vs Robusta",
+        excerpt: "Beda karakter rasa, tingkat kafein, dan cara memilih biji yang cocok untuk selera kamu.",
+        image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
+        tags: ["biji kopi","arabica","robusta"],
+        meta: { year: "2026", read: "5 menit" },
+        url: "artikel1.html",
+        hotTag: "biji kopi"
+      },
+      {
+        title: "Panduan Espresso di Rumah (Tanpa Ribet)",
+        excerpt: "Mulai dari grind size, dose, rasio, sampai tips biar crema stabil dan manis.",
+        image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80",
+        tags: ["espresso","grind","brew ratio"],
+        meta: { year: "2026", read: "7 menit" },
+        url: "artikel2.html",
+        hotTag: "espresso"
+      },
+      {
+        title: "Manual Brew: V60 untuk Rasa Clean & Floral",
+        excerpt: "Step-by-step V60: suhu, blooming, pour pattern, dan cara menghindari rasa pahit.",
+        image: "https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&w=1200&q=80",
+        tags: ["v60","manual brew","filter"],
+        meta: { year: "2026", read: "6 menit" },
+        url: "artikel3.html",
+        hotTag: "v60"
+      },
+      {
+        title: "Latte Art Dasar: Mulai dari Microfoam",
+        excerpt: "Rahasia foam halus, teknik tuang, dan latihan pola sederhana yang paling gampang.",
+        image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=1200&q=80",
+        tags: ["latte","milk","latte art"],
+        meta: { year: "2026", read: "6 menit" },
+        url: "artikel4.html",
+        hotTag: "latte"
+      },
+      {
+        title: "Pairing Kopi & Pastry yang Bikin Nagih",
+        excerpt: "Rekomendasi pairing: caramel latte + croissant, cappuccino + cookies, dan lainnya.",
+        image: "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?auto=format&fit=crop&w=1200&q=80",
+        tags: ["pairing","pastry","menu"],
+        meta: { year: "2026", read: "4 menit" },
+        url: "artikel5.html",
+        hotTag: "pastry"
+      },
+      {
+        title: "Di Balik Roasting: Kenapa Small Batch Lebih Konsisten",
+        excerpt: "Penjelasan ringan tentang roast level, development time, dan alasan small batch itu penting.",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80",
+        tags: ["roasting","small batch","profil rasa"],
+        meta: { year: "2026", read: "8 menit" },
+        url: "artikel6.html",
+        hotTag: "roasting"
+      }
+    ];
+
+    function esc(s){
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+      }[c]));
+    }
+
+    function blogCardHTML(p){
+      const tags = (p.tags || []).map(t => {
+        const cls = (t === p.hotTag) ? "tag hot" : "tag";
+        return `<span class="${cls}">${esc(t)}</span>`;
+      }).join('');
+
+      return `
+        <article class="bcard">
+          <div class="bimg">
+            <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">
+          </div>
+          <div class="bbody">
+            <div class="bmeta">
+              <span>${esc(p.meta?.year || "")}</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span>${esc(p.meta?.read || "")}</span>
+            </div>
+
+            <h3 class="btitle">${esc(p.title)}</h3>
+            <p class="bdesc">${esc(p.excerpt)}</p>
+
+            <div class="btags">${tags}</div>
+
+            <div class="bcta">
+              <a class="btn btn-primary" href="${esc(p.url)}">Baca selengkapnya</a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderBlogs(list){
+      if(!blogGrid) return;
+      blogGrid.innerHTML = list.map(blogCardHTML).join('');
+
+      if(blogHint) blogHint.innerHTML = `Menampilkan: <b>${list.length} blog</b>`;
+      if(blogEmpty) blogEmpty.hidden = list.length !== 0;
+      blogGrid.style.display = list.length === 0 ? 'none' : 'grid';
+    }
+
+    function applyBlogSearch(qRaw){
+      const q = (qRaw ?? searchBlog?.value ?? '').trim().toLowerCase();
+      if(!q){
+        renderBlogs(blogPosts);
+        return;
+      }
+      const filtered = blogPosts.filter(p => {
+        const text = (p.title + " " + p.excerpt + " " + (p.tags || []).join(" ")).toLowerCase();
+        return text.includes(q);
+      });
+      renderBlogs(filtered);
+    }
+
+    searchBlog?.addEventListener('input', () => applyBlogSearch());
+    blogReset?.addEventListener('click', () => {
+      if(searchBlog) searchBlog.value = '';
+      renderBlogs(blogPosts);
+    });
+    clearSearch?.addEventListener('click', () => {
+      if(searchBlog) searchBlog.value = '';
+      renderBlogs(blogPosts);
+      searchBlog?.focus();
+    });
+
+    // Quick tags (hero)
+    document.querySelectorAll('[data-q]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-q') || '';
+        if(searchBlog) searchBlog.value = val;
+        const y = document.getElementById('blog')?.getBoundingClientRect().top || 0;
+        window.scrollTo({ top: window.scrollY + y - 90, behavior: 'smooth' });
+        applyBlogSearch(val);
+      });
+    });
+
+    // INIT
+    renderBlogs(blogPosts);
+
+    // To Top
+    const toTop = document.getElementById('toTop');
+    function toggleTop(){
+      if(!toTop) return;
+      toTop.style.display = window.scrollY > 650 ? 'grid' : 'none';
+    }
+    window.addEventListener('scroll', toggleTop, { passive:true });
+    toggleTop();
+    toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ===== Cart badge sync (SAMA DENGAN HALAMAN INDEX) =====
+    function syncCartBadge(){
+      const count = Number(localStorage.getItem('cartCount') || 0);
+      const el = document.getElementById('cartCount');
+      if(el) el.textContent = String(count);
+    }
+    syncCartBadge();
+    window.addEventListener('storage', syncCartBadge);
+  </script>
+</body>
+</html>

@@ -1,0 +1,2070 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unggul Coffe — Menu</title>
+  <meta name="description" content="Menu Unggul Coffe + fitur pesan sekarang dengan pop up form pemesanan, nota sementara, dan metode pembayaran."/>
+
+  <style>
+    /* ====== GLOBAL / TOKENS (match index) ====== */
+    :root{
+      --bg0:#0e0a07;
+      --bg1:#1a120d;
+      --card: rgba(30, 20, 14, .58);
+      --text:#f6efe7;
+      --muted:#cdbfb2;
+      --line: rgba(255,255,255,.10);
+
+      --cream:#f3e9dd;
+      --copper:#c68b59;
+      --copper2:#b7773c;
+
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 26px;
+
+      --container: 1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(198,139,89,.25), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(183,119,60,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+    button, input, select, textarea{ font:inherit; }
+
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    .grain{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.10;
+      mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      background-size:180px 180px;
+      z-index:999;
+    }
+
+    .glass{
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      border-radius: var(--radius2);
+      backdrop-filter: blur(14px);
+    }
+    .card{
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover{
+      transform: translateY(-3px);
+      border-color: rgba(198,139,89,.55);
+      box-shadow: 0 18px 44px rgba(0,0,0,.45);
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      padding:.45rem .8rem;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color:var(--cream);
+      font-size:.85rem;
+      letter-spacing:.02em;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      padding:.92rem 1.15rem;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary{
+      background: linear-gradient(180deg, rgba(198,139,89,.95), rgba(183,119,60,.95));
+      color:#1a120d;
+      box-shadow: 0 14px 40px rgba(198,139,89,.28);
+    }
+    .btn-primary:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 18px 55px rgba(198,139,89,.34);
+    }
+    .btn-ghost{
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.12);
+      color:var(--cream);
+      backdrop-filter: blur(10px);
+    }
+    .btn-ghost:hover{
+      transform: translateY(-1px);
+      border-color: rgba(198,139,89,.55);
+      box-shadow: 0 16px 44px rgba(0,0,0,.35);
+    }
+    .btn-sm{
+      padding:.62rem .85rem;
+      border-radius: 12px;
+      font-size:.95rem;
+    }
+
+    .section-title{
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      margin:0;
+      letter-spacing:.02em;
+    }
+    .section-sub{
+      margin:.55rem 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 70ch;
+    }
+    .divider-line{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(198,139,89,.55), transparent);
+      margin: 18px 0 0;
+    }
+
+    .hide-mobile{ display:block; }
+    @media (max-width: 860px){
+      .hide-mobile{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- =================== NAVBAR (SAMA PERSIS DENGAN HALAMAN YANG KAMU KIRIM) =================== -->
+  <header class="nav-wrap">
+    <nav class="nav container">
+
+      <!-- KIRI: Brand -->
+      <a href="index.html" class="brand" aria-label="Unggul Coffe">
+        <span class="brand-mark" aria-hidden="true">☕</span>
+        <span class="brand-text">Unggul Coffe</span>
+      </a>
+
+      <!-- TENGAH: pill menu (Home/Menu/Contact) -->
+      <div class="nav-mid" role="navigation" aria-label="Primary">
+        <div class="nav-links">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link active" href="menu.html">Menu</a>
+          <a class="nav-link" href="kontak.html">Contact</a>
+          <a class="nav-link" href="blog.html">Blog</a>
+        </div>
+      </div>
+
+      <!-- KANAN: 2 tombol -->
+      <div class="nav-cta" aria-label="Aksi cepat">
+        <a class="btn btn-ghost btn-sm" href="menu.html" aria-label="Keranjang">
+          <span aria-hidden="true">🧾</span>
+          Keranjang
+          <span class="cart-badge" id="cartCount">0</span>
+        </a>
+        <a class="btn btn-primary btn-sm" href="menu.html">
+          Pesan Sekarang <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </nav>
+  </header>
+
+  <style>
+    /* ====== NAVBAR CSS (SAMA PERSIS) ====== */
+    .nav-wrap{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(14,10,7,.35);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav{
+      height: 78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.65rem;
+      font-weight: 750;
+      letter-spacing:.01em;
+      flex: 0 0 auto;
+    }
+    .brand-mark{
+      width:36px;
+      height:36px;
+      display:grid;
+      place-items:center;
+      border-radius: 12px;
+      background: rgba(198,139,89,.15);
+      border:1px solid rgba(198,139,89,.35);
+      box-shadow: 0 12px 26px rgba(198,139,89,.10);
+    }
+    .brand-text{ font-size: 1.05rem; }
+
+    .nav-mid{
+      flex: 1 1 auto;
+      display:flex;
+      justify-content:center;
+      min-width: 0;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap: 20px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 16px 40px rgba(0,0,0,.20);
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar{ display:none; }
+
+    .nav-link{
+      color: var(--muted);
+      font-size: .98rem;
+      padding: 8px 10px;
+      border-radius: 12px;
+      position: relative;
+      transition: color .15s ease, background .15s ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover{
+      color: var(--cream);
+      background: rgba(255,255,255,.04);
+    }
+    .nav-link.active::after{
+      content:"";
+      position:absolute;
+      left:10px; right:10px; bottom:4px;
+      height:2px;
+      border-radius:999px;
+      background: linear-gradient(90deg, transparent, rgba(198,139,89,.95), transparent);
+    }
+
+    .nav-cta{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex: 0 0 auto;
+      justify-content:flex-end;
+    }
+
+    .cart-badge{
+      margin-left: 6px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 7px;
+      border-radius: 999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(198,139,89,.25);
+      border: 1px solid rgba(198,139,89,.45);
+      color: var(--cream);
+      font-size:.82rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    /* Responsive: tanpa hamburger, jadi wrap yang rapi */
+    @media (max-width: 980px){
+      .nav{ height:auto; padding: 12px 0; flex-wrap:wrap; }
+      .nav-mid{ order: 3; width:100%; justify-content:flex-start; }
+      .nav-links{ width:100%; justify-content:flex-start; }
+      .nav-cta{ order: 2; margin-left:auto; }
+    }
+    @media (max-width: 560px){
+      .nav-cta{ width:100%; }
+      .nav-cta .btn{ flex:1; }
+    }
+  </style>
+
+  <!-- =================== HEADER / INTRO =================== -->
+  <main id="menu">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <div class="pill"><span aria-hidden="true">✦</span><span>Menu Premium • Fresh setiap hari</span></div>
+          <h1 class="hero-title">Menu Unggul Coffe</h1>
+          <p class="hero-desc">
+            Pilih kopi, non-coffee, makanan, dan pastry favoritmu. Klik <b>Pesan</b> untuk masuk keranjang,
+            lalu tekan <b>Pesan Sekarang</b> untuk isi form lengkap + nota sementara + metode pembayaran (BRI/BCA/Mandiri/QRIS/Cash).
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-ghost" href="index.html">← Kembali ke Beranda</a>
+            <button class="btn btn-primary" id="scrollMenuBtn" type="button">Lihat List Menu ↓</button>
+          </div>
+
+          <div class="hero-bullets">
+            <div class="hb"><span class="dotc" aria-hidden="true"></span> Bisa Dine-in / Take Away / Delivery</div>
+            <div class="hb"><span class="dotc" aria-hidden="true"></span> Nota otomatis + total pembayaran</div>
+            <div class="hb"><span class="dotc" aria-hidden="true"></span> Metode bayar lengkap</div>
+          </div>
+        </div>
+
+        <aside class="hero-right glass">
+          <div class="quick">
+            <div class="q-title">Ringkasan Keranjang</div>
+            <div class="q-sub">Cek item & total sebelum checkout.</div>
+            <div class="divider-line"></div>
+
+            <div class="q-box" id="miniCart"></div>
+
+            <div class="q-total">
+              <div class="qt-row"><span>Subtotal</span><b id="miniSubtotal">Rp0</b></div>
+              <div class="qt-row"><span>Service (5%)</span><b id="miniService">Rp0</b></div>
+              <div class="qt-row"><span>PB1 (10%)</span><b id="miniTax">Rp0</b></div>
+              <div class="qt-row grand"><span>Total</span><b id="miniGrand">Rp0</b></div>
+            </div>
+
+            <div class="q-cta">
+              <button class="btn btn-ghost" id="miniOpenCart" type="button">🧾 Lihat Keranjang</button>
+              <button class="btn btn-primary" id="miniCheckout" type="button">Pesan Sekarang →</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <style>
+      /* ====== HERO / INTRO CSS ====== */
+      .hero{
+        position:relative;
+        padding: 44px 0 28px;
+      }
+      .hero::before{
+        content:"";
+        position:absolute;
+        inset:-120px -40px auto -40px;
+        height: 380px;
+        background: radial-gradient(600px 240px at 30% 40%, rgba(198,139,89,.22), transparent 60%),
+                    radial-gradient(600px 240px at 70% 20%, rgba(183,119,60,.14), transparent 60%);
+        filter: blur(8px);
+        pointer-events:none;
+      }
+      .hero-grid{
+        display:grid;
+        grid-template-columns: 1.05fr .95fr;
+        gap: 26px;
+        align-items:stretch;
+      }
+      .hero-title{
+        font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        font-size: clamp(2.05rem, 3.1vw, 3.0rem);
+        margin: 14px 0 0;
+        letter-spacing:.02em;
+      }
+      .hero-desc{
+        margin: 12px 0 0;
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 70ch;
+        font-size: 1.02rem;
+      }
+      .hero-actions{
+        margin-top: 16px;
+        display:flex;
+        flex-wrap:wrap;
+        gap: 12px;
+      }
+      .hero-bullets{
+        margin-top: 14px;
+        display:flex;
+        flex-direction:column;
+        gap: 8px;
+        color: var(--muted);
+      }
+      .hb{ display:flex; gap: 10px; align-items:center; }
+      .dotc{
+        width:10px; height:10px;
+        border-radius: 999px;
+        background: rgba(198,139,89,.9);
+        box-shadow: 0 12px 30px rgba(198,139,89,.2);
+      }
+
+      .hero-right{ padding: 18px; position:relative; overflow:hidden; }
+      .hero-right::after{
+        content:"";
+        position:absolute;
+        inset: -2px;
+        border-radius: var(--radius2);
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(198,139,89,.50), rgba(255,255,255,.08), rgba(183,119,60,.35));
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events:none;
+      }
+      .quick .q-title{
+        font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        font-size: 1.35rem;
+        margin: 0;
+        letter-spacing:.02em;
+      }
+      .q-sub{ margin-top: 6px; color: var(--muted); line-height:1.6; font-size: .95rem; }
+      .q-box{ margin-top: 14px; display:flex; flex-direction:column; gap: 10px; }
+      .mini-item{
+        display:grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: rgba(255,255,255,.03);
+        border: 1px solid rgba(255,255,255,.08);
+      }
+      .mi-name{ font-weight: 750; letter-spacing:.01em; }
+      .mi-sub{ color: var(--muted); font-size: .9rem; margin-top: 4px; }
+      .mi-price{ font-weight: 800; }
+      .empty-mini{
+        padding: 12px;
+        border-radius: 16px;
+        border: 1px dashed rgba(255,255,255,.14);
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .q-total{
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255,255,255,.08);
+        display:flex;
+        flex-direction:column;
+        gap: 8px;
+      }
+      .qt-row{ display:flex; justify-content:space-between; color: var(--muted); }
+      .qt-row b{ color: var(--cream); }
+      .qt-row.grand{
+        padding-top: 8px;
+        border-top: 1px solid rgba(255,255,255,.08);
+        color: var(--cream);
+        font-size: 1.05rem;
+      }
+      .q-cta{
+        margin-top: 14px;
+        display:flex;
+        gap: 10px;
+      }
+      .q-cta .btn{ flex:1; }
+
+      @media (max-width: 960px){
+        .hero-grid{ grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- =================== FILTERS =================== -->
+    <section class="filters">
+      <div class="container filters-wrap glass">
+        <div class="f-left">
+          <div class="f-title">Cari Menu</div>
+          <div class="f-sub">Ketik nama menu atau pilih kategori.</div>
+        </div>
+
+        <div class="f-controls">
+          <label class="f-field">
+            <span class="f-lbl">Search</span>
+            <input id="searchInput" type="text" placeholder="Contoh: latte, croissant..." autocomplete="off"/>
+          </label>
+
+          <label class="f-field">
+            <span class="f-lbl">Kategori</span>
+            <select id="catSelect">
+              <option value="all">Semua</option>
+              <option value="coffee">Coffee</option>
+              <option value="noncoffee">Non Coffee</option>
+              <option value="food">Food</option>
+              <option value="pastry">Pastry</option>
+            </select>
+          </label>
+
+          <label class="f-field">
+            <span class="f-lbl">Urutkan</span>
+            <select id="sortSelect">
+              <option value="popular">Paling Populer</option>
+              <option value="low">Harga Termurah</option>
+              <option value="high">Harga Termahal</option>
+              <option value="az">Nama A–Z</option>
+            </select>
+          </label>
+
+          <button class="btn btn-ghost btn-sm" id="clearFilter" type="button">Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* ====== FILTERS CSS ====== */
+      .filters{ padding: 6px 0 10px; }
+      .filters-wrap{
+        padding: 14px;
+        display:flex;
+        justify-content:space-between;
+        gap: 14px;
+        align-items:center;
+      }
+      .f-title{ font-weight: 850; letter-spacing:.01em; }
+      .f-sub{ margin-top: 4px; color: var(--muted); font-size:.92rem; }
+      .f-controls{
+        display:flex;
+        flex-wrap:wrap;
+        gap: 10px;
+        align-items:end;
+      }
+      .f-field{
+        display:flex;
+        flex-direction:column;
+        gap: 6px;
+        min-width: 190px;
+      }
+      .f-lbl{ color: var(--muted); font-size:.85rem; }
+      input, select, textarea{
+        width: 100%;
+        padding: .75rem .85rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        outline:none;
+      }
+      input::placeholder, textarea::placeholder{ color: rgba(205,191,178,.65); }
+      select option{ color: #111; }
+
+      @media (max-width: 980px){
+        .filters-wrap{ flex-direction:column; align-items:stretch; }
+        .f-field{ min-width: 1px; flex:1; }
+      }
+    </style>
+
+    <!-- =================== MENU GRID =================== -->
+    <section class="menu">
+      <div class="container">
+        <header class="menu-head">
+          <h2 class="section-title">List Menu</h2>
+          <p class="section-sub">Klik <b>Pesan</b> untuk menambahkan ke keranjang. Kamu bisa checkout kapan saja.</p>
+          <div class="divider-line"></div>
+        </header>
+
+        <div class="menu-grid" id="menuGrid"></div>
+
+        <div class="menu-note glass" id="cara">
+          <div class="mn-title">Cara Pesan</div>
+          <ol class="mn-list">
+            <li>Pilih menu → klik <b>Pesan</b> (masuk keranjang).</li>
+            <li>Klik <b>Keranjang</b> untuk edit qty / hapus item.</li>
+            <li>Klik <b>Pesan Sekarang</b> → isi form lengkap + pilih metode pembayaran.</li>
+            <li>Nota sementara otomatis muncul. Setelah submit, kamu dapat <b>Order ID</b> untuk konfirmasi.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* ====== MENU GRID CSS ====== */
+      .menu{ padding: 18px 0 44px; }
+
+      /* ✅ UBAH JADI 3 PER BARIS */
+      .menu-grid{
+        margin-top: 18px;
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .menu-card{
+        overflow:hidden;
+        border-radius: 20px;
+        display:flex;
+        flex-direction:column;
+        min-height: 340px;
+      }
+      .menu-img{
+        height: 160px;
+        width:100%;
+        object-fit: cover;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+      .menu-body{
+        padding: 12px 12px 14px;
+        display:flex;
+        flex-direction:column;
+        gap: 10px;
+        flex:1;
+      }
+      .menu-top{
+        display:flex;
+        justify-content:space-between;
+        gap: 10px;
+        align-items:flex-start;
+      }
+      .menu-name{ font-weight: 850; letter-spacing:.01em; }
+      .menu-cat{
+        font-size:.78rem;
+        padding: .35rem .55rem;
+        border-radius: 999px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        white-space:nowrap;
+      }
+      .menu-desc{
+        color: var(--muted);
+        line-height: 1.7;
+        font-size:.95rem;
+        margin-top: -2px;
+      }
+      .menu-foot{
+        margin-top:auto;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap: 10px;
+      }
+      .menu-price{
+        font-weight: 900;
+        color: var(--cream);
+      }
+      .menu-actions{
+        display:flex;
+        gap: 8px;
+        align-items:center;
+      }
+      .qty-mini{
+        display:flex;
+        gap: 6px;
+        align-items:center;
+        padding: 6px 8px;
+        border-radius: 14px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.03);
+      }
+      .iconbtn{
+        width: 30px; height: 30px;
+        border-radius: 12px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        cursor:pointer;
+      }
+      .iconbtn:hover{ border-color: rgba(198,139,89,.55); }
+
+      .menu-note{
+        margin-top: 18px;
+        padding: 16px;
+        border-radius: 22px;
+        border:1px solid rgba(255,255,255,.10);
+      }
+      .mn-title{
+        font-weight: 900;
+        letter-spacing:.01em;
+        margin-bottom: 8px;
+      }
+      .mn-list{
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.85;
+      }
+
+      .empty-state{
+        margin-top: 16px;
+        padding: 16px;
+        border-radius: 22px;
+        border:1px dashed rgba(255,255,255,.16);
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      /* Responsive: tablet 2 kolom, hp 1 kolom */
+      @media (max-width: 860px){
+        .menu-grid{ grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 520px){
+        .menu-grid{ grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- =================== FOOTER (SAMA PERSIS DENGAN HALAMAN YANG KAMU KIRIM) =================== -->
+    <footer id="contact" class="footer">
+      <div class="container footer-top">
+        <div class="foot-brandline">
+          <div class="foot-logo">
+            <span class="brand-mark" aria-hidden="true">☕</span>
+            <div>
+              <div class="foot-title">Unggul Coffe</div>
+              <div class="foot-sub">Kopi premium, suasana hangat, rasa konsisten.</div>
+            </div>
+          </div>
+
+          <div class="foot-social" aria-label="Social links">
+            <a class="soc" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6"/>
+                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6"/>
+                <path d="M17.6 6.4h.01" stroke="rgba(243,233,221,.9)" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </a>
+
+            <a class="soc" href="#" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 3v10.2a4.8 4.8 0 1 1-4-4.74" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 3c.8 2.7 2.9 4.7 5.6 5.1" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <a class="soc" href="#" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 11.6a8 8 0 0 1-11.9 7L4 20l1.5-4.3A8 8 0 1 1 20 11.6Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M9.2 9.3c.2-.6.7-.8 1.3-.6l.5.2c.3.1.5.3.6.6l.2.7c.1.4 0 .8-.3 1.1l-.3.3c.5 1 1.3 1.8 2.3 2.3l.3-.3c.3-.3.7-.4 1.1-.3l.7.2c.3.1.5.3.6.6l.2.5c.2.6 0 1.1-.6 1.3-.5.2-1.1.3-1.7.1-2-.7-3.7-2.3-4.4-4.4-.2-.6-.1-1.2.1-1.7Z"
+                      fill="rgba(243,233,221,.18)"/>
+              </svg>
+            </a>
+
+            <a class="soc" href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 8.2a3 3 0 0 0-2.1-2.1C17 5.6 12 5.6 12 5.6s-5 0-6.9.5A3 3 0 0 0 3 8.2 31 31 0 0 0 3 12a31 31 0 0 0 .1 3.8 3 3 0 0 0 2.1 2.1c1.9.5 6.9.5 6.9.5s5 0 6.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 21 12a31 31 0 0 0 0-3.8Z"
+                      stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M10.6 9.7 15 12l-4.4 2.3V9.7Z" fill="rgba(198,139,89,.85)"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-grid">
+          <div class="foot-col">
+            <div class="foot-h">Jam Operasional</div>
+            <div class="foot-p">Senin–Jumat: <b>10.00–22.00</b></div>
+            <div class="foot-p">Sabtu–Minggu: <b>09.00–23.00</b></div>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Alamat</div>
+            <div class="foot-p">Jl. Kopi Hangat No. 12, Kota Kamu</div>
+            <a class="foot-link" href="#">Buka Maps →</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Kontak</div>
+            <div class="foot-p">WhatsApp: +62 812-0000-0000</div>
+            <div class="foot-p">Email: hello@unggulcoffe.com</div>
+            <a class="foot-link" href="#">Hubungi Kami →</a>
+          </div>
+
+          <div class="foot-col">
+            <div class="foot-h">Navigasi</div>
+            <div class="foot-links">
+              <a class="foot-link" href="index.html#home">Home</a>
+              <a class="foot-link" href="menu.html">Menu</a>
+              <a class="foot-link" href="index.html#testimoni">Testimoni</a>
+              <a class="foot-link" href="index.html#galeri">Gallery</a>
+              <a class="foot-link" href="blog.html">Blog</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container foot-bottom">
+        <span>© 2026 Unggul Coffe • All rights reserved</span>
+        <span class="muted">Made with ☕ & copper glow</span>
+      </div>
+    </footer>
+
+    <style>
+      /* ====== FOOTER CSS (SAMA PERSIS) ====== */
+      .footer{
+        padding: 44px 0 24px;
+        background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35));
+        border-top: 1px solid rgba(198,139,89,.18);
+      }
+      .footer-top{ padding: 0 0 22px; }
+
+      .foot-brandline{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap: 16px;
+        padding: 6px 0 18px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        margin-bottom: 18px;
+      }
+      .foot-logo{ display:flex; gap: 10px; align-items:flex-start; }
+
+      .foot-title{ font-weight: 900; letter-spacing:.01em; font-size: 1.1rem; }
+      .foot-sub{ margin-top: 4px; color: var(--muted); line-height: 1.7; max-width: 44ch; }
+
+      .foot-social{ display:flex; gap: 10px; align-items:center; flex-wrap:wrap; }
+      .soc{
+        width:42px;
+        height:42px;
+        display:grid;
+        place-items:center;
+        border-radius: 14px;
+        background: rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.10);
+        color: var(--cream);
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .soc:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 16px 44px rgba(0,0,0,.35);
+        transform: translateY(-1px);
+        background: rgba(198,139,89,.10);
+      }
+
+      .footer-grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 18px;
+      }
+
+      .foot-h{ font-weight: 820; margin-bottom: 10px; }
+      .foot-p{ color: var(--muted); line-height: 1.7; margin: 6px 0 0; }
+      .foot-link{ display:inline-block; margin-top: 10px; color: rgba(198,139,89,.95); }
+      .foot-link:hover{ text-decoration: underline; }
+
+      .foot-links{
+        display:flex;
+        flex-direction:column;
+        gap: 8px;
+        margin-top: 2px;
+      }
+      .foot-links .foot-link{ margin-top: 0; width: fit-content; }
+
+      .foot-bottom{
+        border-top: 1px solid rgba(255,255,255,.08);
+        padding-top: 14px;
+        display:flex;
+        justify-content:space-between;
+        gap: 12px;
+        color: var(--muted);
+        flex-wrap:wrap;
+      }
+      .muted{ color: rgba(205,191,178,.8); }
+
+      @media (max-width: 980px){
+        .footer-grid{ grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 680px){
+        .foot-brandline{ flex-direction:column; }
+        .foot-social{ justify-content:flex-start; }
+      }
+      @media (max-width: 560px){
+        .footer-grid{ grid-template-columns: 1fr; }
+      }
+    </style>
+
+    <!-- FLOAT TO TOP (opsional biar enak) -->
+    <button class="toTop" id="toTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+
+    <style>
+      .toTop{
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        cursor:pointer;
+        display:none;
+        z-index: 60;
+        backdrop-filter: blur(10px);
+      }
+      .toTop:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+      }
+    </style>
+  </main>
+
+  <!-- =================== JAVASCRIPT =================== -->
+  <script>
+    // ===== BLOG DATA + SEARCH =====
+    const blogGrid = document.getElementById('blogGrid');
+    const blogHint = document.getElementById('blogHint');
+    const blogEmpty = document.getElementById('blogEmpty');
+    const blogReset = document.getElementById('blogReset');
+    const searchBlog = document.getElementById('searchBlog');
+    const clearSearch = document.getElementById('clearSearch');
+
+    const blogPosts = [
+      {
+        title: "Kenalan dengan Biji: Arabica vs Robusta",
+        excerpt: "Beda karakter rasa, tingkat kafein, dan cara memilih biji yang cocok untuk selera kamu.",
+        image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
+        tags: ["biji kopi","arabica","robusta"],
+        meta: { year: "2026", read: "5 menit" },
+        url: "artikel1.html",
+        hotTag: "biji kopi"
+      },
+      {
+        title: "Panduan Espresso di Rumah (Tanpa Ribet)",
+        excerpt: "Mulai dari grind size, dose, rasio, sampai tips biar crema stabil dan manis.",
+        image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80",
+        tags: ["espresso","grind","brew ratio"],
+        meta: { year: "2026", read: "7 menit" },
+        url: "artikel2.html",
+        hotTag: "espresso"
+      },
+      {
+        title: "Manual Brew: V60 untuk Rasa Clean & Floral",
+        excerpt: "Step-by-step V60: suhu, blooming, pour pattern, dan cara menghindari rasa pahit.",
+        image: "https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&w=1200&q=80",
+        tags: ["v60","manual brew","filter"],
+        meta: { year: "2026", read: "6 menit" },
+        url: "artikel3.html",
+        hotTag: "v60"
+      },
+      {
+        title: "Latte Art Dasar: Mulai dari Microfoam",
+        excerpt: "Rahasia foam halus, teknik tuang, dan latihan pola sederhana yang paling gampang.",
+        image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=1200&q=80",
+        tags: ["latte","milk","latte art"],
+        meta: { year: "2026", read: "6 menit" },
+        url: "artikel4.html",
+        hotTag: "latte"
+      },
+      {
+        title: "Pairing Kopi & Pastry yang Bikin Nagih",
+        excerpt: "Rekomendasi pairing: caramel latte + croissant, cappuccino + cookies, dan lainnya.",
+        image: "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?auto=format&fit=crop&w=1200&q=80",
+        tags: ["pairing","pastry","menu"],
+        meta: { year: "2026", read: "4 menit" },
+        url: "artikel5.html",
+        hotTag: "pastry"
+      },
+      {
+        title: "Di Balik Roasting: Kenapa Small Batch Lebih Konsisten",
+        excerpt: "Penjelasan ringan tentang roast level, development time, dan alasan small batch itu penting.",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80",
+        tags: ["roasting","small batch","profil rasa"],
+        meta: { year: "2026", read: "8 menit" },
+        url: "artikel6.html",
+        hotTag: "roasting"
+      }
+    ];
+
+    function esc(s){
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+      }[c]));
+    }
+
+    function blogCardHTML(p){
+      const tags = (p.tags || []).map(t => {
+        const cls = (t === p.hotTag) ? "tag hot" : "tag";
+        return `<span class="${cls}">${esc(t)}</span>`;
+      }).join('');
+
+      return `
+        <article class="bcard">
+          <div class="bimg">
+            <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">
+          </div>
+          <div class="bbody">
+            <div class="bmeta">
+              <span>${esc(p.meta?.year || "")}</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span>${esc(p.meta?.read || "")}</span>
+            </div>
+
+            <h3 class="btitle">${esc(p.title)}</h3>
+            <p class="bdesc">${esc(p.excerpt)}</p>
+
+            <div class="btags">${tags}</div>
+
+            <div class="bcta">
+              <a class="btn btn-primary" href="${esc(p.url)}">Baca selengkapnya</a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderBlogs(list){
+      if(!blogGrid) return;
+      blogGrid.innerHTML = list.map(blogCardHTML).join('');
+
+      if(blogHint) blogHint.innerHTML = `Menampilkan: <b>${list.length} blog</b>`;
+      if(blogEmpty) blogEmpty.hidden = list.length !== 0;
+      blogGrid.style.display = list.length === 0 ? 'none' : 'grid';
+    }
+
+    function applyBlogSearch(qRaw){
+      const q = (qRaw ?? searchBlog?.value ?? '').trim().toLowerCase();
+      if(!q){
+        renderBlogs(blogPosts);
+        return;
+      }
+      const filtered = blogPosts.filter(p => {
+        const text = (p.title + " " + p.excerpt + " " + (p.tags || []).join(" ")).toLowerCase();
+        return text.includes(q);
+      });
+      renderBlogs(filtered);
+    }
+
+    searchBlog?.addEventListener('input', () => applyBlogSearch());
+    blogReset?.addEventListener('click', () => {
+      if(searchBlog) searchBlog.value = '';
+      renderBlogs(blogPosts);
+    });
+    clearSearch?.addEventListener('click', () => {
+      if(searchBlog) searchBlog.value = '';
+      renderBlogs(blogPosts);
+      searchBlog?.focus();
+    });
+
+    // Quick tags (hero)
+    document.querySelectorAll('[data-q]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-q') || '';
+        if(searchBlog) searchBlog.value = val;
+        const y = document.getElementById('blog')?.getBoundingClientRect().top || 0;
+        window.scrollTo({ top: window.scrollY + y - 90, behavior: 'smooth' });
+        applyBlogSearch(val);
+      });
+    });
+
+    // INIT
+    renderBlogs(blogPosts);
+
+    // To Top
+    const toTop = document.getElementById('toTop');
+    function toggleTop(){
+      if(!toTop) return;
+      toTop.style.display = window.scrollY > 650 ? 'grid' : 'none';
+    }
+    window.addEventListener('scroll', toggleTop, { passive:true });
+    toggleTop();
+    toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ===== Cart badge sync (SAMA DENGAN HALAMAN INDEX) =====
+    function syncCartBadge(){
+      const count = Number(localStorage.getItem('cartCount') || 0);
+      const el = document.getElementById('cartCount');
+      if(el) el.textContent = String(count);
+    }
+    syncCartBadge();
+    window.addEventListener('storage', syncCartBadge);
+  </script>
+  </main>
+
+  <!-- =================== MODAL: CART + CHECKOUT =================== -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-shell glass">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="modalTitle">Pesan Sekarang</div>
+          <div class="modal-sub" id="modalSub">Form pemesanan + nota sementara + metode pembayaran.</div>
+        </div>
+        <button class="iconbtn" id="closeModal" type="button" aria-label="Tutup">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- LEFT: form -->
+        <section class="form">
+          <div class="form-card">
+            <div class="fc-title">Data Pemesan</div>
+
+            <div class="grid2">
+              <label class="field">
+                <span class="lbl">Nama *</span>
+                <input id="custName" type="text" placeholder="Nama kamu" required />
+              </label>
+              <label class="field">
+                <span class="lbl">No. WhatsApp *</span>
+                <input id="custPhone" type="tel" placeholder="08xxxxxxxxxx" required />
+              </label>
+            </div>
+
+            <div class="grid2">
+              <label class="field">
+                <span class="lbl">Metode Ambil *</span>
+                <select id="fulfillment" required>
+                  <option value="dinein">Dine-in</option>
+                  <option value="takeaway">Take Away</option>
+                  <option value="delivery">Delivery</option>
+                </select>
+              </label>
+              <label class="field">
+                <span class="lbl">Jam Ambil / Datang</span>
+                <input id="pickupTime" type="time" />
+              </label>
+            </div>
+
+            <label class="field" id="addrField" style="display:none;">
+              <span class="lbl">Alamat Delivery *</span>
+              <textarea id="custAddress" rows="3" placeholder="Tulis alamat lengkap + patokan..."></textarea>
+            </label>
+
+            <label class="field">
+              <span class="lbl">Catatan (opsional)</span>
+              <textarea id="notes" rows="3" placeholder="Contoh: less sugar, no ice, pedas sedang..."></textarea>
+            </label>
+          </div>
+
+          <div class="form-card">
+            <div class="fc-title">Metode Pembayaran *</div>
+
+            <div class="pay-grid" role="radiogroup" aria-label="Metode pembayaran">
+              <label class="pay card">
+                <input type="radio" name="pay" value="bri" checked />
+                <div class="pay-name">BRI</div>
+                <div class="pay-sub">Transfer Bank</div>
+              </label>
+
+              <label class="pay card">
+                <input type="radio" name="pay" value="bca" />
+                <div class="pay-name">BCA</div>
+                <div class="pay-sub">Transfer Bank</div>
+              </label>
+
+              <label class="pay card">
+                <input type="radio" name="pay" value="mandiri" />
+                <div class="pay-name">Mandiri</div>
+                <div class="pay-sub">Transfer Bank</div>
+              </label>
+
+              <label class="pay card">
+                <input type="radio" name="pay" value="qris" />
+                <div class="pay-name">QRIS</div>
+                <div class="pay-sub">Scan QR</div>
+              </label>
+
+              <label class="pay card">
+                <input type="radio" name="pay" value="cash" />
+                <div class="pay-name">Cash</div>
+                <div class="pay-sub">Bayar di tempat</div>
+              </label>
+            </div>
+
+            <div class="pay-info glass" id="payInfo"></div>
+          </div>
+        </section>
+
+        <!-- RIGHT: cart + invoice -->
+        <aside class="summary">
+          <div class="sum-card">
+            <div class="fc-title">Keranjang</div>
+            <div class="cart-list" id="cartList"></div>
+
+            <div class="sum-totals">
+              <div class="row"><span>Subtotal</span><b id="sumSubtotal">Rp0</b></div>
+              <div class="row"><span>Service (5%)</span><b id="sumService">Rp0</b></div>
+              <div class="row"><span>PB1 (10%)</span><b id="sumTax">Rp0</b></div>
+              <div class="row grand"><span>Total</span><b id="sumGrand">Rp0</b></div>
+            </div>
+
+            <div class="sum-actions">
+              <button class="btn btn-ghost" id="clearCart" type="button">Hapus Keranjang</button>
+              <button class="btn btn-primary" id="submitOrder" type="button">Buat Pesanan</button>
+            </div>
+          </div>
+
+          <div class="sum-card">
+            <div class="fc-title">Nota Sementara</div>
+            <div class="invoice glass" id="invoicePreview"></div>
+
+            <div class="hint">
+              * Ini nota sementara. Nanti kamu bisa kirim Order ID ke admin/WA untuk konfirmasi.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* ====== MODAL CSS ====== */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease;
+      z-index:1000;
+    }
+    .modal-backdrop.open{ opacity:1; pointer-events:auto; }
+    .modal{
+      position:fixed;
+      inset: 0;
+      display:grid;
+      place-items:center;
+      padding: 18px;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease;
+      z-index:1001;
+    }
+    .modal.open{ opacity:1; pointer-events:auto; }
+    .modal-shell{
+      width:min(1180px, 100%);
+      max-height: calc(100vh - 32px);
+      overflow:auto;
+      border-radius: 26px;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      position:relative;
+    }
+    .modal-shell::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: 26px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(198,139,89,.45), rgba(255,255,255,.08), rgba(183,119,60,.30));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events:none;
+    }
+    .modal-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 12px;
+      padding: 16px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      position:sticky;
+      top:0;
+      background: rgba(26,18,13,.72);
+      backdrop-filter: blur(14px);
+      z-index:2;
+    }
+    .modal-title{ font-weight: 900; letter-spacing:.01em; font-size: 1.2rem; }
+    .modal-sub{ margin-top: 4px; color: var(--muted); font-size:.92rem; line-height:1.5; }
+
+    .modal-body{
+      padding: 14px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+    }
+
+    .form{ display:flex; flex-direction:column; gap: 14px; }
+    .summary{ display:flex; flex-direction:column; gap: 14px; }
+
+    .form-card, .sum-card{
+      padding: 14px;
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .fc-title{ font-weight: 900; letter-spacing:.01em; margin-bottom: 10px; }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .lbl{ color: var(--muted); font-size:.86rem; }
+
+    .pay-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .pay{
+      padding: 12px;
+      border-radius: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      cursor:pointer;
+      position:relative;
+      background: rgba(255,255,255,.03);
+    }
+    .pay input{
+      position:absolute;
+      inset: 12px auto auto 12px;
+      accent-color: var(--copper);
+    }
+    .pay-name{ font-weight: 900; margin-left: 22px; }
+    .pay-sub{ color: var(--muted); font-size:.9rem; margin-left: 22px; }
+
+    .pay-info{
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .pay-info b{ color: var(--cream); }
+    .pay-actions{
+      margin-top: 10px;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+
+    .cart-list{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .cart-row{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .cr-name{ font-weight: 850; }
+    .cr-sub{ color: var(--muted); font-size:.9rem; margin-top: 4px; }
+    .cr-controls{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      justify-content:flex-end;
+    }
+    .cr-qty{
+      min-width: 34px;
+      text-align:center;
+      font-weight: 900;
+    }
+
+    .sum-totals{
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+    .row{ display:flex; justify-content:space-between; color: var(--muted); }
+    .row b{ color: var(--cream); }
+    .row.grand{
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--cream);
+      font-size: 1.05rem;
+    }
+
+    .sum-actions{
+      margin-top: 12px;
+      display:flex;
+      gap: 10px;
+    }
+    .sum-actions .btn{ flex:1; }
+
+    .invoice{
+      padding: 12px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+    }
+    .inv-top{
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      align-items:flex-start;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .inv-brand{ font-weight: 900; letter-spacing:.01em; }
+    .inv-meta{ color: var(--muted); font-size:.88rem; line-height:1.6; text-align:right; }
+    .inv-lines{ margin-top: 10px; display:flex; flex-direction:column; gap: 8px; }
+    .inv-line{
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      color: var(--muted);
+    }
+    .inv-line b{ color: var(--cream); }
+    .inv-total{
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+      font-weight: 900;
+      color: var(--cream);
+    }
+    .hint{ margin-top: 10px; color: rgba(205,191,178,.78); line-height:1.6; font-size:.92rem; }
+
+    @media (max-width: 980px){
+      .modal-body{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .pay-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+
+  <!-- =================== JAVASCRIPT =================== -->
+  <script>
+    // ========= Helpers =========
+    const rupiah = (n) => new Intl.NumberFormat("id-ID", { style:"currency", currency:"IDR", maximumFractionDigits:0 }).format(n);
+    const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+
+    function nowString(){
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const dd = String(d.getDate()).padStart(2,'0');
+      const hh = String(d.getHours()).padStart(2,'0');
+      const mi = String(d.getMinutes()).padStart(2,'0');
+      return `${dd}-${mm}-${yyyy} ${hh}:${mi}`;
+    }
+    function genOrderId(){
+      const d = new Date();
+      const stamp = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}${String(d.getHours()).padStart(2,'0')}${String(d.getMinutes()).padStart(2,'0')}`;
+      const rand = Math.random().toString(16).slice(2,6).toUpperCase();
+      return `UC-${stamp}-${rand}`;
+    }
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        alert("Tersalin: " + text);
+      }catch(e){
+        prompt("Copy manual:", text);
+      }
+    }
+
+    // ========= Data Menu =========
+    const MENU = [
+      {id:"c1", name:"Es Kopi Gula Aren", cat:"coffee", popular: 100, price: 23000, img:"https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=900&q=70", desc:"Manis legit gula aren, kopi seimbang."},
+      {id:"c2", name:"Caramel Latte", cat:"coffee", popular: 95, price: 28000, img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=70", desc:"Latte creamy dengan caramel halus."},
+      {id:"c3", name:"Cappuccino", cat:"coffee", popular: 88, price: 28000, img:"https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=900&q=70", desc:"Foam lembut, rasa kopi tetap bold."},
+      {id:"c4", name:"Espresso", cat:"coffee", popular: 80, price: 20000, img:"https://images.unsplash.com/photo-1504630083234-14187a9df0f5?auto=format&fit=crop&w=900&q=70", desc:"Shot kopi pekat untuk pecinta strong."},
+
+      {id:"n1", name:"Matcha Latte", cat:"noncoffee", popular: 84, price: 30000, img:"https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=900&q=70", desc:"Matcha smooth, creamy, dan wangi."},
+      {id:"n2", name:"Chocolate Signature", cat:"noncoffee", popular: 72, price: 29000, img:"https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=70", desc:"Coklat rich, cocok untuk semua umur."},
+      {id:"n3", name:"Lemon Tea Spark", cat:"noncoffee", popular: 66, price: 22000, img:"https://images.unsplash.com/photo-1528826194825-157f9b7a1e6a?auto=format&fit=crop&w=900&q=70", desc:"Segar, sedikit asam, bikin melek."},
+      {id:"n4", name:"Milk Vanilla", cat:"noncoffee", popular: 60, price: 24000, img:"https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=900&q=70", desc:"Susu lembut dengan vanilla premium."},
+
+      {id:"f1", name:"Chicken Sandwich", cat:"food", popular: 78, price: 35000, img:"https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=70", desc:"Isi melimpah, cocok buat kenyang."},
+      {id:"f2", name:"Pasta Creamy", cat:"food", popular: 70, price: 40000, img:"https://images.unsplash.com/photo-1523986371872-9d3ba2e2f5f3?auto=format&fit=crop&w=900&q=70", desc:"Creamy, gurih, nyaman banget."},
+      {id:"f3", name:"Rice Bowl Spicy", cat:"food", popular: 62, price: 38000, img:"https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=70", desc:"Pedas nikmat, bikin nagih."},
+      {id:"f4", name:"French Fries", cat:"food", popular: 55, price: 20000, img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=70", desc:"Garing di luar, lembut di dalam."},
+
+      {id:"p1", name:"Croissant Butter", cat:"pastry", popular: 86, price: 27000, img:"https://images.unsplash.com/photo-1530610476181-d83430b64dcd?auto=format&fit=crop&w=900&q=70", desc:"Buttery, flaky, best pairing kopi."},
+      {id:"p2", name:"Donut Sugar", cat:"pastry", popular: 64, price: 15000, img:"https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=900&q=70", desc:"Manis ringan, empuk."},
+      {id:"p3", name:"Chocolate Cookies", cat:"pastry", popular: 58, price: 18000, img:"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=70", desc:"Chunky coklat, wangi panggang."},
+      {id:"p4", name:"Cheese Cake Slice", cat:"pastry", popular: 52, price: 32000, img:"https://images.unsplash.com/photo-1505253216365-1dce1f9b8f5a?auto=format&fit=crop&w=900&q=70", desc:"Creamy, lembut, gak eneg."},
+    ];
+
+    const CAT_LABEL = { coffee: "Coffee", noncoffee: "Non Coffee", food: "Food", pastry: "Pastry" };
+
+    // ========= State: Cart =========
+    let cart = {};
+
+    function getCartItems(){
+      return Object.values(cart)
+        .map(ci => {
+          const item = MENU.find(m => m.id === ci.id);
+          return item ? {...item, qty: ci.qty} : null;
+        })
+        .filter(Boolean);
+    }
+
+    function cartCount(){
+      return getCartItems().reduce((a,i) => a + i.qty, 0);
+    }
+
+    function calcTotals(){
+      const items = getCartItems();
+      const subtotal = items.reduce((a,i) => a + (i.price * i.qty), 0);
+      const service = Math.round(subtotal * 0.05);
+      const tax = Math.round(subtotal * 0.10);
+      const grand = subtotal + service + tax;
+      return {subtotal, service, tax, grand};
+    }
+
+    function addToCart(id, qty=1){
+      cart[id] = cart[id] || {id, qty:0};
+      cart[id].qty = clamp(cart[id].qty + qty, 1, 99);
+      syncUI();
+    }
+
+    // ========= Render Menu =========
+    const menuGrid = document.getElementById("menuGrid");
+    const searchInput = document.getElementById("searchInput");
+    const catSelect = document.getElementById("catSelect");
+    const sortSelect = document.getElementById("sortSelect");
+    const clearFilterBtn = document.getElementById("clearFilter");
+
+    function currentFilters(){
+      return {
+        q: (searchInput?.value || "").trim().toLowerCase(),
+        cat: catSelect?.value || "all",
+        sort: sortSelect?.value || "popular"
+      };
+    }
+
+    function applySort(items, sort){
+      const arr = [...items];
+      if(sort === "low") arr.sort((a,b) => a.price - b.price);
+      if(sort === "high") arr.sort((a,b) => b.price - a.price);
+      if(sort === "az") arr.sort((a,b) => a.name.localeCompare(b.name));
+      if(sort === "popular") arr.sort((a,b) => b.popular - a.popular);
+      return arr;
+    }
+
+    function renderMenu(){
+      const {q, cat, sort} = currentFilters();
+      let items = MENU.filter(m => {
+        const okCat = (cat === "all") || (m.cat === cat);
+        const okQ = !q || (m.name.toLowerCase().includes(q) || m.desc.toLowerCase().includes(q));
+        return okCat && okQ;
+      });
+      items = applySort(items, sort);
+
+      if(!menuGrid) return;
+
+      if(items.length === 0){
+        menuGrid.innerHTML = `
+          <div class="empty-state" style="grid-column:1 / -1;">
+            Tidak ada menu yang cocok dengan filter kamu. Coba <b>Reset</b> atau cari kata lain.
+          </div>
+        `;
+        return;
+      }
+
+      menuGrid.innerHTML = items.map(m => {
+        const inCartQty = cart[m.id]?.qty || 0;
+        return `
+          <article class="menu-card card" data-id="${m.id}">
+            <img class="menu-img" src="${m.img}" alt="${m.name}" loading="lazy"/>
+            <div class="menu-body">
+              <div class="menu-top">
+                <div>
+                  <div class="menu-name">${m.name}</div>
+                  <div class="menu-desc">${m.desc}</div>
+                </div>
+                <span class="menu-cat">${CAT_LABEL[m.cat] || m.cat}</span>
+              </div>
+
+              <div class="menu-foot">
+                <div class="menu-price">${rupiah(m.price)}</div>
+                <div class="menu-actions">
+                  <div class="qty-mini" title="Qty di keranjang">
+                    <button class="iconbtn" data-action="minus" aria-label="Kurangi qty">−</button>
+                    <span class="cr-qty" data-role="qty">${inCartQty}</span>
+                    <button class="iconbtn" data-action="plus" aria-label="Tambah qty">+</button>
+                  </div>
+                  <button class="btn btn-primary btn-sm" data-action="order">Pesan</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      menuGrid.querySelectorAll("[data-action='plus']").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const card = e.target.closest(".menu-card");
+          addToCart(card.dataset.id, 1);
+        });
+      });
+      menuGrid.querySelectorAll("[data-action='minus']").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const card = e.target.closest(".menu-card");
+          const id = card.dataset.id;
+          const qty = cart[id]?.qty || 0;
+          if(qty <= 1) delete cart[id];
+          else cart[id].qty = qty - 1;
+          syncUI();
+        });
+      });
+      menuGrid.querySelectorAll("[data-action='order']").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const card = e.target.closest(".menu-card");
+          addToCart(card.dataset.id, 1);
+          openModal("checkout");
+        });
+      });
+    }
+
+    // ========= Mini Cart & Navbar badges =========
+    const cartCountEl = document.getElementById("cartCount");
+    const miniCart = document.getElementById("miniCart");
+    const miniSubtotal = document.getElementById("miniSubtotal");
+    const miniService = document.getElementById("miniService");
+    const miniTax = document.getElementById("miniTax");
+    const miniGrand = document.getElementById("miniGrand");
+
+    function renderMiniCart(){
+      const items = getCartItems();
+      if(items.length === 0){
+        miniCart.innerHTML = `
+          <div class="empty-mini">
+            Keranjang kamu kosong. Klik <b>Pesan</b> pada menu untuk menambahkan item.
+          </div>
+        `;
+      } else {
+        miniCart.innerHTML = items.slice(0,3).map(i => `
+          <div class="mini-item">
+            <div>
+              <div class="mi-name">${i.name} <span style="color:rgba(205,191,178,.8); font-weight:700;">×${i.qty}</span></div>
+              <div class="mi-sub">${CAT_LABEL[i.cat]} • ${rupiah(i.price)}</div>
+            </div>
+            <div class="mi-price">${rupiah(i.price * i.qty)}</div>
+          </div>
+        `).join("") + (items.length > 3 ? `<div class="empty-mini">+ ${items.length - 3} item lainnya…</div>` : "");
+      }
+
+      const t = calcTotals();
+      miniSubtotal.textContent = rupiah(t.subtotal);
+      miniService.textContent = rupiah(t.service);
+      miniTax.textContent = rupiah(t.tax);
+      miniGrand.textContent = rupiah(t.grand);
+
+      const count = cartCount();
+      cartCountEl.textContent = count;
+    }
+
+    // ========= Modal logic =========
+    const backdrop = document.getElementById("modalBackdrop");
+    const modal = document.getElementById("modal");
+    const closeModalBtn = document.getElementById("closeModal");
+
+    const openCartBtn = document.getElementById("openCartBtn");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+
+    const miniOpenCart = document.getElementById("miniOpenCart");
+    const miniCheckout = document.getElementById("miniCheckout");
+
+    const modalTitle = document.getElementById("modalTitle");
+    const modalSub = document.getElementById("modalSub");
+
+    const cartList = document.getElementById("cartList");
+    const sumSubtotal = document.getElementById("sumSubtotal");
+    const sumService = document.getElementById("sumService");
+    const sumTax = document.getElementById("sumTax");
+    const sumGrand = document.getElementById("sumGrand");
+    const clearCartBtn = document.getElementById("clearCart");
+    const submitOrderBtn = document.getElementById("submitOrder");
+
+    const invoicePreview = document.getElementById("invoicePreview");
+
+    // Form fields
+    const custName = document.getElementById("custName");
+    const custPhone = document.getElementById("custPhone");
+    const fulfillment = document.getElementById("fulfillment");
+    const pickupTime = document.getElementById("pickupTime");
+    const addrField = document.getElementById("addrField");
+    const custAddress = document.getElementById("custAddress");
+    const notes = document.getElementById("notes");
+    const payInfo = document.getElementById("payInfo");
+
+    let modalMode = "checkout";
+    let orderId = genOrderId();
+    let orderTime = nowString();
+
+    function openModal(mode="checkout"){
+      modalMode = mode;
+      orderId = genOrderId();
+      orderTime = nowString();
+
+      if(mode === "cart"){
+        modalTitle.textContent = "Keranjang";
+        modalSub.textContent = "Atur qty / hapus item, lalu checkout kapan saja.";
+      } else {
+        modalTitle.textContent = "Pesan Sekarang";
+        modalSub.textContent = "Form pemesanan + nota sementara + metode pembayaran.";
+      }
+
+      backdrop.classList.add("open");
+      modal.classList.add("open");
+      backdrop.setAttribute("aria-hidden","false");
+      modal.setAttribute("aria-hidden","false");
+
+      renderCartInsideModal();
+      renderInvoice();
+      renderPayInfo();
+    }
+
+    function closeModal(){
+      backdrop.classList.remove("open");
+      modal.classList.remove("open");
+      backdrop.setAttribute("aria-hidden","true");
+      modal.setAttribute("aria-hidden","true");
+    }
+
+    closeModalBtn?.addEventListener("click", closeModal);
+    backdrop?.addEventListener("click", closeModal);
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.classList.contains("open")) closeModal();
+    });
+
+    openCartBtn?.addEventListener("click", () => openModal("cart"));
+    miniOpenCart?.addEventListener("click", () => openModal("cart"));
+
+    checkoutBtn?.addEventListener("click", () => openModal("checkout"));
+    miniCheckout?.addEventListener("click", () => openModal("checkout"));
+
+    fulfillment?.addEventListener("change", () => {
+      addrField.style.display = (fulfillment.value === "delivery") ? "flex" : "none";
+      renderInvoice();
+    });
+
+    document.querySelectorAll("input[name='pay']").forEach(r => {
+      r.addEventListener("change", () => {
+        renderPayInfo();
+        renderInvoice();
+      });
+    });
+
+    function renderCartInsideModal(){
+      const items = getCartItems();
+      if(items.length === 0){
+        cartList.innerHTML = `
+          <div class="empty-mini">
+            Keranjang kosong. Tutup popup dan klik <b>Pesan</b> di menu.
+          </div>
+        `;
+      } else {
+        cartList.innerHTML = items.map(i => `
+          <div class="cart-row" data-id="${i.id}">
+            <div>
+              <div class="cr-name">${i.name}</div>
+              <div class="cr-sub">${CAT_LABEL[i.cat]} • ${rupiah(i.price)} • <b>${rupiah(i.price * i.qty)}</b></div>
+            </div>
+            <div class="cr-controls">
+              <button class="iconbtn" data-act="minus" aria-label="Kurangi qty">−</button>
+              <div class="cr-qty">${i.qty}</div>
+              <button class="iconbtn" data-act="plus" aria-label="Tambah qty">+</button>
+              <button class="iconbtn" data-act="del" aria-label="Hapus item">🗑</button>
+            </div>
+          </div>
+        `).join("");
+
+        cartList.querySelectorAll("[data-act='plus']").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            const row = e.target.closest(".cart-row");
+            addToCart(row.dataset.id, 1);
+            renderCartInsideModal();
+            renderInvoice();
+          });
+        });
+        cartList.querySelectorAll("[data-act='minus']").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            const row = e.target.closest(".cart-row");
+            const id = row.dataset.id;
+            const qty = cart[id]?.qty || 0;
+            if(qty <= 1) delete cart[id];
+            else cart[id].qty = qty - 1;
+            syncUI();
+            renderCartInsideModal();
+            renderInvoice();
+          });
+        });
+        cartList.querySelectorAll("[data-act='del']").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            const row = e.target.closest(".cart-row");
+            delete cart[row.dataset.id];
+            syncUI();
+            renderCartInsideModal();
+            renderInvoice();
+          });
+        });
+      }
+
+      const t = calcTotals();
+      sumSubtotal.textContent = rupiah(t.subtotal);
+      sumService.textContent = rupiah(t.service);
+      sumTax.textContent = rupiah(t.tax);
+      sumGrand.textContent = rupiah(t.grand);
+    }
+
+    clearCartBtn?.addEventListener("click", () => {
+      if(cartCount() === 0) return;
+      if(confirm("Hapus semua item di keranjang?")){
+        cart = {};
+        syncUI();
+        renderCartInsideModal();
+        renderInvoice();
+      }
+    });
+
+    function getPayMethod(){
+      const r = document.querySelector("input[name='pay']:checked");
+      return r ? r.value : "bri";
+    }
+
+    function renderPayInfo(){
+      const method = getPayMethod();
+      const BANK = {
+        bri: {name:"BRI", acc:"1234-01-000000-53-1", holder:"Unggul Coffe"},
+        bca: {name:"BCA", acc:"1234567890", holder:"Unggul Coffe"},
+        mandiri: {name:"Mandiri", acc:"14000-123456-7", holder:"Unggul Coffe"},
+      };
+
+      if(method === "cash"){
+        payInfo.innerHTML = `
+          <div><b>Cash</b> — Bayar di tempat saat ambil/datang.</div>
+          <div>Pastikan data pemesan sudah benar.</div>
+        `;
+        return;
+      }
+
+      if(method === "qris"){
+        payInfo.innerHTML = `
+          <div><b>QRIS</b> — Scan QR di kasir / kirim QR via admin (opsional).</div>
+          <div>Catatan: ini demo. Kamu bisa ganti dengan gambar QR di sini.</div>
+          <div class="pay-actions">
+            <button class="btn btn-ghost btn-sm" type="button" id="copyQrisText">Copy “QRIS Unggul Coffe”</button>
+          </div>
+        `;
+        document.getElementById("copyQrisText")?.addEventListener("click", () => copyText("QRIS Unggul Coffe"));
+        return;
+      }
+
+      const b = BANK[method];
+      payInfo.innerHTML = `
+        <div><b>Transfer ${b.name}</b></div>
+        <div>No. Rek: <b>${b.acc}</b></div>
+        <div>a.n. <b>${b.holder}</b></div>
+        <div class="pay-actions">
+          <button class="btn btn-ghost btn-sm" type="button" id="copyAcc">Copy No. Rek</button>
+          <button class="btn btn-ghost btn-sm" type="button" id="copyName">Copy Nama Rek</button>
+        </div>
+      `;
+      document.getElementById("copyAcc")?.addEventListener("click", () => copyText(b.acc));
+      document.getElementById("copyName")?.addEventListener("click", () => copyText(b.holder));
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function buildInvoiceText({items, totals, payLabel, fulfillLabel, name, phone, time, addr, note}){
+      const itemLines = items.length ? items.map(i => `- ${i.name} x${i.qty} = ${rupiah(i.price*i.qty)}`).join("\n") : "- (Keranjang kosong)";
+      return [
+        "UNG GUL COFFE — NOTA SEMENTARA",
+        `Order ID: ${orderId}`,
+        `Waktu: ${orderTime}`,
+        "------------------------------",
+        `Nama: ${name}`,
+        `WA: ${phone}`,
+        `Ambil: ${fulfillLabel}`,
+        `Jam: ${time}`,
+        `Alamat: ${addr}`,
+        `Pembayaran: ${payLabel}`,
+        `Catatan: ${note}`,
+        "------------------------------",
+        "Item:",
+        itemLines,
+        "------------------------------",
+        `Subtotal: ${rupiah(totals.subtotal)}`,
+        `Service (5%): ${rupiah(totals.service)}`,
+        `PB1 (10%): ${rupiah(totals.tax)}`,
+        `TOTAL: ${rupiah(totals.grand)}`
+      ].join("\n");
+    }
+
+    function renderInvoice(){
+      const items = getCartItems();
+      const t = calcTotals();
+      const method = getPayMethod();
+
+      const name = (custName.value || "-").trim() || "-";
+      const phone = (custPhone.value || "-").trim() || "-";
+      const fulfill = fulfillment.value;
+      const fulfillLabel = fulfill === "dinein" ? "Dine-in" : (fulfill === "takeaway" ? "Take Away" : "Delivery");
+      const time = (pickupTime.value || "-");
+      const addr = (fulfill === "delivery") ? ((custAddress.value || "-").trim() || "-") : "-";
+      const note = (notes.value || "-").trim() || "-";
+
+      const payLabel = (() => {
+        if(method === "cash") return "Cash";
+        if(method === "qris") return "QRIS";
+        if(method === "bri") return "Transfer BRI";
+        if(method === "bca") return "Transfer BCA";
+        if(method === "mandiri") return "Transfer Mandiri";
+        return method;
+      })();
+
+      const lines = items.length
+        ? items.map(i => `
+            <div class="inv-line">
+              <span>${i.name} ×${i.qty}</span>
+              <b>${rupiah(i.price * i.qty)}</b>
+            </div>
+          `).join("")
+        : `<div class="inv-line"><span>(Keranjang kosong)</span><b>Rp0</b></div>`;
+
+      invoicePreview.innerHTML = `
+        <div class="inv-top">
+          <div>
+            <div class="inv-brand">Unggul Coffe</div>
+            <div style="color:rgba(205,191,178,.85); font-size:.88rem; margin-top:4px;">Nota Sementara</div>
+          </div>
+          <div class="inv-meta">
+            <div><b style="color:var(--cream);">Order ID:</b> ${orderId}</div>
+            <div>${orderTime}</div>
+          </div>
+        </div>
+
+        <div class="inv-lines">
+          <div class="inv-line"><span>Nama</span><b>${escapeHtml(name)}</b></div>
+          <div class="inv-line"><span>WhatsApp</span><b>${escapeHtml(phone)}</b></div>
+          <div class="inv-line"><span>Ambil</span><b>${fulfillLabel}</b></div>
+          <div class="inv-line"><span>Jam</span><b>${time}</b></div>
+          <div class="inv-line"><span>Alamat</span><b>${escapeHtml(addr)}</b></div>
+          <div class="inv-line"><span>Bayar</span><b>${payLabel}</b></div>
+          <div class="inv-line"><span>Catatan</span><b>${escapeHtml(note)}</b></div>
+        </div>
+
+        <div class="divider-line" style="margin:14px 0 0;"></div>
+
+        <div class="inv-lines" style="margin-top:12px;">
+          ${lines}
+        </div>
+
+        <div class="inv-lines" style="margin-top:12px;">
+          <div class="inv-line"><span>Subtotal</span><b>${rupiah(t.subtotal)}</b></div>
+          <div class="inv-line"><span>Service (5%)</span><b>${rupiah(t.service)}</b></div>
+          <div class="inv-line"><span>PB1 (10%)</span><b>${rupiah(t.tax)}</b></div>
+        </div>
+
+        <div class="inv-total">
+          <span>Total</span>
+          <span>${rupiah(t.grand)}</span>
+        </div>
+
+        <div class="pay-actions" style="margin-top:12px;">
+          <button class="btn btn-ghost btn-sm" type="button" id="copyInvoice">Copy Nota (text)</button>
+        </div>
+      `;
+
+      document.getElementById("copyInvoice")?.addEventListener("click", () => {
+        const text = buildInvoiceText({items, totals:t, payLabel, fulfillLabel, name, phone, time, addr, note});
+        copyText(text);
+      });
+
+      sumSubtotal.textContent = rupiah(t.subtotal);
+      sumService.textContent = rupiah(t.service);
+      sumTax.textContent = rupiah(t.tax);
+      sumGrand.textContent = rupiah(t.grand);
+    }
+
+    [custName, custPhone, pickupTime, custAddress, notes].forEach(el => {
+      el?.addEventListener("input", () => renderInvoice());
+    });
+
+    submitOrderBtn?.addEventListener("click", () => {
+      const items = getCartItems();
+      if(items.length === 0){ alert("Keranjang masih kosong. Pilih menu dulu ya 🙂"); return; }
+
+      const name = (custName.value || "").trim();
+      const phone = (custPhone.value || "").trim();
+      if(!name || !phone){ alert("Nama dan WhatsApp wajib diisi."); return; }
+
+      if(fulfillment.value === "delivery"){
+        const addr = (custAddress.value || "").trim();
+        if(!addr){ alert("Alamat delivery wajib diisi untuk Delivery."); return; }
+      }
+
+      const pay = getPayMethod();
+      const totals = calcTotals();
+      const payLabel = pay === "cash" ? "Cash" : (pay === "qris" ? "QRIS" : ("Transfer " + pay.toUpperCase()));
+
+      alert(
+        "Pesanan dibuat!\n\n" +
+        `Order ID: ${orderId}\n` +
+        `Total: ${rupiah(totals.grand)}\n` +
+        `Metode bayar: ${payLabel}\n\n` +
+        "Silakan copy nota (di bagian Nota Sementara) dan kirim ke admin/WA untuk konfirmasi."
+      );
+    });
+
+    // ========= Filter bindings =========
+    searchInput?.addEventListener("input", () => renderMenu());
+    catSelect?.addEventListener("change", () => renderMenu());
+    sortSelect?.addEventListener("change", () => renderMenu());
+
+    clearFilterBtn?.addEventListener("click", () => {
+      searchInput.value = "";
+      catSelect.value = "all";
+      sortSelect.value = "popular";
+      renderMenu();
+    });
+
+    document.getElementById("scrollMenuBtn")?.addEventListener("click", () => {
+      document.querySelector(".menu")?.scrollIntoView({behavior:"smooth"});
+    });
+
+    // ========= Init =========
+    (() => {
+      const d = new Date(Date.now() + 30*60*1000);
+      pickupTime.value = String(d.getHours()).padStart(2,'0') + ":" + String(d.getMinutes()).padStart(2,'0');
+    })();
+
+    function syncUI(){
+      renderMenu();
+      renderMiniCart();
+      if(modal.classList.contains("open")){
+        renderCartInsideModal();
+        renderInvoice();
+      }
+    }
+
+    addrField.style.display = (fulfillment.value === "delivery") ? "flex" : "none";
+    renderMenu();
+    renderMiniCart();
+    renderPayInfo();
+    renderInvoice();
+  </script>
+</body>
+</html>
