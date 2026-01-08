@@ -5,6 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Unggul Coffe — Kopi yang Dibuat Serius</title>
   <meta name="description" content="Unggul Coffe — coffee shop premium bernuansa hangat dengan best seller, rekomendasi menu, testimoni, dan galeri."/>
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+  <meta name="theme-color" content="#0e0a07"/>
+  <link rel="canonical" href="index.html"/>
+
+  <!-- Preconnect (Pagespeed) -->
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="preconnect" href="https://plus.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+  <link rel="dns-prefetch" href="https://plus.unsplash.com">
+
+  <!-- Open Graph / Twitter (SEO + AI Overview readiness) -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="id_ID"/>
+  <meta property="og:title" content="Unggul Coffe — Kopi yang Dibuat Serius"/>
+  <meta property="og:description" content="Coffee shop premium bernuansa hangat: best seller, rekomendasi menu, testimoni, dan galeri."/>
+  <meta property="og:url" content="index.html"/>
+  <meta property="og:image" content="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=1200&q=80"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Unggul Coffe — Kopi yang Dibuat Serius"/>
+  <meta name="twitter:description" content="Coffee shop premium bernuansa hangat: best seller, rekomendasi menu, testimoni, dan galeri."/>
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=1200&q=80"/>
+
+  <!-- Favicon Maksimal (tanpa file eksternal) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='25%25' r='80%25'%3E%3Cstop offset='0%25' stop-color='%23c68b59'/%3E%3Cstop offset='100%25' stop-color='%230e0a07'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='50%25' y='52%25' text-anchor='middle' font-size='34'%3E%E2%98%95%3C/text%3E%3C/svg%3E">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAARUlEQVRYR+3WsQkAIAwEwVv3/6sZyqgkQ4xgYFqYwq0m0m0yQy7yQkqQm2f0o0mQqjYw9gYw8gGm0z9QAAAABJRU5ErkJggg==">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='25%25' r='80%25'%3E%3Cstop offset='0%25' stop-color='%23c68b59'/%3E%3Cstop offset='100%25' stop-color='%230e0a07'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='44' fill='url(%23g)'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='92'%3E%E2%98%95%3C/text%3E%3C/svg%3E">
+
+  <!-- Structured Data (AI Overview + SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CafeOrCoffeeShop",
+    "name":"Unggul Coffe",
+    "url":"index.html",
+    "description":"Coffee shop premium bernuansa hangat dengan best seller, rekomendasi menu, testimoni, dan galeri.",
+    "telephone":"+62-812-0000-0000",
+    "email":"hello@unggulcoffe.com",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Jl. Kopi Hangat No. 12",
+      "addressLocality":"Kota Kamu",
+      "addressCountry":"ID"
+    },
+    "openingHoursSpecification":[
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"22:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"09:00","closes":"23:00"}
+    ],
+    "servesCuisine":["Coffee","Pastry","Light Meals"],
+    "image":"https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=1200&q=80"
+  }
+  </script>
+
   <style>
     /* ====== GLOBAL / TOKENS ====== */
     :root{
@@ -37,6 +89,9 @@
         radial-gradient(900px 500px at 90% 20%, rgba(183,119,60,.18), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     a{ color:inherit; text-decoration:none; }
     img{ max-width:100%; display:block; }
@@ -162,11 +217,7 @@
 
       <!-- KANAN: 2 tombol -->
       <div class="nav-cta" aria-label="Aksi cepat">
-        <a class="btn btn-ghost btn-sm" href="menu.html" aria-label="Keranjang">
-          <span aria-hidden="true">🧾</span>
-          Keranjang
-          <span class="cart-badge" id="cartCount">0</span>
-        </a>
+        <!-- (hapus fitur keranjang sesuai permintaan) -->
         <a class="btn btn-primary btn-sm" href="menu.html">
           Pesan Sekarang <span aria-hidden="true">→</span>
         </a>
@@ -266,23 +317,6 @@
       justify-content:flex-end;
     }
 
-    .cart-badge{
-      margin-left: 6px;
-      min-width: 22px;
-      height: 22px;
-      padding: 0 7px;
-      border-radius: 999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(198,139,89,.25);
-      border: 1px solid rgba(198,139,89,.45);
-      color: var(--cream);
-      font-size:.82rem;
-      font-weight: 900;
-      line-height: 1;
-    }
-
     /* Responsive: tanpa hamburger, jadi wrap yang rapi */
     @media (max-width: 980px){
       .nav{ height:auto; padding: 12px 0; flex-wrap:wrap; }
@@ -362,7 +396,12 @@
             <article class="best-item">
               <img class="best-img"
                 src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=500&q=70"
-                alt="Es Kopi Gula Aren" loading="lazy"/>
+                alt="Es Kopi Gula Aren"
+                loading="lazy"
+                decoding="async"
+                width="92"
+                height="64"
+                fetchpriority="high"/>
               <div class="best-info">
                 <div class="best-name">Es Kopi Gula Aren</div>
                 <div class="best-sold">Terjual: <b>1.965</b></div>
@@ -373,7 +412,11 @@
             <article class="best-item">
               <img class="best-img"
                 src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=70"
-                alt="Caramel Latte" loading="lazy"/>
+                alt="Caramel Latte"
+                loading="lazy"
+                decoding="async"
+                width="92"
+                height="64"/>
               <div class="best-info">
                 <div class="best-name">Caramel Latte</div>
                 <div class="best-sold">Terjual: <b>1.284</b></div>
@@ -384,7 +427,11 @@
             <article class="best-item">
               <img class="best-img"
                 src="https://images.unsplash.com/photo-1530610476181-d83430b64dcd?auto=format&fit=crop&w=500&q=70"
-                alt="Croissant Butter" loading="lazy"/>
+                alt="Croissant Butter"
+                loading="lazy"
+                decoding="async"
+                width="92"
+                height="64"/>
               <div class="best-info">
                 <div class="best-name">Croissant Butter</div>
                 <div class="best-sold">Terjual: <b>987</b></div>
@@ -569,7 +616,7 @@
 
         <div class="reco-grid">
           <article class="reco-card card">
-            <img class="reco-img" src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=700&q=70" alt="Cappuccino" loading="lazy"/>
+            <img class="reco-img" src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=700&q=70" alt="Cappuccino" loading="lazy" decoding="async" width="700" height="150"/>
             <div class="reco-body">
               <div class="reco-name">Cappuccino</div>
               <div class="reco-meta">
@@ -580,7 +627,7 @@
           </article>
 
           <article class="reco-card card">
-            <img class="reco-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=70" alt="Americano Ice" loading="lazy"/>
+            <img class="reco-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=70" alt="Americano Ice" loading="lazy" decoding="async" width="700" height="150"/>
             <div class="reco-body">
               <div class="reco-name">Americano Ice</div>
               <div class="reco-meta">
@@ -591,7 +638,7 @@
           </article>
 
           <article class="reco-card card">
-            <img class="reco-img" src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=70" alt="Matcha Latte" loading="lazy"/>
+            <img class="reco-img" src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=70" alt="Matcha Latte" loading="lazy" decoding="async" width="700" height="150"/>
             <div class="reco-body">
               <div class="reco-name">Matcha Latte</div>
               <div class="reco-meta">
@@ -602,7 +649,7 @@
           </article>
 
           <article class="reco-card card">
-            <img class="reco-img" src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=70" alt="Chocolate Cookies" loading="lazy"/>
+            <img class="reco-img" src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=70" alt="Chocolate Cookies" loading="lazy" decoding="async" width="700" height="150"/>
             <div class="reco-body">
               <div class="reco-name">Chocolate Cookies</div>
               <div class="reco-meta">
@@ -613,7 +660,7 @@
           </article>
 
           <article class="reco-card card">
-            <img class="reco-img" src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=70" alt="Chicken Sandwich" loading="lazy"/>
+            <img class="reco-img" src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=70" alt="Chicken Sandwich" loading="lazy" decoding="async" width="700" height="150"/>
             <div class="reco-body">
               <div class="reco-name">Chicken Sandwich</div>
               <div class="reco-meta">
@@ -624,7 +671,7 @@
           </article>
 
           <article class="reco-card card">
-            <img class="reco-img" src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=700&q=70" alt="Donut Sugar" loading="lazy"/>
+            <img class="reco-img" src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=700&q=70" alt="Donut Sugar" loading="lazy" decoding="async" width="700" height="150"/>
             <div class="reco-body">
               <div class="reco-name">Donut Sugar</div>
               <div class="reco-meta">
@@ -635,7 +682,7 @@
           </article>
 
           <article class="reco-card card">
-            <img class="reco-img" src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?auto=format&fit=crop&w=700&q=70" alt="Espresso" loading="lazy"/>
+            <img class="reco-img" src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?auto=format&fit=crop&w=700&q=70" alt="Espresso" loading="lazy" decoding="async" width="700" height="150"/>
             <div class="reco-body">
               <div class="reco-name">Espresso</div>
               <div class="reco-meta">
@@ -646,7 +693,7 @@
           </article>
 
           <article class="reco-card card">
-            <img class="reco-img" src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2f5f3?auto=format&fit=crop&w=700&q=70" alt="Pasta Creamy" loading="lazy"/>
+            <img class="reco-img" src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2f5f3?auto=format&fit=crop&w=700&q=70" alt="Pasta Creamy" loading="lazy" decoding="async" width="700" height="150"/>
             <div class="reco-body">
               <div class="reco-name">Pasta Creamy</div>
               <div class="reco-meta">
@@ -850,27 +897,27 @@
 
         <div class="gal-grid">
           <a class="gal-card card" href="#" aria-label="Lihat foto 1">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=70" alt="Suasana cafe" loading="lazy"/>
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=70" alt="Suasana cafe" loading="lazy" decoding="async" width="900" height="675"/>
             <span class="overlay">View</span>
           </a>
           <a class="gal-card card" href="#" aria-label="Lihat foto 2">
-            <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=70" alt="Bar kopi" loading="lazy"/>
+            <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=70" alt="Bar kopi" loading="lazy" decoding="async" width="900" height="675"/>
             <span class="overlay">View</span>
           </a>
           <a class="gal-card card" href="#" aria-label="Lihat foto 3">
-            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=70" alt="Latte art" loading="lazy"/>
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=70" alt="Latte art" loading="lazy" decoding="async" width="900" height="675"/>
             <span class="overlay">View</span>
           </a>
           <a class="gal-card card" href="#" aria-label="Lihat foto 4">
-            <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=70" alt="Peralatan barista" loading="lazy"/>
+            <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=70" alt="Peralatan barista" loading="lazy" decoding="async" width="900" height="675"/>
             <span class="overlay">View</span>
           </a>
           <a class="gal-card card" href="#" aria-label="Lihat foto 5">
-            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=70" alt="Interior hangat" loading="lazy"/>
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=70" alt="Interior hangat" loading="lazy" decoding="async" width="900" height="675"/>
             <span class="overlay">View</span>
           </a>
           <a class="gal-card card" href="#" aria-label="Lihat foto 6">
-            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=70" alt="Coffee shop malam hari" loading="lazy"/>
+            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=70" alt="Coffee shop malam hari" loading="lazy" decoding="async" width="900" height="675"/>
             <span class="overlay">View</span>
           </a>
         </div>
@@ -1106,6 +1153,39 @@
       .toTop{
         position: fixed;
         right: 18px;
+        bottom: 78px; /* di atas WA supaya WA berada di bawah (sesuai permintaan) */
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        cursor:pointer;
+        display:none;
+        z-index: 60;
+        backdrop-filter: blur(10px);
+      }
+      .toTop:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+      }
+    </style>
+
+    <!-- ✅ Floating WhatsApp (di bawah toTop) -->
+    <a class="waFloat" id="waFloat"
+       href="https://wa.me/6281200000000?text=Halo%20Unggul%20Coffe%2C%20saya%20mau%20pesan."
+       target="_blank" rel="noopener"
+       aria-label="Chat WhatsApp">
+      <span class="waIcon" aria-hidden="true">✆</span>
+      <span class="waText">WhatsApp</span>
+    </a>
+
+    <style>
+      .toTop{
+        position: fixed;
+        right: 18px;
         bottom: 18px;
         width: 52px;
         height: 52px;
@@ -1123,6 +1203,45 @@
         border-color: rgba(198,139,89,.55);
         box-shadow: 0 18px 44px rgba(0,0,0,.45);
         transform: translateY(-1px);
+      }
+
+      .waFloat{
+        position: fixed;
+        right: 18px;
+        bottom: 78px;
+        display:flex;
+        align-items:center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        z-index: 60;
+        backdrop-filter: blur(10px);
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .waFloat:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+        background: rgba(198,139,89,.10);
+      }
+      .waIcon{
+        width: 38px;
+        height: 38px;
+        display:grid;
+        place-items:center;
+        border-radius: 14px;
+        background: rgba(198,139,89,.18);
+        border:1px solid rgba(198,139,89,.28);
+        font-weight: 900;
+      }
+      .waText{ font-weight: 850; letter-spacing:.01em; }
+      @media (max-width: 520px){
+        .waText{ display:none; }
+        .waFloat{ padding: 12px; }
       }
     </style>
   </main>
@@ -1209,7 +1328,7 @@
       return `
         <article class="bcard">
           <div class="bimg">
-            <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">
+            <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" decoding="async">
           </div>
           <div class="bbody">
             <div class="bmeta">
@@ -1288,14 +1407,103 @@
     toggleTop();
     toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // ===== Cart badge sync (SAMA DENGAN HALAMAN INDEX) =====
-    function syncCartBadge(){
-      const count = Number(localStorage.getItem('cartCount') || 0);
-      const el = document.getElementById('cartCount');
-      if(el) el.textContent = String(count);
+    // ===== TESTIMONI (perbaiki: isi + slider aman) =====
+    const testiCard = document.getElementById('testiCard');
+    const dotsEl = document.getElementById('dots');
+    const prevBtn = document.getElementById('prevTesti');
+    const nextBtn = document.getElementById('nextTesti');
+
+    const testimonials = [
+      {
+        name: "Nadia S.",
+        role: "Freelancer • Jakarta",
+        stars: 5,
+        quote: "Es Kopi Gula Aren-nya juara. Rasanya konsisten, nggak kemanisan, dan aftertaste-nya enak.",
+        avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=70"
+      },
+      {
+        name: "Raka P.",
+        role: "Content Creator",
+        stars: 5,
+        quote: "Tempatnya nyaman buat kerja. WiFi aman, musiknya pas, dan baristanya ramah banget.",
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=70"
+      },
+      {
+        name: "Dewi A.",
+        role: "Mahasiswi",
+        stars: 4,
+        quote: "Caramel Latte favoritku. Pairing sama croissant butter bikin nagih, wajib coba!",
+        avatar: "https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=200&q=70"
+      }
+    ];
+
+    function starsText(n){
+      const s = Math.max(1, Math.min(5, Number(n) || 5));
+      return "★★★★★".slice(0, s) + "☆☆☆☆☆".slice(0, 5 - s);
     }
-    syncCartBadge();
-    window.addEventListener('storage', syncCartBadge);
+
+    let testiIndex = 0;
+
+    function renderDots(){
+      if(!dotsEl) return;
+      dotsEl.innerHTML = testimonials.map((_, i) => {
+        const cls = i === testiIndex ? "dot active" : "dot";
+        return `<button class="${cls}" type="button" aria-label="Pilih testimoni ${i+1}" data-i="${i}"></button>`;
+      }).join('');
+
+      dotsEl.querySelectorAll('[data-i]').forEach(b => {
+        b.addEventListener('click', () => {
+          const i = Number(b.getAttribute('data-i') || 0);
+          goToTesti(i);
+        });
+      });
+    }
+
+    function renderTesti(){
+      if(!testiCard) return;
+      const t = testimonials[testiIndex];
+
+      // animasi ringan (anti kosong / anti patah)
+      testiCard.style.opacity = "0";
+      testiCard.style.transform = "translateY(6px)";
+      window.requestAnimationFrame(() => {
+        testiCard.innerHTML = `
+          <img class="ava" src="${esc(t.avatar)}" alt="Foto ${esc(t.name)}" loading="lazy" decoding="async" width="72" height="72">
+          <div class="t-body">
+            <div class="t-name">${esc(t.name)}</div>
+            <div class="t-role">${esc(t.role)}</div>
+            <div class="stars" aria-label="Rating ${t.stars} dari 5">${esc(starsText(t.stars))}</div>
+            <blockquote>“${esc(t.quote)}”</blockquote>
+          </div>
+        `;
+        testiCard.style.opacity = "1";
+        testiCard.style.transform = "translateY(0)";
+      });
+
+      renderDots();
+    }
+
+    function goToTesti(i){
+      if(!testiCard || testimonials.length === 0) return;
+      testiIndex = (i + testimonials.length) % testimonials.length;
+      renderTesti();
+    }
+
+    prevBtn?.addEventListener('click', () => goToTesti(testiIndex - 1));
+    nextBtn?.addEventListener('click', () => goToTesti(testiIndex + 1));
+
+    // fallback kalau data kosong (biar nggak blank)
+    if(testimonials.length === 0 && testiCard){
+      testiCard.innerHTML = `
+        <div class="t-body">
+          <div class="t-name">Testimoni</div>
+          <div class="t-role">Belum ada</div>
+          <blockquote>“Terima kasih sudah berkunjung. Nantikan testimoni terbaru!”</blockquote>
+        </div>
+      `;
+    } else {
+      renderTesti();
+    }
   </script>
 </body>
 </html>
