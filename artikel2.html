@@ -3,12 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>Panduan Espresso di Rumah (Tanpa Ribet) — Unggul Coffe</title>
   <meta name="description" content="Mulai dari grind size, dose, rasio, sampai tips biar crema stabil dan manis. Panduan espresso rumahan dari Unggul Coffe."/>
+  <meta name="robots" content="index,follow"/>
+  <meta name="theme-color" content="#0e0a07"/>
+
+  <!-- Canonical (ganti sesuai domain live) -->
+  <link rel="canonical" href="artikel2.html"/>
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article"/>
+  <meta property="og:locale" content="id_ID"/>
+  <meta property="og:site_name" content="Unggul Coffe"/>
+  <meta property="og:title" content="Panduan Espresso di Rumah (Tanpa Ribet)"/>
+  <meta property="og:description" content="Mulai dari grind size, dose, rasio, sampai tips biar crema stabil dan manis."/>
+  <meta property="og:url" content="artikel2.html"/>
+  <meta property="og:image" content="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1400&q=80"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- FAVICON (maksimalkan; sesuaikan file di root) -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- JSON-LD (SEO + AI Overview) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Panduan Espresso di Rumah (Tanpa Ribet)",
+    "description":"Mulai dari grind size, dose, rasio, sampai tips biar crema stabil dan manis. Panduan espresso rumahan dari Unggul Coffe.",
+    "image":["https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1400&q=80"],
+    "datePublished":"2026-01-01",
+    "dateModified":"2026-01-01",
+    "author":{"@type":"Person","name":"Tim Unggul Coffe"},
+    "publisher":{
+      "@type":"Organization",
+      "name":"Unggul Coffe",
+      "logo":{"@type":"ImageObject","url":"favicon.png"}
+    },
+    "mainEntityOfPage":{"@type":"WebPage","@id":"artikel2.html"}
+  }
+  </script>
 
   <style>
     /* ====== GLOBAL / TOKENS (SAMA DENGAN BLOG.HTML) ====== */
@@ -318,9 +360,16 @@
             <img
               src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1400&q=80"
               alt="Panduan Espresso di Rumah (Tanpa Ribet)"
-              loading="lazy"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
             />
             <div class="media-shade" aria-hidden="true"></div>
+          </div>
+
+          <!-- Deskripsi foto utama (wajib) -->
+          <div class="photo-caption">
+            Foto: secangkir espresso sebagai ilustrasi panduan dial-in espresso rumahan.
           </div>
 
           <div class="hero-content">
@@ -339,12 +388,22 @@
             <div class="meta-row">
               <span class="meta"><span class="dot" aria-hidden="true"></span><b>2026</b></span>
               <span class="meta"><span class="dot" aria-hidden="true"></span><b>7 menit</b> baca</span>
-              <span class="meta"><span class="dot" aria-hidden="true"></span>Ditulis oleh <b>Unggul Coffe</b></span>
+              <span class="meta"><span class="dot" aria-hidden="true"></span>Ditulis oleh <b>Tim Unggul Coffe</b></span>
             </div>
 
             <div class="hero-actions">
               <a class="btn btn-primary" href="#content">Mulai baca <span aria-hidden="true">→</span></a>
               <a class="btn btn-ghost" href="blog.html">Kembali ke Blog</a>
+            </div>
+
+            <!-- Share (aktif) -->
+            <div class="shareRow" aria-label="Bagikan artikel">
+              <button class="sbtn" id="shareNative" type="button">Share</button>
+              <a class="sbtn" id="shareWA" href="#" rel="noopener">WhatsApp</a>
+              <a class="sbtn" id="shareFB" href="#" target="_blank" rel="noopener">Facebook</a>
+              <a class="sbtn" id="shareX" href="#" target="_blank" rel="noopener">X</a>
+              <a class="sbtn" id="shareLinkedIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+              <button class="sbtn" id="copyLink" type="button">Salin Link</button>
             </div>
           </div>
         </div>
@@ -397,7 +456,14 @@
         pointer-events:none;
       }
 
-      .hero-content{ padding: 18px; }
+      .photo-caption{
+        padding: 10px 18px 0;
+        color: rgba(205,191,178,.9);
+        font-size:.92rem;
+        line-height: 1.6;
+      }
+
+      .hero-content{ padding: 14px 18px 18px; }
       .article-title{
         font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
         font-size: clamp(1.9rem, 2.7vw, 2.6rem);
@@ -437,6 +503,13 @@
         margin-top: 14px;
       }
 
+      .shareRow{
+        margin-top: 14px;
+        display:flex;
+        flex-wrap:wrap;
+        gap: 10px;
+      }
+
       @media (max-width: 560px){
         .hero-media{ height: 240px; }
       }
@@ -448,6 +521,15 @@
 
         <article class="post glass" aria-label="Isi artikel">
           <div class="post-inner">
+
+            <!-- TOC (otomatis H2/H3 + bisa buka/tutup) -->
+            <div class="toc glass" id="tocBox" aria-label="Daftar isi">
+              <button class="tocToggle" id="tocToggle" type="button" aria-expanded="true" aria-controls="tocList">
+                <span class="tocTitle">Daftar Isi</span>
+                <span class="tocIcon" aria-hidden="true">▾</span>
+              </button>
+              <div class="tocBody" id="tocList"></div>
+            </div>
 
             <h2 class="h2">0) Setup minimal yang cukup</h2>
             <p>
@@ -466,12 +548,34 @@
               </div>
             </div>
 
+            <!-- Gambar promosi GIF (wajib) -->
+            <figure class="fig">
+              <img
+                src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif"
+                alt="Promo Unggul Coffe - espresso manis dan crema stabil"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="cap">GIF promosi: tips espresso rumahan ala Unggul Coffe.</figcaption>
+            </figure>
+
             <h2 class="h2">1) Grind size: kunci utama</h2>
             <p>
               Kalau shot kamu <b>kecepetan</b> (misal 15–18 detik), biasanya grind terlalu kasar → bikin watery & sour.
               Kalau <b>kelamaan</b> (40+ detik), grind terlalu halus → pahit & astringent.
               Tuning-nya: <b>ubah grind sedikit demi sedikit</b>.
             </p>
+
+            <!-- Gambar pendukung + deskripsi -->
+            <figure class="fig">
+              <img
+                src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?auto=format&fit=crop&w=1400&q=80"
+                alt="Grinder kopi dan bubuk kopi untuk espresso"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="cap">Ilustrasi: grinder berperan besar untuk konsistensi espresso.</figcaption>
+            </figure>
 
             <h2 class="h2">2) Dose & distribusi</h2>
             <ul class="ul">
@@ -485,12 +589,26 @@
               <span class="qby">— Barista note</span>
             </blockquote>
 
+            <h3 class="h3">2.1) Checklist anti-channeling</h3>
+            <p>
+              Pastikan basket bersih, distribusi rata, tamping tidak miring, dan jangan lupa flush singkat sebelum brew (kalau mesin mendukung).
+            </p>
+
             <h2 class="h2">3) Rasio & yield: manisnya espresso</h2>
             <p>
               Rasio 1:2 adalah titik awal. Tapi kamu bisa main:
               <b>1:1.5</b> (lebih kental, intens) atau <b>1:2.5</b> (lebih ringan, clean).
               Kalau terasa terlalu pahit → coba sedikit <b>perpendek</b> yield. Kalau terlalu asam → coba <b>panjangkan</b>.
             </p>
+
+            <!-- BACA JUGA (minimal 2) -->
+            <div class="bacaJuga glass" aria-label="Baca juga">
+              <div class="bjTitle">Baca Juga</div>
+              <ul class="bjList">
+                <li><a href="artikel1.html">Kenalan dengan Biji: Arabica vs Robusta</a></li>
+                <li><a href="artikel3.html">Manual Brew: V60 untuk Rasa Clean & Floral</a></li>
+              </ul>
+            </div>
 
             <h2 class="h2">4) “Dial-in” cepat (biar gak ribet)</h2>
             <div class="cards">
@@ -528,7 +646,60 @@
               </div>
             </div>
 
+            <!-- FAQ + Kesimpulan (wajib) -->
+            <h2 class="h2">FAQ</h2>
+            <div class="faq">
+              <details class="faqItem" open>
+                <summary>Berapa rasio espresso yang paling aman untuk pemula?</summary>
+                <div class="faqBody">
+                  Mulai dari 1:2 (contoh 18g in → 36g out) dengan waktu 25–30 detik. Setelah itu sesuaikan sesuai rasa.
+                </div>
+              </details>
+              <details class="faqItem">
+                <summary>Kenapa espresso saya asam dan encer?</summary>
+                <div class="faqBody">
+                  Biasanya under-extracted: grind terlalu kasar atau waktu terlalu singkat. Haluskan grind sedikit dan pastikan yield sesuai target.
+                </div>
+              </details>
+              <details class="faqItem">
+                <summary>Kenapa crema saya tipis?</summary>
+                <div class="faqBody">
+                  Umumnya karena beans sudah kurang fresh, atau grind/dose belum tepat. Coba beans lebih segar dan tuning grind.
+                </div>
+              </details>
+            </div>
+
+            <h2 class="h2">Kesimpulan</h2>
+            <p>
+              Kunci espresso rumahan ada di konsistensi: <b>dose</b>, <b>grind</b>, dan <b>rasio</b>.
+              Mulai dari angka sederhana (18g→36g, 25–30 detik), lalu tuning sedikit demi sedikit sampai dapat rasa manis yang kamu cari.
+            </p>
+
+            <!-- Gambar promosi GIF (kedua, sesuai standar) -->
+            <figure class="fig">
+              <img
+                src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"
+                alt="Promo diskon espresso Unggul Coffe"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="cap">GIF promosi: coba espresso & menu favorit Unggul Coffe.</figcaption>
+            </figure>
+
             <div class="divider-line"></div>
+
+            <!-- Profil penulis (wajib) -->
+            <section class="author glass" aria-label="Profil penulis">
+              <div class="authorRow">
+                <div class="authorAvatar" aria-hidden="true">UC</div>
+                <div>
+                  <div class="authorName">Tim Unggul Coffe</div>
+                  <div class="authorBio">
+                    Tim barista & roastery yang menulis panduan praktis seputar espresso, dial-in, dan resep milk-based agar hasil seduh makin konsisten.
+                  </div>
+                </div>
+              </div>
+            </section>
 
             <div class="post-foot">
               <div class="tags" aria-label="Tag artikel">
@@ -538,7 +709,6 @@
               </div>
 
               <div class="share" aria-label="Bagikan artikel">
-                <button class="sbtn" id="copyLink" type="button">Salin Link</button>
                 <a class="sbtn" href="blog.html">Artikel lain</a>
               </div>
             </div>
@@ -591,9 +761,55 @@
       </div>
     </section>
 
+    <!-- 3 ARTIKEL TERKAIT (wajib: gambar, judul, deskripsi, button) -->
+    <section class="more" aria-label="Artikel terkait lainnya">
+      <div class="container">
+        <header class="moreHead">
+          <h2 class="section-title">Rekomendasi Artikel Lainnya</h2>
+          <p class="section-sub">Biar makin jago dial-in, seduh, dan pairing kopi.</p>
+          <div class="divider-line"></div>
+        </header>
+
+        <div class="moreGrid">
+          <article class="mcard glass">
+            <div class="mimg">
+              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80" alt="Kenalan dengan Biji: Arabica vs Robusta" loading="lazy" decoding="async">
+            </div>
+            <div class="mbody">
+              <h3 class="mt">Kenalan dengan Biji: Arabica vs Robusta</h3>
+              <p class="md">Beda rasa, kafein, body, dan cara memilih biji yang cocok buat kamu.</p>
+              <a class="btn btn-primary" href="artikel1.html">Baca Selengkapnya</a>
+            </div>
+          </article>
+
+          <article class="mcard glass">
+            <div class="mimg">
+              <img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&w=1200&q=80" alt="Manual Brew V60" loading="lazy" decoding="async">
+            </div>
+            <div class="mbody">
+              <h3 class="mt">Manual Brew: V60 untuk Rasa Clean & Floral</h3>
+              <p class="md">Step-by-step V60: suhu, blooming, pour pattern, dan anti pahit.</p>
+              <a class="btn btn-primary" href="artikel3.html">Baca Selengkapnya</a>
+            </div>
+          </article>
+
+          <article class="mcard glass">
+            <div class="mimg">
+              <img src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=1200&q=80" alt="Latte Art Dasar" loading="lazy" decoding="async">
+            </div>
+            <div class="mbody">
+              <h3 class="mt">Latte Art Dasar: Mulai dari Microfoam</h3>
+              <p class="md">Microfoam halus, teknik tuang, sampai pola sederhana untuk pemula.</p>
+              <a class="btn btn-primary" href="artikel4.html">Baca Selengkapnya</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <style>
       /* ====== ARTICLE CONTENT CSS ====== */
-      .article{ padding: 10px 0 40px; }
+      .article{ padding: 10px 0 24px; }
       .article-grid{
         display:grid;
         grid-template-columns: 1fr 340px;
@@ -604,16 +820,9 @@
       .post{ border-radius: var(--radius2); overflow:hidden; }
       .post-inner{ padding: 18px; }
 
-      .h2{
-        font-size: 1.28rem;
-        margin: 14px 0 0;
-        letter-spacing:.01em;
-      }
-      .post p{
-        margin: 10px 0 0;
-        color: rgba(243,233,221,.92);
-        line-height: 1.9;
-      }
+      .h2{ font-size: 1.28rem; margin: 14px 0 0; letter-spacing:.01em; }
+      .h3{ font-size: 1.08rem; margin: 12px 0 0; letter-spacing:.01em; color: rgba(243,233,221,.98); }
+      .post p{ margin: 10px 0 0; color: rgba(243,233,221,.92); line-height: 1.9; }
 
       .ul{
         margin: 10px 0 0;
@@ -711,11 +920,7 @@
         flex-wrap:wrap;
         align-items:center;
       }
-      .tags{
-        display:flex;
-        flex-wrap:wrap;
-        gap: 8px;
-      }
+      .tags{ display:flex; flex-wrap:wrap; gap: 8px; }
       .tag{
         font-size:.82rem;
         padding: .38rem .6rem;
@@ -730,11 +935,7 @@
         background: rgba(198,139,89,.14);
       }
 
-      .share{
-        display:flex;
-        gap: 10px;
-        flex-wrap:wrap;
-      }
+      .share{ display:flex; gap: 10px; flex-wrap:wrap; }
       .sbtn{
         padding: .62rem .85rem;
         border-radius: 14px;
@@ -754,12 +955,7 @@
       .side-box{ padding: 16px; }
       .side-h{ font-weight: 900; letter-spacing:.01em; }
       .side-p{ margin: 8px 0 0; color: var(--muted); line-height: 1.75; }
-      .side-actions{
-        display:flex;
-        flex-direction:column;
-        gap: 10px;
-        margin-top: 12px;
-      }
+      .side-actions{ display:flex; flex-direction:column; gap: 10px; margin-top: 12px; }
       .side-actions .btn{ width:100%; }
 
       .rel{
@@ -789,12 +985,128 @@
       .rel-t{ display:block; font-weight: 850; line-height: 1.35; }
       .rel-s{ display:block; margin-top: 4px; color: var(--muted); font-size: .92rem; line-height: 1.55; }
 
+      /* TOC */
+      .toc{
+        margin-top: 4px;
+        padding: 12px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(30, 20, 14, .45);
+      }
+      .tocToggle{
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap: 10px;
+        background: transparent;
+        border: 0;
+        color: var(--cream);
+        cursor:pointer;
+        padding: 6px 4px;
+      }
+      .tocTitle{ font-weight: 900; letter-spacing:.01em; }
+      .tocBody{ margin-top: 10px; }
+      .tocBody[hidden]{ display:none; }
+      .tocBody ol{ margin:0; padding-left: 18px; line-height: 1.85; color: rgba(243,233,221,.92); }
+      .tocBody a{ color: rgba(198,139,89,.95); }
+      .tocBody a:hover{ text-decoration: underline; }
+
+      /* Figure / caption */
+      .fig{
+        margin: 14px 0 0;
+        border-radius: 18px;
+        overflow:hidden;
+        border: 1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.02);
+      }
+      .fig img{ width:100%; height:auto; display:block; }
+      .cap{
+        padding: 10px 12px;
+        color: rgba(205,191,178,.9);
+        font-size:.92rem;
+        line-height: 1.6;
+      }
+
+      /* Baca juga */
+      .bacaJuga{
+        margin-top: 14px;
+        padding: 12px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(30, 20, 14, .45);
+      }
+      .bjTitle{ font-weight: 900; }
+      .bjList{ margin: 8px 0 0; padding-left: 18px; line-height: 1.85; }
+      .bjList a{ color: rgba(198,139,89,.95); }
+      .bjList a:hover{ text-decoration: underline; }
+
+      /* FAQ */
+      .faq{ margin-top: 10px; display:flex; flex-direction:column; gap: 10px; }
+      .faqItem{
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.03);
+        padding: 10px 12px;
+      }
+      .faqItem summary{
+        cursor:pointer;
+        font-weight: 850;
+        color: rgba(243,233,221,.95);
+      }
+      .faqBody{
+        margin-top: 8px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      /* Author */
+      .author{
+        margin-top: 14px;
+        padding: 14px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(30, 20, 14, .45);
+      }
+      .authorRow{ display:flex; gap: 12px; align-items:flex-start; }
+      .authorAvatar{
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        display:grid;
+        place-items:center;
+        font-weight: 950;
+        background: rgba(198,139,89,.14);
+        border:1px solid rgba(198,139,89,.35);
+        flex: 0 0 auto;
+      }
+      .authorName{ font-weight: 950; }
+      .authorBio{ margin-top: 4px; color: var(--muted); line-height: 1.75; max-width: 60ch; }
+
+      /* More section */
+      .more{ padding: 10px 0 40px; }
+      .moreHead{ margin-bottom: 14px; }
+      .moreGrid{
+        margin-top: 14px;
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .mcard{ overflow:hidden; border-radius: 22px; border:1px solid rgba(255,255,255,.10); }
+      .mimg{ height: 170px; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .mimg img{ width:100%; height:100%; object-fit: cover; transform: scale(1.02); }
+      .mbody{ padding: 14px; display:flex; flex-direction:column; gap: 10px; }
+      .mt{ margin:0; font-size: 1.05rem; line-height: 1.35; }
+      .md{ margin:0; color: var(--muted); line-height: 1.75; }
+      .mbody .btn{ width:100%; }
+
       @media (max-width: 980px){
         .article-grid{ grid-template-columns: 1fr; }
+        .moreGrid{ grid-template-columns: repeat(2, 1fr); }
       }
       @media (max-width: 760px){
         .cards{ grid-template-columns: 1fr; }
         .trow{ grid-template-columns: 1fr; }
+      }
+      @media (max-width: 560px){
+        .moreGrid{ grid-template-columns: 1fr; }
       }
     </style>
 
@@ -992,12 +1304,205 @@
         box-shadow: 0 18px 44px rgba(0,0,0,.45);
         transform: translateY(-1px);
       }
+
     </style>
 
+    <!-- ✅ Floating WhatsApp (di bawah toTop) -->
+    <a class="waFloat" id="waFloat"
+       href="https://wa.me/6281200000000?text=Halo%20Unggul%20Coffe%2C%20saya%20mau%20pesan."
+       target="_blank" rel="noopener"
+       aria-label="Chat WhatsApp">
+      <span class="waIcon" aria-hidden="true">✆</span>
+      <span class="waText">WhatsApp</span>
+    </a>
+
+    <style>
+      .toTop{
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        cursor:pointer;
+        display:none;
+        z-index: 60;
+        backdrop-filter: blur(10px);
+      }
+      .toTop:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+      }
+
+      .waFloat{
+        position: fixed;
+        right: 18px;
+        bottom: 78px;
+        display:flex;
+        align-items:center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        z-index: 60;
+        backdrop-filter: blur(10px);
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .waFloat:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+        background: rgba(198,139,89,.10);
+      }
+      .waIcon{
+        width: 38px;
+        height: 38px;
+        display:grid;
+        place-items:center;
+        border-radius: 14px;
+        background: rgba(198,139,89,.18);
+        border:1px solid rgba(198,139,89,.28);
+        font-weight: 900;
+      }
+      .waText{ font-weight: 850; letter-spacing:.01em; }
+      @media (max-width: 520px){
+        .waText{ display:none; }
+        .waFloat{ padding: 12px; }
+      }
+    </style>
   </main>
 
   <script>
-    // ===== Copy link =====
+    // ===== TOC AUTO (H2/H3) =====
+    function slugify(str){
+      return String(str)
+        .toLowerCase()
+        .trim()
+        .replace(/<\/?[^>]+(>|$)/g, "")
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+    }
+
+    function buildTOC(){
+      const post = document.querySelector('.post-inner');
+      const tocList = document.getElementById('tocList');
+      if(!post || !tocList) return;
+
+      const headings = Array.from(post.querySelectorAll('h2.h2, h3.h3'));
+      if(headings.length === 0){
+        tocList.innerHTML = "<div style='color:rgba(205,191,178,.9)'>Tidak ada daftar isi.</div>";
+        return;
+      }
+
+      const used = new Set();
+      headings.forEach(h => {
+        if(!h.id){
+          let base = slugify(h.textContent || "section");
+          let id = base;
+          let i = 2;
+          while(used.has(id) || document.getElementById(id)){
+            id = base + "-" + i++;
+          }
+          used.add(id);
+          h.id = id;
+        }
+      });
+
+      let html = "<ol>";
+      let openSub = false;
+
+      headings.forEach(h => {
+        const isH2 = h.matches('h2.h2');
+        const text = (h.textContent || "").trim();
+        const link = `<a href="#${h.id}">${text}</a>`;
+
+        if(isH2){
+          if(openSub){
+            html += "</ol></li>";
+            openSub = false;
+          }
+          html += `<li>${link}`;
+        }else{
+          if(!openSub){
+            html += "<ol>";
+            openSub = true;
+          }
+          html += `<li>${link}</li>`;
+        }
+      });
+
+      if(openSub) html += "</ol></li>";
+      html += "</ol>";
+
+      tocList.innerHTML = html;
+    }
+
+    buildTOC();
+
+    // TOC toggle
+    const tocToggle = document.getElementById('tocToggle');
+    const tocBody = document.getElementById('tocList');
+    tocToggle?.addEventListener('click', () => {
+      const isOpen = !(tocBody?.hasAttribute('hidden'));
+      if(isOpen){
+        tocBody?.setAttribute('hidden', '');
+        tocToggle.setAttribute('aria-expanded', 'false');
+        tocToggle.querySelector('.tocIcon').textContent = "▸";
+      }else{
+        tocBody?.removeAttribute('hidden');
+        tocToggle.setAttribute('aria-expanded', 'true');
+        tocToggle.querySelector('.tocIcon').textContent = "▾";
+      }
+    });
+
+    // ===== Share links (aktif) =====
+    function getShareData(){
+      const url = window.location.href;
+      const title = document.querySelector('h1')?.textContent?.trim() || document.title;
+      const text = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+      return { url, title, text };
+    }
+
+    function setShareHrefs(){
+      const { url, title, text } = getShareData();
+      const u = encodeURIComponent(url);
+      const t = encodeURIComponent(title);
+      const d = encodeURIComponent(text);
+
+      const wa = document.getElementById('shareWA');
+      const fb = document.getElementById('shareFB');
+      const x = document.getElementById('shareX');
+      const li = document.getElementById('shareLinkedIn');
+
+      if(wa) wa.href = `https://wa.me/?text=${t}%0A${u}`;
+      if(fb) fb.href = `https://www.facebook.com/sharer/sharer.php?u=${u}`;
+      if(x)  x.href  = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
+      if(li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
+    }
+    setShareHrefs();
+
+    // Native share
+    const shareNative = document.getElementById('shareNative');
+    shareNative?.addEventListener('click', async () => {
+      const data = getShareData();
+      if(navigator.share){
+        try{ await navigator.share(data); }catch(e){}
+      }else{
+        const copyBtn = document.getElementById('copyLink');
+        copyBtn?.click();
+      }
+    });
+
+    // Copy link
     const copyBtn = document.getElementById('copyLink');
     copyBtn?.addEventListener('click', async () => {
       try{
