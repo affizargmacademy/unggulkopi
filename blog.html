@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Unggul Coffe — Blog</title>
   <meta name="description" content="Blog Unggul Coffe — tips seduh, espresso, manual brew, pairing kopi & pastry, dan cerita roasting."/>
+  <meta name="robots" content="index,follow"/>
+  <meta name="theme-color" content="#0e0a07"/>
+
+  <!-- FAVICON (optimasi dasar, ganti file sesuai punyamu) -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -133,6 +141,11 @@
       border-color: rgba(198,139,89,.55);
       box-shadow: 0 16px 44px rgba(0,0,0,.35);
     }
+    .btn-sm{
+      padding:.62rem .85rem;
+      border-radius: 12px;
+      font-size:.95rem;
+    }
 
     /* Cards */
     .glass{
@@ -168,7 +181,7 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- =================== NAVBAR (SAMA SEPERTI HALAMAN REFERENSI) =================== -->
+  <!-- =================== NAVBAR (LINK DISESUAIKAN + KERANJANG DIHAPUS) =================== -->
   <header class="nav-wrap">
     <nav class="nav container">
 
@@ -181,17 +194,12 @@
         <div class="nav-links">
           <a class="nav-link" href="index.html#home">Home</a>
           <a class="nav-link" href="menu.html">Menu</a>
-          <a class="nav-link" href="#contact">Contact</a>
+          <a class="nav-link" href="kontak.html">Contact</a>
           <a class="nav-link active" href="blog.html">Blog</a>
         </div>
       </div>
 
       <div class="nav-cta" aria-label="Aksi cepat">
-        <a class="btn btn-ghost btn-sm" href="menu.html" aria-label="Keranjang">
-          <span aria-hidden="true">🧾</span>
-          Keranjang
-          <span class="cart-badge" id="cartCount">0</span>
-        </a>
         <a class="btn btn-primary btn-sm" href="menu.html">
           Pesan Sekarang <span aria-hidden="true">→</span>
         </a>
@@ -291,39 +299,21 @@
       justify-content:flex-end;
     }
 
-    .cart-badge{
-      margin-left: 6px;
-      min-width: 22px;
-      height: 22px;
-      padding: 0 7px;
-      border-radius: 999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(198,139,89,.25);
-      border: 1px solid rgba(198,139,89,.45);
-      color: var(--cream);
-      font-size:.82rem;
-      font-weight: 900;
-      line-height: 1;
-    }
-
     @media (max-width: 980px){
       .nav{ height:auto; padding: 12px 0; flex-wrap:wrap; }
       .nav-mid{ order: 3; width:100%; justify-content:flex-start; }
       .nav-links{ width:100%; justify-content:flex-start; }
-      .nav-cta{ order: 2; margin-left:auto; }
+      .nav-cta{ order: 2; margin-left:auto; width:100%; }
     }
     @media (max-width: 560px){
-      .nav-cta{ width:100%; }
-      .nav-cta .btn{ flex:1; }
+      .nav-cta .btn{ flex:1; width:100%; }
     }
   </style>
 
   <!-- =================== BLOG PAGE =================== -->
   <main id="home">
 
-    <!-- HERO BLOG (DIUBAH: TOPIK POPULER DISERDANAKAN + ADA GAMBAR) -->
+    <!-- HERO BLOG -->
     <section class="blog-hero">
       <div class="container hero-grid">
         <div class="hero-left">
@@ -347,7 +337,7 @@
           <div class="divider-line"></div>
         </div>
 
-        <!-- Topik Populer: versi simple + image -->
+        <!-- Topik Populer -->
         <aside class="hero-right glass">
           <div class="tp-media" aria-hidden="true">
             <img
@@ -437,7 +427,6 @@
         pointer-events:none;
       }
 
-      /* NEW: gambar kecil di topik populer */
       .tp-media{
         height: 140px;
         border-bottom: 1px solid rgba(255,255,255,.08);
@@ -464,9 +453,7 @@
         gap: 10px;
         padding: 0 18px 18px;
       }
-      .quick-tags.simple .qtag{
-        padding: .52rem .75rem;
-      }
+      .quick-tags.simple .qtag{ padding: .52rem .75rem; }
 
       .qtag{
         padding: .55rem .8rem;
@@ -493,7 +480,7 @@
       <div class="container">
         <header class="blog-head">
           <h2 class="section-title">Artikel Terbaru</h2>
-          <p class="section-sub">Ada 6 artikel. Gunakan fitur search biar cepat ketemu.</p>
+          <p class="section-sub">Ada 9 artikel. Gunakan fitur search biar cepat ketemu.</p>
           <div class="divider-line"></div>
         </header>
 
@@ -510,10 +497,17 @@
             </div>
           </div>
 
-          <div class="hintBox glass" id="blogHint" aria-live="polite">Menampilkan: <b>6 blog</b></div>
+          <div class="hintBox glass" id="blogHint" aria-live="polite">Menampilkan: <b>9 blog</b></div>
         </div>
 
         <div class="blog-grid" id="blogGrid" aria-live="polite"></div>
+
+        <!-- PREV / NEXT (DITAMBAHKAN) -->
+        <div class="blog-pagination glass" id="blogPagination" aria-label="Navigasi halaman artikel">
+          <button class="btn btn-ghost btn-sm" id="prevPage" type="button" disabled>← Prev</button>
+          <span class="page-info" id="pageInfo">Page 1 / 1</span>
+          <button class="btn btn-ghost btn-sm" id="nextPage" type="button">Next →</button>
+        </div>
 
         <div class="emptyState glass" id="blogEmpty" hidden>
           <div class="emptyIcon">🔎</div>
@@ -700,6 +694,22 @@
         background: rgba(30, 20, 14, .45);
       }
 
+      /* ====== PAGINATION (DITAMBAHKAN) ====== */
+      .blog-pagination{
+        margin-top: 20px;
+        padding: 14px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap: 14px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(30, 20, 14, .45);
+      }
+      .page-info{
+        font-weight: 800;
+        color: var(--cream);
+      }
+
       @media (max-width: 980px){
         .blog-grid{ grid-template-columns: repeat(2, 1fr); }
         .blog-top{ grid-template-columns: 1fr; }
@@ -773,7 +783,7 @@
             <div class="foot-h">Kontak</div>
             <div class="foot-p">WhatsApp: +62 812-0000-0000</div>
             <div class="foot-p">Email: hello@unggulcoffe.com</div>
-            <a class="foot-link" href="#">Hubungi Kami →</a>
+            <a class="foot-link" href="kontak.html">Hubungi Kami →</a>
           </div>
 
           <div class="foot-col">
@@ -904,13 +914,85 @@
         box-shadow: 0 18px 44px rgba(0,0,0,.45);
         transform: translateY(-1px);
       }
+
     </style>
 
+    <!-- ✅ Floating WhatsApp (di bawah toTop) -->
+    <a class="waFloat" id="waFloat"
+       href="https://wa.me/6281200000000?text=Halo%20Unggul%20Coffe%2C%20saya%20mau%20pesan."
+       target="_blank" rel="noopener"
+       aria-label="Chat WhatsApp">
+      <span class="waIcon" aria-hidden="true">✆</span>
+      <span class="waText">WhatsApp</span>
+    </a>
+
+    <style>
+      .toTop{
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        cursor:pointer;
+        display:none;
+        z-index: 60;
+        backdrop-filter: blur(10px);
+      }
+      .toTop:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+      }
+
+      .waFloat{
+        position: fixed;
+        right: 18px;
+        bottom: 78px;
+        display:flex;
+        align-items:center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        z-index: 60;
+        backdrop-filter: blur(10px);
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .waFloat:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+        background: rgba(198,139,89,.10);
+      }
+      .waIcon{
+        width: 38px;
+        height: 38px;
+        display:grid;
+        place-items:center;
+        border-radius: 14px;
+        background: rgba(198,139,89,.18);
+        border:1px solid rgba(198,139,89,.28);
+        font-weight: 900;
+      }
+      .waText{ font-weight: 850; letter-spacing:.01em; }
+      @media (max-width: 520px){
+        .waText{ display:none; }
+        .waFloat{ padding: 12px; }
+      }
+    </style>
   </main>
 
   <!-- =================== JAVASCRIPT =================== -->
   <script>
-    // ===== BLOG DATA + SEARCH =====
+    // ===== BLOG DATA + SEARCH + PAGINATION =====
     const blogGrid = document.getElementById('blogGrid');
     const blogHint = document.getElementById('blogHint');
     const blogEmpty = document.getElementById('blogEmpty');
@@ -918,7 +1000,11 @@
     const searchBlog = document.getElementById('searchBlog');
     const clearSearch = document.getElementById('clearSearch');
 
-    // NOTE: url SUDAH artikel1.html - artikel6.html (jadi tombol baca selengkapnya otomatis nyambung)
+    const prevPageBtn = document.getElementById('prevPage');
+    const nextPageBtn = document.getElementById('nextPage');
+    const pageInfo = document.getElementById('pageInfo');
+
+    // NOTE: url SUDAH artikel1.html - artikel9.html
     const blogPosts = [
       {
         title: "Kenalan dengan Biji: Arabica vs Robusta",
@@ -973,6 +1059,33 @@
         meta: { year: "2026", read: "8 menit" },
         url: "artikel6.html",
         hotTag: "roasting"
+      },
+      {
+        title: "Cold Brew vs Iced Coffee: Apa Bedanya?",
+        excerpt: "Sekilas mirip, tapi metode dan rasa sangat berbeda.",
+        image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1200&q=80",
+        tags: ["cold brew","iced coffee"],
+        meta: { year: "2026", read: "4 menit" },
+        url: "artikel7.html",
+        hotTag: "cold brew"
+      },
+      {
+        title: "Kenapa Kopi Bisa Asam?",
+        excerpt: "Penjelasan acidity kopi yang sering disalahpahami.",
+        image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80",
+        tags: ["acidic","flavor"],
+        meta: { year: "2026", read: "5 menit" },
+        url: "artikel8.html",
+        hotTag: "flavor"
+      },
+      {
+        title: "Grind Size dan Pengaruhnya ke Rasa",
+        excerpt: "Salah giling bisa bikin kopi pahit atau hambar.",
+        image: "https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=1200&q=80",
+        tags: ["grind","brewing"],
+        meta: { year: "2026", read: "6 menit" },
+        url: "artikel9.html",
+        hotTag: "grind"
       }
     ];
 
@@ -1006,7 +1119,6 @@
             <div class="btags">${tags}</div>
 
             <div class="bcta">
-              <!-- tombol ini sekarang pasti ke artikel1.html ... artikel6.html -->
               <a class="btn btn-primary" href="${esc(p.url)}">Baca selengkapnya</a>
             </div>
           </div>
@@ -1017,33 +1129,59 @@
     function renderBlogs(list){
       if(!blogGrid) return;
       blogGrid.innerHTML = list.map(blogCardHTML).join('');
-
       if(blogHint) blogHint.innerHTML = `Menampilkan: <b>${list.length} blog</b>`;
       if(blogEmpty) blogEmpty.hidden = list.length !== 0;
       blogGrid.style.display = list.length === 0 ? 'none' : 'grid';
     }
 
+    // ===== Pagination state =====
+    const PER_PAGE = 9; // ketentuan: 9
+    let currentPage = 1;
+    let currentList = blogPosts.slice(); // bisa berubah saat search
+
+    function renderPagedBlogs(list){
+      currentList = list.slice();
+      const totalPages = Math.max(1, Math.ceil(currentList.length / PER_PAGE));
+
+      if(currentPage > totalPages) currentPage = totalPages;
+      if(currentPage < 1) currentPage = 1;
+
+      const start = (currentPage - 1) * PER_PAGE;
+      const end = start + PER_PAGE;
+
+      renderBlogs(currentList.slice(start, end));
+
+      if(pageInfo) pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
+      if(prevPageBtn) prevPageBtn.disabled = currentPage === 1;
+      if(nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
+    }
+
     function applyBlogSearch(qRaw){
       const q = (qRaw ?? searchBlog?.value ?? '').trim().toLowerCase();
+      currentPage = 1;
+
       if(!q){
-        renderBlogs(blogPosts);
+        renderPagedBlogs(blogPosts);
         return;
       }
       const filtered = blogPosts.filter(p => {
         const text = (p.title + " " + p.excerpt + " " + (p.tags || []).join(" ")).toLowerCase();
         return text.includes(q);
       });
-      renderBlogs(filtered);
+      renderPagedBlogs(filtered);
     }
 
     searchBlog?.addEventListener('input', () => applyBlogSearch());
     blogReset?.addEventListener('click', () => {
       if(searchBlog) searchBlog.value = '';
-      renderBlogs(blogPosts);
+      currentPage = 1;
+      renderPagedBlogs(blogPosts);
+      searchBlog?.focus();
     });
     clearSearch?.addEventListener('click', () => {
       if(searchBlog) searchBlog.value = '';
-      renderBlogs(blogPosts);
+      currentPage = 1;
+      renderPagedBlogs(blogPosts);
       searchBlog?.focus();
     });
 
@@ -1058,8 +1196,25 @@
       });
     });
 
+    // Prev / Next events
+    prevPageBtn?.addEventListener('click', () => {
+      if(currentPage > 1){
+        currentPage--;
+        renderPagedBlogs(currentList);
+        document.getElementById('blog')?.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
+    });
+    nextPageBtn?.addEventListener('click', () => {
+      const totalPages = Math.max(1, Math.ceil(currentList.length / PER_PAGE));
+      if(currentPage < totalPages){
+        currentPage++;
+        renderPagedBlogs(currentList);
+        document.getElementById('blog')?.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
+    });
+
     // INIT
-    renderBlogs(blogPosts);
+    renderPagedBlogs(blogPosts);
 
     // To Top
     const toTop = document.getElementById('toTop');
@@ -1070,15 +1225,6 @@
     window.addEventListener('scroll', toggleTop, { passive:true });
     toggleTop();
     toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // Cart badge sync (opsional)
-    function syncCartBadge(){
-      const count = Number(localStorage.getItem('cartCount') || 0);
-      const el = document.getElementById('cartCount');
-      if(el) el.textContent = String(count);
-    }
-    syncCartBadge();
-    window.addEventListener('storage', syncCartBadge);
   </script>
 </body>
 </html>
