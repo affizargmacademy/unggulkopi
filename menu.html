@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Unggul Coffe — Menu</title>
   <meta name="description" content="Menu Unggul Coffe + fitur pesan sekarang dengan pop up form pemesanan, nota sementara, dan metode pembayaran."/>
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0e0a07">
+
+  <!-- ✅ Preconnect untuk image CDN (lebih cepat) -->
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+
+  <!-- ✅ Favicon (SVG data-uri, ringan & tajam) -->
+  <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25'%3E%3Cstop offset='0' stop-color='%23c68b59'/%3E%3Cstop offset='1' stop-color='%231a120d'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M20 26h18a9 9 0 0 1 0 18H20V26zm18 14a5 5 0 0 0 0-10h-2v10h2z' fill='%23f3e9dd'/%3E%3Cpath d='M18 48h30' stroke='%23f3e9dd' stroke-width='4' stroke-linecap='round' opacity='.9'/%3E%3C/svg%3E" />
 
   <style>
     /* ====== GLOBAL / TOKENS (match index) ====== */
@@ -162,7 +172,7 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- =================== NAVBAR (SAMA PERSIS DENGAN HALAMAN YANG KAMU KIRIM) =================== -->
+  <!-- =================== NAVBAR =================== -->
   <header class="nav-wrap">
     <nav class="nav container">
 
@@ -172,7 +182,7 @@
         <span class="brand-text">Unggul Coffe</span>
       </a>
 
-      <!-- TENGAH: pill menu (Home/Menu/Contact) -->
+      <!-- TENGAH -->
       <div class="nav-mid" role="navigation" aria-label="Primary">
         <div class="nav-links">
           <a class="nav-link" href="index.html">Home</a>
@@ -182,14 +192,9 @@
         </div>
       </div>
 
-      <!-- KANAN: 2 tombol -->
+      <!-- KANAN: 1 tombol (keranjang dihapus) -->
       <div class="nav-cta" aria-label="Aksi cepat">
-        <a class="btn btn-ghost btn-sm" href="menu.html" aria-label="Keranjang">
-          <span aria-hidden="true">🧾</span>
-          Keranjang
-          <span class="cart-badge" id="cartCount">0</span>
-        </a>
-        <a class="btn btn-primary btn-sm" href="menu.html">
+        <a class="btn btn-primary btn-sm" href="menu.html" id="navCheckout">
           Pesan Sekarang <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -198,7 +203,7 @@
   </header>
 
   <style>
-    /* ====== NAVBAR CSS (SAMA PERSIS) ====== */
+    /* ====== NAVBAR CSS ====== */
     .nav-wrap{
       position: sticky;
       top: 0;
@@ -288,24 +293,7 @@
       justify-content:flex-end;
     }
 
-    .cart-badge{
-      margin-left: 6px;
-      min-width: 22px;
-      height: 22px;
-      padding: 0 7px;
-      border-radius: 999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(198,139,89,.25);
-      border: 1px solid rgba(198,139,89,.45);
-      color: var(--cream);
-      font-size:.82rem;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    /* Responsive: tanpa hamburger, jadi wrap yang rapi */
+    /* Responsive */
     @media (max-width: 980px){
       .nav{ height:auto; padding: 12px 0; flex-wrap:wrap; }
       .nav-mid{ order: 3; width:100%; justify-content:flex-start; }
@@ -326,8 +314,8 @@
           <div class="pill"><span aria-hidden="true">✦</span><span>Menu Premium • Fresh setiap hari</span></div>
           <h1 class="hero-title">Menu Unggul Coffe</h1>
           <p class="hero-desc">
-            Pilih kopi, non-coffee, makanan, dan pastry favoritmu. Klik <b>Pesan</b> untuk masuk keranjang,
-            lalu tekan <b>Pesan Sekarang</b> untuk isi form lengkap + nota sementara + metode pembayaran (BRI/BCA/Mandiri/QRIS/Cash).
+            Pilih kopi, non-coffee, makanan, dan pastry favoritmu. Klik <b>Pesan</b> untuk memilih platform order,
+            lalu pilih <b>Order On The Spot</b> untuk isi form pemesanan (nota sementara + metode pembayaran).
           </p>
 
           <div class="hero-actions">
@@ -342,25 +330,17 @@
           </div>
         </div>
 
-        <aside class="hero-right glass">
-          <div class="quick">
-            <div class="q-title">Ringkasan Keranjang</div>
-            <div class="q-sub">Cek item & total sebelum checkout.</div>
-            <div class="divider-line"></div>
-
-            <div class="q-box" id="miniCart"></div>
-
-            <div class="q-total">
-              <div class="qt-row"><span>Subtotal</span><b id="miniSubtotal">Rp0</b></div>
-              <div class="qt-row"><span>Service (5%)</span><b id="miniService">Rp0</b></div>
-              <div class="qt-row"><span>PB1 (10%)</span><b id="miniTax">Rp0</b></div>
-              <div class="qt-row grand"><span>Total</span><b id="miniGrand">Rp0</b></div>
-            </div>
-
-            <div class="q-cta">
-              <button class="btn btn-ghost" id="miniOpenCart" type="button">🧾 Lihat Keranjang</button>
-              <button class="btn btn-primary" id="miniCheckout" type="button">Pesan Sekarang →</button>
-            </div>
+        <!-- ✅ HERO kanan: ganti keranjang menjadi IMG -->
+        <aside class="hero-right glass" aria-label="Highlight Unggul Coffe">
+          <div class="hero-media">
+            <img
+              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80"
+              alt="Kopi premium Unggul Coffe"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              style="width:100%; height:100%; object-fit:cover; border-radius:22px; border:1px solid rgba(255,255,255,.10);"
+            />
           </div>
         </aside>
       </div>
@@ -435,55 +415,6 @@
         mask-composite: exclude;
         pointer-events:none;
       }
-      .quick .q-title{
-        font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-        font-size: 1.35rem;
-        margin: 0;
-        letter-spacing:.02em;
-      }
-      .q-sub{ margin-top: 6px; color: var(--muted); line-height:1.6; font-size: .95rem; }
-      .q-box{ margin-top: 14px; display:flex; flex-direction:column; gap: 10px; }
-      .mini-item{
-        display:grid;
-        grid-template-columns: 1fr auto;
-        gap: 8px;
-        padding: 10px 12px;
-        border-radius: 16px;
-        background: rgba(255,255,255,.03);
-        border: 1px solid rgba(255,255,255,.08);
-      }
-      .mi-name{ font-weight: 750; letter-spacing:.01em; }
-      .mi-sub{ color: var(--muted); font-size: .9rem; margin-top: 4px; }
-      .mi-price{ font-weight: 800; }
-      .empty-mini{
-        padding: 12px;
-        border-radius: 16px;
-        border: 1px dashed rgba(255,255,255,.14);
-        color: var(--muted);
-        line-height: 1.7;
-      }
-      .q-total{
-        margin-top: 12px;
-        padding-top: 12px;
-        border-top: 1px solid rgba(255,255,255,.08);
-        display:flex;
-        flex-direction:column;
-        gap: 8px;
-      }
-      .qt-row{ display:flex; justify-content:space-between; color: var(--muted); }
-      .qt-row b{ color: var(--cream); }
-      .qt-row.grand{
-        padding-top: 8px;
-        border-top: 1px solid rgba(255,255,255,.08);
-        color: var(--cream);
-        font-size: 1.05rem;
-      }
-      .q-cta{
-        margin-top: 14px;
-        display:flex;
-        gap: 10px;
-      }
-      .q-cta .btn{ flex:1; }
 
       @media (max-width: 960px){
         .hero-grid{ grid-template-columns: 1fr; }
@@ -578,18 +509,27 @@
       <div class="container">
         <header class="menu-head">
           <h2 class="section-title">List Menu</h2>
-          <p class="section-sub">Klik <b>Pesan</b> untuk menambahkan ke keranjang. Kamu bisa checkout kapan saja.</p>
+          <p class="section-sub">Klik <b>Pesan</b> untuk memilih platform. Pilih <b>Order On The Spot</b> untuk isi form.</p>
           <div class="divider-line"></div>
         </header>
 
         <div class="menu-grid" id="menuGrid"></div>
 
         <div class="menu-note glass" id="cara">
-          <div class="mn-title">Cara Pesan</div>
+          <div class="mn-title mn-title-row">
+            <span>Cara Pesan</span>
+            <a class="mn-wa" id="caraPesanWA" href="https://wa.me/6281200000000?text=Halo%20Unggul%20Coffe%2C%20saya%20mau%20pesan." target="_blank" rel="noopener" aria-label="Pesan via WhatsApp">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20 11.6a8 8 0 0 1-11.9 7L4 20l1.5-4.3A8 8 0 1 1 20 11.6Z" stroke="rgba(243,233,221,.9)" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M9.2 9.3c.2-.6.7-.8 1.3-.6l.5.2c.3.1.5.3.6.6l.2.7c.1.4 0 .8-.3 1.1l-.3.3c.5 1 1.3 1.8 2.3 2.3l.3-.3c.3-.3.7-.4 1.1-.3l.7.2c.3.1.5.3.6.6l.2.5c.2.6 0 1.1-.6 1.3-.5.2-1.1.3-1.7.1-2-.7-3.7-2.3-4.4-4.4-.2-.6-.1-1.2.1-1.7Z" fill="rgba(243,233,221,.18)"/>
+              </svg>
+              <span>Order via WA</span>
+            </a>
+          </div>
           <ol class="mn-list">
-            <li>Pilih menu → klik <b>Pesan</b> (masuk keranjang).</li>
-            <li>Klik <b>Keranjang</b> untuk edit qty / hapus item.</li>
-            <li>Klik <b>Pesan Sekarang</b> → isi form lengkap + pilih metode pembayaran.</li>
+            <li>Pilih menu → klik <b>Pesan</b> (pilih platform order).</li>
+            <li>Pilih <b>ShopeeFood/GrabFood/GoFood</b> untuk menuju profil merchant.</li>
+            <li>Pilih <b>Order On The Spot</b> → isi form lengkap + pilih metode pembayaran.</li>
             <li>Nota sementara otomatis muncul. Setelah submit, kamu dapat <b>Order ID</b> untuk konfirmasi.</li>
           </ol>
         </div>
@@ -600,7 +540,6 @@
       /* ====== MENU GRID CSS ====== */
       .menu{ padding: 18px 0 44px; }
 
-      /* ✅ UBAH JADI 3 PER BARIS */
       .menu-grid{
         margin-top: 18px;
         display:grid;
@@ -703,6 +642,37 @@
         line-height: 1.85;
       }
 
+      /* ✅ Judul + tombol WA kanan */
+      .mn-title-row{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap: 12px;
+      }
+      .mn-wa{
+        display:inline-flex;
+        align-items:center;
+        gap: 8px;
+        padding: .55rem .75rem;
+        border-radius: 14px;
+        background: rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.10);
+        color: var(--cream);
+        font-weight: 750;
+        font-size: .92rem;
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+        white-space: nowrap;
+      }
+      .mn-wa:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 16px 44px rgba(0,0,0,.35);
+        transform: translateY(-1px);
+        background: rgba(198,139,89,.10);
+      }
+      @media (max-width: 520px){
+        .mn-wa span{ display:none; }
+      }
+
       .empty-state{
         margin-top: 16px;
         padding: 16px;
@@ -712,7 +682,6 @@
         line-height: 1.8;
       }
 
-      /* Responsive: tablet 2 kolom, hp 1 kolom */
       @media (max-width: 860px){
         .menu-grid{ grid-template-columns: repeat(2, 1fr); }
       }
@@ -721,7 +690,7 @@
       }
     </style>
 
-    <!-- =================== FOOTER (SAMA PERSIS DENGAN HALAMAN YANG KAMU KIRIM) =================== -->
+    <!-- =================== FOOTER (tetap) =================== -->
     <footer id="contact" class="footer">
       <div class="container footer-top">
         <div class="foot-brandline">
@@ -807,7 +776,7 @@
     </footer>
 
     <style>
-      /* ====== FOOTER CSS (SAMA PERSIS) ====== */
+      /* ====== FOOTER CSS ====== */
       .footer{
         padding: 44px 0 24px;
         background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35));
@@ -890,8 +859,17 @@
       }
     </style>
 
-    <!-- FLOAT TO TOP (opsional biar enak) -->
+    <!-- FLOAT TO TOP -->
     <button class="toTop" id="toTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+
+    <!-- ✅ Floating WhatsApp (di bawah toTop) -->
+    <a class="waFloat" id="waFloat"
+       href="https://wa.me/6281200000000?text=Halo%20Unggul%20Coffe%2C%20saya%20mau%20pesan."
+       target="_blank" rel="noopener"
+       aria-label="Chat WhatsApp">
+      <span class="waIcon" aria-hidden="true">✆</span>
+      <span class="waText">WhatsApp</span>
+    </a>
 
     <style>
       .toTop{
@@ -915,182 +893,195 @@
         box-shadow: 0 18px 44px rgba(0,0,0,.45);
         transform: translateY(-1px);
       }
+
+      .waFloat{
+        position: fixed;
+        right: 18px;
+        bottom: 78px;
+        display:flex;
+        align-items:center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        z-index: 60;
+        backdrop-filter: blur(10px);
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .waFloat:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+        background: rgba(198,139,89,.10);
+      }
+      .waIcon{
+        width: 38px;
+        height: 38px;
+        display:grid;
+        place-items:center;
+        border-radius: 14px;
+        background: rgba(198,139,89,.18);
+        border:1px solid rgba(198,139,89,.28);
+        font-weight: 900;
+      }
+      .waText{ font-weight: 850; letter-spacing:.01em; }
+      @media (max-width: 520px){
+        .waText{ display:none; }
+        .waFloat{ padding: 12px; }
+      }
     </style>
   </main>
 
-  <!-- =================== JAVASCRIPT =================== -->
-  <script>
-    // ===== BLOG DATA + SEARCH =====
-    const blogGrid = document.getElementById('blogGrid');
-    const blogHint = document.getElementById('blogHint');
-    const blogEmpty = document.getElementById('blogEmpty');
-    const blogReset = document.getElementById('blogReset');
-    const searchBlog = document.getElementById('searchBlog');
-    const clearSearch = document.getElementById('clearSearch');
+  <!-- =================== MODAL: PILIH PLATFORM ORDER =================== -->
+  <div class="platform-backdrop" id="platformBackdrop" aria-hidden="true"></div>
 
-    const blogPosts = [
-      {
-        title: "Kenalan dengan Biji: Arabica vs Robusta",
-        excerpt: "Beda karakter rasa, tingkat kafein, dan cara memilih biji yang cocok untuk selera kamu.",
-        image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
-        tags: ["biji kopi","arabica","robusta"],
-        meta: { year: "2026", read: "5 menit" },
-        url: "artikel1.html",
-        hotTag: "biji kopi"
-      },
-      {
-        title: "Panduan Espresso di Rumah (Tanpa Ribet)",
-        excerpt: "Mulai dari grind size, dose, rasio, sampai tips biar crema stabil dan manis.",
-        image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80",
-        tags: ["espresso","grind","brew ratio"],
-        meta: { year: "2026", read: "7 menit" },
-        url: "artikel2.html",
-        hotTag: "espresso"
-      },
-      {
-        title: "Manual Brew: V60 untuk Rasa Clean & Floral",
-        excerpt: "Step-by-step V60: suhu, blooming, pour pattern, dan cara menghindari rasa pahit.",
-        image: "https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&w=1200&q=80",
-        tags: ["v60","manual brew","filter"],
-        meta: { year: "2026", read: "6 menit" },
-        url: "artikel3.html",
-        hotTag: "v60"
-      },
-      {
-        title: "Latte Art Dasar: Mulai dari Microfoam",
-        excerpt: "Rahasia foam halus, teknik tuang, dan latihan pola sederhana yang paling gampang.",
-        image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=1200&q=80",
-        tags: ["latte","milk","latte art"],
-        meta: { year: "2026", read: "6 menit" },
-        url: "artikel4.html",
-        hotTag: "latte"
-      },
-      {
-        title: "Pairing Kopi & Pastry yang Bikin Nagih",
-        excerpt: "Rekomendasi pairing: caramel latte + croissant, cappuccino + cookies, dan lainnya.",
-        image: "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?auto=format&fit=crop&w=1200&q=80",
-        tags: ["pairing","pastry","menu"],
-        meta: { year: "2026", read: "4 menit" },
-        url: "artikel5.html",
-        hotTag: "pastry"
-      },
-      {
-        title: "Di Balik Roasting: Kenapa Small Batch Lebih Konsisten",
-        excerpt: "Penjelasan ringan tentang roast level, development time, dan alasan small batch itu penting.",
-        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80",
-        tags: ["roasting","small batch","profil rasa"],
-        meta: { year: "2026", read: "8 menit" },
-        url: "artikel6.html",
-        hotTag: "roasting"
-      }
-    ];
+  <div class="platform-modal" id="platformModal" role="dialog" aria-modal="true" aria-labelledby="platformTitle" aria-hidden="true">
+    <div class="platform-shell glass">
+      <div class="platform-head">
+        <div>
+          <div class="platform-title" id="platformTitle">Pilih Cara Order</div>
+          <div class="platform-sub">Pilih platform yang kamu mau. Jika <b>Order On The Spot</b>, lanjut isi form.</div>
+        </div>
+        <button class="iconbtn" id="closePlatform" type="button" aria-label="Tutup">✕</button>
+      </div>
 
-    function esc(s){
-      return String(s).replace(/[&<>"']/g, (c) => ({
-        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
-      }[c]));
+      <div class="platform-body">
+        <div class="platform-grid">
+          <a class="platform-item card" id="pfShopee" href="#" target="_blank" rel="noopener" aria-label="ShopeeFood">
+            <div class="pf-ico">🛵</div>
+            <div class="pf-name">ShopeeFood</div>
+            <div class="pf-sub">Buka profil merchant</div>
+          </a>
+
+          <a class="platform-item card" id="pfGrab" href="#" target="_blank" rel="noopener" aria-label="GrabFood">
+            <div class="pf-ico">🚗</div>
+            <div class="pf-name">GrabFood</div>
+            <div class="pf-sub">Buka profil merchant</div>
+          </a>
+
+          <a class="platform-item card" id="pfGojek" href="#" target="_blank" rel="noopener" aria-label="GoFood">
+            <div class="pf-ico">🛵</div>
+            <div class="pf-name">GoFood</div>
+            <div class="pf-sub">Buka profil merchant</div>
+          </a>
+
+          <button class="platform-item card pf-ots" id="pfOTS" type="button" aria-label="Order On The Spot">
+            <div class="pf-ico">☕</div>
+            <div class="pf-name">Order On The Spot</div>
+            <div class="pf-sub">Isi form pemesanan</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* ====== PLATFORM MODAL CSS ====== */
+    .platform-backdrop{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease;
+      z-index:1100;
+    }
+    .platform-backdrop.open{ opacity:1; pointer-events:auto; }
+
+    .platform-modal{
+      position:fixed;
+      inset:0;
+      display:grid;
+      place-items:center;
+      padding: 18px;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease;
+      z-index:1101;
+    }
+    .platform-modal.open{ opacity:1; pointer-events:auto; }
+
+    .platform-shell{
+      width:min(760px, 100%);
+      border-radius: 26px;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .platform-shell::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: 26px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(198,139,89,.45), rgba(255,255,255,.08), rgba(183,119,60,.30));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events:none;
     }
 
-    function blogCardHTML(p){
-      const tags = (p.tags || []).map(t => {
-        const cls = (t === p.hotTag) ? "tag hot" : "tag";
-        return `<span class="${cls}">${esc(t)}</span>`;
-      }).join('');
-
-      return `
-        <article class="bcard">
-          <div class="bimg">
-            <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">
-          </div>
-          <div class="bbody">
-            <div class="bmeta">
-              <span>${esc(p.meta?.year || "")}</span>
-              <span class="dot" aria-hidden="true"></span>
-              <span>${esc(p.meta?.read || "")}</span>
-            </div>
-
-            <h3 class="btitle">${esc(p.title)}</h3>
-            <p class="bdesc">${esc(p.excerpt)}</p>
-
-            <div class="btags">${tags}</div>
-
-            <div class="bcta">
-              <a class="btn btn-primary" href="${esc(p.url)}">Baca selengkapnya</a>
-            </div>
-          </div>
-        </article>
-      `;
+    .platform-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 12px;
+      padding: 16px 16px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(26,18,13,.72);
+      backdrop-filter: blur(14px);
     }
+    .platform-title{ font-weight: 900; letter-spacing:.01em; font-size: 1.2rem; }
+    .platform-sub{ margin-top: 4px; color: var(--muted); font-size:.92rem; line-height:1.5; }
 
-    function renderBlogs(list){
-      if(!blogGrid) return;
-      blogGrid.innerHTML = list.map(blogCardHTML).join('');
-
-      if(blogHint) blogHint.innerHTML = `Menampilkan: <b>${list.length} blog</b>`;
-      if(blogEmpty) blogEmpty.hidden = list.length !== 0;
-      blogGrid.style.display = list.length === 0 ? 'none' : 'grid';
+    .platform-body{ padding: 16px; }
+    .platform-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
-
-    function applyBlogSearch(qRaw){
-      const q = (qRaw ?? searchBlog?.value ?? '').trim().toLowerCase();
-      if(!q){
-        renderBlogs(blogPosts);
-        return;
-      }
-      const filtered = blogPosts.filter(p => {
-        const text = (p.title + " " + p.excerpt + " " + (p.tags || []).join(" ")).toLowerCase();
-        return text.includes(q);
-      });
-      renderBlogs(filtered);
+    .platform-item{
+      padding: 14px;
+      border-radius: 20px;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      cursor:pointer;
+      background: rgba(255,255,255,.03);
+      text-align:left;
     }
-
-    searchBlog?.addEventListener('input', () => applyBlogSearch());
-    blogReset?.addEventListener('click', () => {
-      if(searchBlog) searchBlog.value = '';
-      renderBlogs(blogPosts);
-    });
-    clearSearch?.addEventListener('click', () => {
-      if(searchBlog) searchBlog.value = '';
-      renderBlogs(blogPosts);
-      searchBlog?.focus();
-    });
-
-    // Quick tags (hero)
-    document.querySelectorAll('[data-q]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const val = btn.getAttribute('data-q') || '';
-        if(searchBlog) searchBlog.value = val;
-        const y = document.getElementById('blog')?.getBoundingClientRect().top || 0;
-        window.scrollTo({ top: window.scrollY + y - 90, behavior: 'smooth' });
-        applyBlogSearch(val);
-      });
-    });
-
-    // INIT
-    renderBlogs(blogPosts);
-
-    // To Top
-    const toTop = document.getElementById('toTop');
-    function toggleTop(){
-      if(!toTop) return;
-      toTop.style.display = window.scrollY > 650 ? 'grid' : 'none';
+    .platform-item:hover{
+      border-color: rgba(198,139,89,.55);
     }
-    window.addEventListener('scroll', toggleTop, { passive:true });
-    toggleTop();
-    toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // ===== Cart badge sync (SAMA DENGAN HALAMAN INDEX) =====
-    function syncCartBadge(){
-      const count = Number(localStorage.getItem('cartCount') || 0);
-      const el = document.getElementById('cartCount');
-      if(el) el.textContent = String(count);
+    .pf-ico{
+      width: 46px; height: 46px;
+      border-radius: 16px;
+      display:grid;
+      place-items:center;
+      background: rgba(198,139,89,.15);
+      border:1px solid rgba(198,139,89,.28);
+      font-weight: 900;
     }
-    syncCartBadge();
-    window.addEventListener('storage', syncCartBadge);
-  </script>
-  </main>
+    .pf-name{ font-weight: 900; letter-spacing:.01em; margin-top: 4px; }
+    .pf-sub{ color: var(--muted); line-height: 1.6; font-size:.92rem; }
 
-  <!-- =================== MODAL: CART + CHECKOUT =================== -->
+    .pf-ots{
+      border:1px solid rgba(255,255,255,.10);
+      color: var(--cream);
+    }
+    .pf-ots .pf-ico{ background: rgba(183,119,60,.16); border-color: rgba(183,119,60,.30); }
+
+    @media (max-width: 560px){
+      .platform-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- =================== MODAL: CHECKOUT (FORM LAMA) =================== -->
   <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
 
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
@@ -1445,8 +1436,25 @@
     }
   </style>
 
-  <!-- =================== JAVASCRIPT =================== -->
+  <!-- =================== JAVASCRIPT (MENU + PLATFORM + CHECKOUT) =================== -->
   <script>
+    // ========= KONFIG (WA + LINK PLATFORM) =========
+    const WA_NUMBER = "6281200000000"; // ganti sesuai client (format internasional tanpa +)
+    const WA_TEXT = "Halo Unggul Coffe, saya mau pesan.";
+    const PLATFORM_LINKS = {
+      shopeefood: "https://shopee.co.id/", // ganti link profil shopeefood client
+      grabfood: "https://food.grab.com/id/id/", // ganti link profil grabfood client
+      gofood: "https://gofood.co.id/", // ganti link profil gofood client
+    };
+
+    function buildWaLink(text){
+      return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text || WA_TEXT);
+    }
+
+    // set link WA di elemen yang ada
+    document.getElementById("waFloat")?.setAttribute("href", buildWaLink());
+    document.getElementById("caraPesanWA")?.setAttribute("href", buildWaLink());
+
     // ========= Helpers =========
     const rupiah = (n) => new Intl.NumberFormat("id-ID", { style:"currency", currency:"IDR", maximumFractionDigits:0 }).format(n);
     const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
@@ -1555,6 +1563,43 @@
       return arr;
     }
 
+    // ========= PLATFORM MODAL LOGIC =========
+    const platformBackdrop = document.getElementById("platformBackdrop");
+    const platformModal = document.getElementById("platformModal");
+    const closePlatformBtn = document.getElementById("closePlatform");
+    const pfShopee = document.getElementById("pfShopee");
+    const pfGrab = document.getElementById("pfGrab");
+    const pfGojek = document.getElementById("pfGojek");
+    const pfOTS = document.getElementById("pfOTS");
+
+    // set link platform dari config
+    pfShopee?.setAttribute("href", PLATFORM_LINKS.shopeefood);
+    pfGrab?.setAttribute("href", PLATFORM_LINKS.grabfood);
+    pfGojek?.setAttribute("href", PLATFORM_LINKS.gofood);
+
+    function openPlatformModal(){
+      platformBackdrop.classList.add("open");
+      platformModal.classList.add("open");
+      platformBackdrop.setAttribute("aria-hidden","false");
+      platformModal.setAttribute("aria-hidden","false");
+    }
+    function closePlatformModal(){
+      platformBackdrop.classList.remove("open");
+      platformModal.classList.remove("open");
+      platformBackdrop.setAttribute("aria-hidden","true");
+      platformModal.setAttribute("aria-hidden","true");
+    }
+
+    closePlatformBtn?.addEventListener("click", closePlatformModal);
+    platformBackdrop?.addEventListener("click", closePlatformModal);
+
+    // OTS -> tutup platform modal lalu buka modal checkout (form lama)
+    pfOTS?.addEventListener("click", () => {
+      closePlatformModal();
+      openModal("checkout");
+    });
+
+    // ========= Render Menu cards =========
     function renderMenu(){
       const {q, cat, sort} = currentFilters();
       let items = MENU.filter(m => {
@@ -1579,7 +1624,7 @@
         const inCartQty = cart[m.id]?.qty || 0;
         return `
           <article class="menu-card card" data-id="${m.id}">
-            <img class="menu-img" src="${m.img}" alt="${m.name}" loading="lazy"/>
+            <img class="menu-img" src="${m.img}" alt="${m.name}" loading="lazy" decoding="async"/>
             <div class="menu-body">
               <div class="menu-top">
                 <div>
@@ -1592,7 +1637,7 @@
               <div class="menu-foot">
                 <div class="menu-price">${rupiah(m.price)}</div>
                 <div class="menu-actions">
-                  <div class="qty-mini" title="Qty di keranjang">
+                  <div class="qty-mini" title="Qty (untuk OTS)">
                     <button class="iconbtn" data-action="minus" aria-label="Kurangi qty">−</button>
                     <span class="cr-qty" data-role="qty">${inCartQty}</span>
                     <button class="iconbtn" data-action="plus" aria-label="Tambah qty">+</button>
@@ -1621,63 +1666,21 @@
           syncUI();
         });
       });
+
+      // ✅ tombol Pesan -> buka popup platform (bukan langsung form)
       menuGrid.querySelectorAll("[data-action='order']").forEach(btn => {
         btn.addEventListener("click", (e) => {
           const card = e.target.closest(".menu-card");
           addToCart(card.dataset.id, 1);
-          openModal("checkout");
+          openPlatformModal();
         });
       });
     }
 
-    // ========= Mini Cart & Navbar badges =========
-    const cartCountEl = document.getElementById("cartCount");
-    const miniCart = document.getElementById("miniCart");
-    const miniSubtotal = document.getElementById("miniSubtotal");
-    const miniService = document.getElementById("miniService");
-    const miniTax = document.getElementById("miniTax");
-    const miniGrand = document.getElementById("miniGrand");
-
-    function renderMiniCart(){
-      const items = getCartItems();
-      if(items.length === 0){
-        miniCart.innerHTML = `
-          <div class="empty-mini">
-            Keranjang kamu kosong. Klik <b>Pesan</b> pada menu untuk menambahkan item.
-          </div>
-        `;
-      } else {
-        miniCart.innerHTML = items.slice(0,3).map(i => `
-          <div class="mini-item">
-            <div>
-              <div class="mi-name">${i.name} <span style="color:rgba(205,191,178,.8); font-weight:700;">×${i.qty}</span></div>
-              <div class="mi-sub">${CAT_LABEL[i.cat]} • ${rupiah(i.price)}</div>
-            </div>
-            <div class="mi-price">${rupiah(i.price * i.qty)}</div>
-          </div>
-        `).join("") + (items.length > 3 ? `<div class="empty-mini">+ ${items.length - 3} item lainnya…</div>` : "");
-      }
-
-      const t = calcTotals();
-      miniSubtotal.textContent = rupiah(t.subtotal);
-      miniService.textContent = rupiah(t.service);
-      miniTax.textContent = rupiah(t.tax);
-      miniGrand.textContent = rupiah(t.grand);
-
-      const count = cartCount();
-      cartCountEl.textContent = count;
-    }
-
-    // ========= Modal logic =========
+    // ========= Modal checkout logic (form lama) =========
     const backdrop = document.getElementById("modalBackdrop");
     const modal = document.getElementById("modal");
     const closeModalBtn = document.getElementById("closeModal");
-
-    const openCartBtn = document.getElementById("openCartBtn");
-    const checkoutBtn = document.getElementById("checkoutBtn");
-
-    const miniOpenCart = document.getElementById("miniOpenCart");
-    const miniCheckout = document.getElementById("miniCheckout");
 
     const modalTitle = document.getElementById("modalTitle");
     const modalSub = document.getElementById("modalSub");
@@ -1689,7 +1692,6 @@
     const sumGrand = document.getElementById("sumGrand");
     const clearCartBtn = document.getElementById("clearCart");
     const submitOrderBtn = document.getElementById("submitOrder");
-
     const invoicePreview = document.getElementById("invoicePreview");
 
     // Form fields
@@ -1711,13 +1713,8 @@
       orderId = genOrderId();
       orderTime = nowString();
 
-      if(mode === "cart"){
-        modalTitle.textContent = "Keranjang";
-        modalSub.textContent = "Atur qty / hapus item, lalu checkout kapan saja.";
-      } else {
-        modalTitle.textContent = "Pesan Sekarang";
-        modalSub.textContent = "Form pemesanan + nota sementara + metode pembayaran.";
-      }
+      modalTitle.textContent = "Pesan Sekarang";
+      modalSub.textContent = "Form pemesanan + nota sementara + metode pembayaran.";
 
       backdrop.classList.add("open");
       modal.classList.add("open");
@@ -1739,14 +1736,17 @@
     closeModalBtn?.addEventListener("click", closeModal);
     backdrop?.addEventListener("click", closeModal);
     document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape" && modal.classList.contains("open")) closeModal();
+      if(e.key === "Escape"){
+        if(platformModal.classList.contains("open")) closePlatformModal();
+        if(modal.classList.contains("open")) closeModal();
+      }
     });
 
-    openCartBtn?.addEventListener("click", () => openModal("cart"));
-    miniOpenCart?.addEventListener("click", () => openModal("cart"));
-
-    checkoutBtn?.addEventListener("click", () => openModal("checkout"));
-    miniCheckout?.addEventListener("click", () => openModal("checkout"));
+    // Navbar tombol "Pesan Sekarang" -> buka platform modal dulu
+    document.getElementById("navCheckout")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      openPlatformModal();
+    });
 
     fulfillment?.addEventListener("change", () => {
       addrField.style.display = (fulfillment.value === "delivery") ? "flex" : "none";
@@ -2045,6 +2045,16 @@
       document.querySelector(".menu")?.scrollIntoView({behavior:"smooth"});
     });
 
+    // To Top
+    const toTop = document.getElementById('toTop');
+    function toggleTop(){
+      if(!toTop) return;
+      toTop.style.display = window.scrollY > 650 ? 'grid' : 'none';
+    }
+    window.addEventListener('scroll', toggleTop, { passive:true });
+    toggleTop();
+    toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
     // ========= Init =========
     (() => {
       const d = new Date(Date.now() + 30*60*1000);
@@ -2053,7 +2063,6 @@
 
     function syncUI(){
       renderMenu();
-      renderMiniCart();
       if(modal.classList.contains("open")){
         renderCartInsideModal();
         renderInvoice();
@@ -2062,9 +2071,9 @@
 
     addrField.style.display = (fulfillment.value === "delivery") ? "flex" : "none";
     renderMenu();
-    renderMiniCart();
     renderPayInfo();
     renderInvoice();
   </script>
+
 </body>
 </html>
