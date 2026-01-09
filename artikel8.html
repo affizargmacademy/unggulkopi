@@ -211,7 +211,7 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- =================== NAVBAR (SAMA PERSIS DENGAN BLOG.HTML) =================== -->
+  <!-- =================== NAVBAR (SAMA, TAPI BUTTON KERANJANG DIHAPUS) =================== -->
   <header class="nav-wrap">
     <nav class="nav container">
 
@@ -230,11 +230,6 @@
       </div>
 
       <div class="nav-cta" aria-label="Aksi cepat">
-        <a class="btn btn-ghost btn-sm" href="menu.html" aria-label="Keranjang">
-          <span aria-hidden="true">🧾</span>
-          Keranjang
-          <span class="cart-badge" id="cartCount">0</span>
-        </a>
         <a class="btn btn-primary btn-sm" href="menu.html">
           Pesan Sekarang <span aria-hidden="true">→</span>
         </a>
@@ -332,23 +327,6 @@
       gap: 10px;
       flex: 0 0 auto;
       justify-content:flex-end;
-    }
-
-    .cart-badge{
-      margin-left: 6px;
-      min-width: 22px;
-      height: 22px;
-      padding: 0 7px;
-      border-radius: 999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(198,139,89,.25);
-      border: 1px solid rgba(198,139,89,.45);
-      color: var(--cream);
-      font-size:.82rem;
-      font-weight: 900;
-      line-height:  1;
     }
 
     @media (max-width: 980px){
@@ -1014,81 +992,14 @@
       }
     </style>
 
-        <!-- ✅ Floating WhatsApp (di bawah toTop) -->
-        <a class="waFloat" id="waFloat"
-        href="https://wa.me/6281200000000?text=Halo%20Unggul%20Coffe%2C%20saya%20mau%20pesan."
-        target="_blank" rel="noopener"
-        aria-label="Chat WhatsApp">
-       <span class="waIcon" aria-hidden="true">✆</span>
-       <span class="waText">WhatsApp</span>
-     </a>
- 
-     <style>
-       .toTop{
-         position: fixed;
-         right: 18px;
-         bottom: 18px;
-         width: 52px;
-         height: 52px;
-         border-radius: 18px;
-         border:1px solid rgba(255,255,255,.12);
-         background: rgba(255,255,255,.04);
-         color: var(--cream);
-         box-shadow: var(--shadow2);
-         cursor:pointer;
-         display:none;
-         z-index: 60;
-         backdrop-filter: blur(10px);
-       }
-       .toTop:hover{
-         border-color: rgba(198,139,89,.55);
-         box-shadow: 0 18px 44px rgba(0,0,0,.45);
-         transform: translateY(-1px);
-       }
- 
-       .waFloat{
-         position: fixed;
-         right: 18px;
-         bottom: 78px;
-         display:flex;
-         align-items:center;
-         gap: 10px;
-         padding: 12px 14px;
-         border-radius: 18px;
-         border:1px solid rgba(255,255,255,.12);
-         background: rgba(255,255,255,.04);
-         color: var(--cream);
-         box-shadow: var(--shadow2);
-         z-index: 60;
-         backdrop-filter: blur(10px);
-         transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
-       }
-       .waFloat:hover{
-         border-color: rgba(198,139,89,.55);
-         box-shadow: 0 18px 44px rgba(0,0,0,.45);
-         transform: translateY(-1px);
-         background: rgba(198,139,89,.10);
-       }
-       .waIcon{
-         width: 38px;
-         height: 38px;
-         display:grid;
-         place-items:center;
-         border-radius: 14px;
-         background: rgba(198,139,89,.18);
-         border:1px solid rgba(198,139,89,.28);
-         font-weight: 900;
-       }
-       .waText{ font-weight: 850; letter-spacing:.01em; }
-       @media (max-width: 520px){
-         .waText{ display:none; }
-         .waFloat{ padding: 12px; }
-       }
-     </style>
-   </main>
-
-    <!-- FLOAT TO TOP -->
-    <button class="toTop" id="toTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+    <!-- ✅ Floating WhatsApp (di bawah toTop) -->
+    <a class="waFloat" id="waFloat"
+       href="https://wa.me/6281200000000?text=Halo%20Unggul%20Coffe%2C%20saya%20mau%20pesan."
+       target="_blank" rel="noopener"
+       aria-label="Chat WhatsApp">
+      <span class="waIcon" aria-hidden="true">✆</span>
+      <span class="waText">WhatsApp</span>
+    </a>
 
     <style>
       .toTop{
@@ -1112,9 +1023,51 @@
         box-shadow: 0 18px 44px rgba(0,0,0,.45);
         transform: translateY(-1px);
       }
+
+      .waFloat{
+        position: fixed;
+        right: 18px;
+        bottom: 78px;
+        display:flex;
+        align-items:center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        z-index: 60;
+        backdrop-filter: blur(10px);
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .waFloat:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+        background: rgba(198,139,89,.10);
+      }
+      .waIcon{
+        width: 38px;
+        height: 38px;
+        display:grid;
+        place-items:center;
+        border-radius: 14px;
+        background: rgba(198,139,89,.18);
+        border:1px solid rgba(198,139,89,.28);
+        font-weight: 900;
+      }
+      .waText{ font-weight: 850; letter-spacing:.01em; }
+      @media (max-width: 520px){
+        .waText{ display:none; }
+        .waFloat{ padding: 12px; }
+      }
     </style>
 
   </main>
+
+  <!-- FLOAT TO TOP -->
+  <button class="toTop" id="toTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
 
   <!-- Bootstrap JS (optional, defer untuk pagespeed) -->
   <script
@@ -1147,15 +1100,6 @@
     window.addEventListener('scroll', toggleTop, { passive:true });
     toggleTop();
     toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // ===== Cart badge sync (SAMA DENGAN BLOG.HTML) =====
-    function syncCartBadge(){
-      const count = Number(localStorage.getItem('cartCount') || 0);
-      const el = document.getElementById('cartCount');
-      if(el) el.textContent = String(count);
-    }
-    syncCartBadge();
-    window.addEventListener('storage', syncCartBadge);
   </script>
 </body>
 </html>
