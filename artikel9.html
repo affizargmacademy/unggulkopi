@@ -13,6 +13,7 @@
   <link rel="canonical" href="artikel9.html" />
 
   <!-- =================== FAVICON (maksimal) =================== -->
+  <!-- Pastikan file favicon ini ada di root project kamu -->
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -27,6 +28,7 @@
   <meta property="og:title" content="Grind Size dan Pengaruhnya ke Rasa — Unggul Coffe" />
   <meta property="og:description" content="Salah giling bisa bikin kopi pahit atau hambar. Ini panduan cepat grind size biar rasa lebih balance." />
   <meta property="og:url" content="artikel9.html" />
+  <!-- JANGAN UBAH FOTO: pakai link yang sama dengan kartu artikel di blog.html -->
   <meta property="og:image" content="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1400&q=80" />
   <meta property="og:image:width" content="1400" />
   <meta property="og:image:height" content="933" />
@@ -47,6 +49,7 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
     crossorigin="anonymous"
   />
+
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- =================== STRUCTURED DATA (AI Overview + SEO) =================== -->
@@ -208,7 +211,7 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- =================== NAVBAR (KERANJANG DIHAPUS) =================== -->
+  <!-- =================== NAVBAR (SAMA PERSIS DENGAN BLOG.HTML) =================== -->
   <header class="nav-wrap">
     <nav class="nav container">
 
@@ -227,6 +230,11 @@
       </div>
 
       <div class="nav-cta" aria-label="Aksi cepat">
+        <a class="btn btn-ghost btn-sm" href="menu.html" aria-label="Keranjang">
+          <span aria-hidden="true">🧾</span>
+          Keranjang
+          <span class="cart-badge" id="cartCount">0</span>
+        </a>
         <a class="btn btn-primary btn-sm" href="menu.html">
           Pesan Sekarang <span aria-hidden="true">→</span>
         </a>
@@ -236,7 +244,7 @@
   </header>
 
   <style>
-    /* ====== NAVBAR CSS ====== */
+    /* ====== NAVBAR CSS (SAMA PERSIS DENGAN BLOG.HTML) ====== */
     .nav-wrap{
       position: sticky;
       top: 0;
@@ -326,6 +334,23 @@
       justify-content:flex-end;
     }
 
+    .cart-badge{
+      margin-left: 6px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 7px;
+      border-radius: 999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(198,139,89,.25);
+      border: 1px solid rgba(198,139,89,.45);
+      color: var(--cream);
+      font-size:.82rem;
+      font-weight: 900;
+      line-height:  1;
+    }
+
     @media (max-width: 980px){
       .nav{ height:auto; padding: 12px 0; flex-wrap:wrap; }
       .nav-mid{ order: 3; width:100%; justify-content:flex-start; }
@@ -354,6 +379,7 @@
 
         <div class="hero-wrap glass">
           <div class="hero-media">
+            <!-- JANGAN UBAH FOTO -->
             <img
               src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1400&q=80"
               alt="Grind Size dan Pengaruhnya ke Rasa"
@@ -846,7 +872,7 @@
       }
     </style>
 
-    <!-- =================== FOOTER =================== -->
+    <!-- =================== FOOTER (SAMA PERSIS DENGAN BLOG.HTML) =================== -->
     <footer id="contact" class="footer">
       <div class="container footer-top">
         <div class="foot-brandline">
@@ -932,7 +958,7 @@
     </footer>
 
     <style>
-      /* ====== FOOTER CSS ====== */
+      /* ====== FOOTER CSS (SAMA PERSIS DENGAN BLOG.HTML) ====== */
       .footer{
         padding: 44px 0 24px;
         background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.35));
@@ -1015,86 +1041,154 @@
       }
     </style>
 
+        <!-- ✅ Floating WhatsApp (di bawah toTop) -->
+        <a class="waFloat" id="waFloat"
+        href="https://wa.me/6281200000000?text=Halo%20Unggul%20Coffe%2C%20saya%20mau%20pesan."
+        target="_blank" rel="noopener"
+        aria-label="Chat WhatsApp">
+       <span class="waIcon" aria-hidden="true">✆</span>
+       <span class="waText">WhatsApp</span>
+     </a>
+ 
+     <style>
+       .toTop{
+         position: fixed;
+         right: 18px;
+         bottom: 18px;
+         width: 52px;
+         height: 52px;
+         border-radius: 18px;
+         border:1px solid rgba(255,255,255,.12);
+         background: rgba(255,255,255,.04);
+         color: var(--cream);
+         box-shadow: var(--shadow2);
+         cursor:pointer;
+         display:none;
+         z-index: 60;
+         backdrop-filter: blur(10px);
+       }
+       .toTop:hover{
+         border-color: rgba(198,139,89,.55);
+         box-shadow: 0 18px 44px rgba(0,0,0,.45);
+         transform: translateY(-1px);
+       }
+ 
+       .waFloat{
+         position: fixed;
+         right: 18px;
+         bottom: 78px;
+         display:flex;
+         align-items:center;
+         gap: 10px;
+         padding: 12px 14px;
+         border-radius: 18px;
+         border:1px solid rgba(255,255,255,.12);
+         background: rgba(255,255,255,.04);
+         color: var(--cream);
+         box-shadow: var(--shadow2);
+         z-index: 60;
+         backdrop-filter: blur(10px);
+         transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+       }
+       .waFloat:hover{
+         border-color: rgba(198,139,89,.55);
+         box-shadow: 0 18px 44px rgba(0,0,0,.45);
+         transform: translateY(-1px);
+         background: rgba(198,139,89,.10);
+       }
+       .waIcon{
+         width: 38px;
+         height: 38px;
+         display:grid;
+         place-items:center;
+         border-radius: 14px;
+         background: rgba(198,139,89,.18);
+         border:1px solid rgba(198,139,89,.28);
+         font-weight: 900;
+       }
+       .waText{ font-weight: 850; letter-spacing:.01em; }
+       @media (max-width: 520px){
+         .waText{ display:none; }
+         .waFloat{ padding: 12px; }
+       }
+     </style>
+   </main>
+
+    <!-- FLOAT TO TOP -->
+    <button class="toTop" id="toTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+
+    <style>
+      .toTop{
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--cream);
+        box-shadow: var(--shadow2);
+        cursor:pointer;
+        display:none;
+        z-index: 60;
+        backdrop-filter: blur(10px);
+      }
+      .toTop:hover{
+        border-color: rgba(198,139,89,.55);
+        box-shadow: 0 18px 44px rgba(0,0,0,.45);
+        transform: translateY(-1px);
+      }
+  /* 1) Kunci overflow horizontal di mobile */
+  html, body{
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* 2) Cegah elemen/pseudo-element “nyenggol” keluar layar */
+  *, *::before, *::after{
+    max-width: 100%;
+  }
+
+  /* 3) Yang paling sering bikin geser: pseudo background dengan inset minus
+        (di halaman artikel kamu ada .article-hero::before pakai -40px)
+        Maka di mobile kita “rapatkan” ke kiri-kanan layar */
+  @media (max-width: 768px){
+    .article-hero::before{
+      left: 0 !important;
+      right: 0 !important;
+      inset: -120px 0 auto 0 !important; /* ganti -40 jadi 0 khusus mobile */
+    }
+  }
+
+  /* 4) Flex/Grid item: pastikan boleh mengecil biar gak memaksa overflow */
+  .nav,
+  .nav-links,
+  .article-grid,
+  .hero-actions,
+  .post-foot,
+  .share,
+  .footer-grid{
+    min-width: 0;
+  }
+
+  /* 5) Gambar selalu responsif */
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 6) Floating buttons jangan melebihi lebar viewport */
+  .toTop,
+  .waFloat{
+    max-width: calc(100vw - 36px);
+  }
+
+    </style>
+
   </main>
 
-  <!-- ✅ FLOAT BUTTONS (HANYA SEKALI, DI LUAR MAIN) -->
-  <a class="waFloat" id="waFloat"
-     href="https://wa.me/6281200000000?text=Halo%20Unggul%20Coffe%2C%20saya%20mau%20pesan."
-     target="_blank" rel="noopener"
-     aria-label="Chat WhatsApp">
-    <span class="waIcon" aria-hidden="true">✆</span>
-    <span class="waText">WhatsApp</span>
-  </a>
-
-  <button class="toTop" id="toTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
-
-  <style>
-    /* ✅ FIX: FLOAT CSS TANPA DUPLIKASI */
-    .toTop{
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--cream);
-      box-shadow: var(--shadow2);
-      cursor:pointer;
-      display:none;
-      z-index: 80;
-      backdrop-filter: blur(10px);
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, opacity .18s ease;
-    }
-    .toTop:hover{
-      border-color: rgba(198,139,89,.55);
-      box-shadow: 0 18px 44px rgba(0,0,0,.45);
-      transform: translateY(-1px);
-    }
-
-    .waFloat{
-      position: fixed;
-      right: 18px;
-      bottom: 78px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--cream);
-      box-shadow: var(--shadow2);
-      z-index: 80;
-      backdrop-filter: blur(10px);
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
-    }
-    .waFloat:hover{
-      border-color: rgba(198,139,89,.55);
-      box-shadow: 0 18px 44px rgba(0,0,0,.45);
-      transform: translateY(-1px);
-      background: rgba(198,139,89,.10);
-    }
-    .waIcon{
-      width: 38px;
-      height: 38px;
-      display:grid;
-      place-items:center;
-      border-radius: 14px;
-      background: rgba(198,139,89,.18);
-      border:1px solid rgba(198,139,89,.28);
-      font-weight: 900;
-    }
-    .waText{ font-weight: 850; letter-spacing:.01em; }
-
-    @media (max-width: 520px){
-      .waText{ display:none; }
-      .waFloat{ padding: 12px; }
-    }
-  </style>
-
-  <!-- Bootstrap JS -->
+  <!-- Bootstrap JS (optional, defer untuk pagespeed) -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -1116,7 +1210,7 @@
       }
     });
 
-    // ===== To Top (FIX) =====
+    // ===== To Top =====
     const toTop = document.getElementById('toTop');
     function toggleTop(){
       if(!toTop) return;
@@ -1125,6 +1219,15 @@
     window.addEventListener('scroll', toggleTop, { passive:true });
     toggleTop();
     toTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ===== Cart badge sync (SAMA DENGAN BLOG.HTML) =====
+    function syncCartBadge(){
+      const count = Number(localStorage.getItem('cartCount') || 0);
+      const el = document.getElementById('cartCount');
+      if(el) el.textContent = String(count);
+    }
+    syncCartBadge();
+    window.addEventListener('storage', syncCartBadge);
   </script>
 </body>
 </html>
