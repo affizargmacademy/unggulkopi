@@ -1062,6 +1062,51 @@
         .waText{ display:none; }
         .waFloat{ padding: 12px; }
       }
+      /* 1) Kunci overflow horizontal di mobile */
+  html, body{
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* 2) Cegah elemen/pseudo-element “nyenggol” keluar layar */
+  *, *::before, *::after{
+    max-width: 100%;
+  }
+
+  /* 3) Yang paling sering bikin geser: pseudo background dengan inset minus
+        (di halaman artikel kamu ada .article-hero::before pakai -40px)
+        Maka di mobile kita “rapatkan” ke kiri-kanan layar */
+  @media (max-width: 768px){
+    .article-hero::before{
+      left: 0 !important;
+      right: 0 !important;
+      inset: -120px 0 auto 0 !important; /* ganti -40 jadi 0 khusus mobile */
+    }
+  }
+
+  /* 4) Flex/Grid item: pastikan boleh mengecil biar gak memaksa overflow */
+  .nav,
+  .nav-links,
+  .article-grid,
+  .hero-actions,
+  .post-foot,
+  .share,
+  .footer-grid{
+    min-width: 0;
+  }
+
+  /* 5) Gambar selalu responsif */
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 6) Floating buttons jangan melebihi lebar viewport */
+  .toTop,
+  .waFloat{
+    max-width: calc(100vw - 36px);
+  }
+
     </style>
 
   </main>
