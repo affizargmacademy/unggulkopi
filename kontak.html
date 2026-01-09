@@ -79,7 +79,16 @@
     }
 
     *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+
+    /* ✅ FIX MOBILE: kunci horizontal scroll (anti geser kanan-kiri) */
+    html{
+      scroll-behavior:smooth;
+      overflow-x: clip;
+    }
+    @supports not (overflow: clip){
+      html{ overflow-x:hidden; }
+    }
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -88,10 +97,17 @@
         radial-gradient(1200px 600px at 20% 0%, rgba(198,139,89,.25), transparent 60%),
         radial-gradient(900px 500px at 90% 20%, rgba(183,119,60,.18), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
+      overflow-x: clip;
     }
+    @supports not (overflow: clip){
+      body{ overflow-x:hidden; }
+    }
+
     a{ color:inherit; text-decoration:none; }
     img{ max-width:100%; display:block; }
+    svg{ max-width:100%; }
+    iframe{ max-width:100%; display:block; } /* ✅ FIX MOBILE: iframe kadang bikin overflow */
+
     button, input, select, textarea{ font:inherit; }
 
     .container{
@@ -156,6 +172,7 @@
       transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
       user-select:none;
       white-space:nowrap;
+      min-width: 0; /* ✅ FIX MOBILE: cegah overflow text */
     }
     .btn:active{ transform: translateY(1px); }
     .btn-primary{
@@ -210,6 +227,7 @@
       background: rgba(255,255,255,.04);
       color: var(--cream);
       outline:none;
+      min-width: 0; /* ✅ FIX MOBILE */
     }
     input::placeholder, textarea::placeholder{ color: rgba(205,191,178,.65); }
     select option{ color:#111; }
@@ -220,6 +238,9 @@
       .hide-mobile{ display:none; }
       .show-mobile{ display:block; }
     }
+
+    /* ✅ FIX MOBILE: elemen flex/grid besar jangan memaksa overflow */
+    .nav, .hero-grid, .contact-grid, .maps-grid, .footer-grid{ min-width:0; }
   </style>
 </head>
 
@@ -450,6 +471,13 @@
     <style>
       /* ====== HERO CSS ====== */
       .hero{ position:relative; padding: 44px 0 26px; }
+
+      /* ✅ FIX MOBILE: pseudo-element blur kadang bikin overflow di beberapa device */
+      .hero{ overflow-x: clip; }
+      @supports not (overflow: clip){
+        .hero{ overflow-x:hidden; }
+      }
+
       .hero::before{
         content:"";
         position:absolute;
@@ -465,6 +493,7 @@
         grid-template-columns: 1.05fr .95fr;
         gap: 26px;
         align-items:stretch;
+        min-width: 0; /* ✅ FIX MOBILE */
       }
       .hero-title{
         font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -500,7 +529,7 @@
         box-shadow: 0 12px 30px rgba(198,139,89,.2);
       }
 
-      .hero-right{ padding: 18px; position:relative; overflow:hidden; }
+      .hero-right{ padding: 18px; position:relative; overflow:hidden; min-width:0; }
       .hero-right::after{
         content:"";
         position:absolute;
@@ -525,16 +554,19 @@
         display:grid;
         grid-template-columns: 1fr 1fr;
         gap: 12px;
+        min-width:0; /* ✅ FIX MOBILE */
       }
       .info-card{
         padding: 12px;
         border-radius: 20px;
         background: rgba(255,255,255,.03);
+        min-width:0; /* ✅ FIX MOBILE */
       }
       .ic-top{
         display:flex;
         align-items:center;
         gap: 10px;
+        min-width:0;
       }
       .ic-ico{
         width:34px; height:34px;
@@ -542,6 +574,7 @@
         border-radius: 14px;
         background: rgba(198,139,89,.15);
         border:1px solid rgba(198,139,89,.35);
+        flex: 0 0 auto;
       }
       .ic-title{ font-weight: 900; letter-spacing:.01em; }
       .ic-text{ margin-top: 8px; color: var(--muted); line-height: 1.7; font-size:.95rem; }
@@ -663,6 +696,7 @@
         display:grid;
         grid-template-columns: 1.1fr .9fr;
         gap: 14px;
+        min-width:0; /* ✅ FIX MOBILE */
       }
       .head{ margin-top: 6px; }
 
@@ -670,6 +704,7 @@
         padding: 14px;
         border-radius: 22px;
         border:1px solid rgba(255,255,255,.10);
+        min-width:0; /* ✅ FIX MOBILE */
       }
       .form-title{
         font-weight: 900;
@@ -688,6 +723,7 @@
         display:grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
+        min-width:0; /* ✅ FIX MOBILE */
       }
 
       .form-actions{
@@ -704,7 +740,7 @@
         font-size:.92rem;
       }
 
-      .side{ display:flex; flex-direction:column; gap: 14px; }
+      .side{ display:flex; flex-direction:column; gap: 14px; min-width:0; }
       .preview-box{
         padding: 12px;
         border-radius: 18px;
@@ -714,6 +750,7 @@
         line-height: 1.8;
         min-height: 140px;
         white-space: pre-wrap;
+        overflow-wrap:anywhere; /* ✅ FIX MOBILE: teks panjang tidak dorong layout */
       }
       .preview-actions{
         margin-top: 10px;
@@ -773,6 +810,7 @@
         justify-content:space-between;
         align-items:center;
         gap: 14px;
+        min-width:0; /* ✅ FIX MOBILE */
       }
       .cta-title{
         font-weight: 950;
@@ -788,6 +826,7 @@
         display:flex;
         gap: 10px;
         flex-wrap:wrap;
+        min-width:0;
       }
       @media (max-width: 780px){
         .cta-wrap{ flex-direction:column; align-items:stretch; }
@@ -842,12 +881,14 @@
         grid-template-columns: 1.2fr .8fr;
         gap: 14px;
         align-items:stretch;
+        min-width:0; /* ✅ FIX MOBILE */
       }
       .map-frame{
         padding: 10px;
         border-radius: 22px;
         border:1px solid rgba(255,255,255,.10);
         overflow:hidden;
+        min-width:0;
       }
       .map-frame iframe{
         width:100%;
@@ -855,11 +896,13 @@
         border:0;
         border-radius: 18px;
         filter: grayscale(.08) contrast(1.05);
+        display:block; /* ✅ FIX MOBILE: hilangin whitespace/inline overflow */
       }
       .map-info{
         padding: 14px;
         border-radius: 22px;
         border:1px solid rgba(255,255,255,.10);
+        min-width:0;
       }
       .map-title{
         font-weight: 950;
