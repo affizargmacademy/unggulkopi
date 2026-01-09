@@ -988,6 +988,42 @@
         .waFloat{ padding: 12px; }
       }
     </style>
+
+    <!-- =====================================================
+         MOBILE SAFETY FIX (DITAMBAHKAN) - ANTI GESER KANAN KIRI
+         Fokus: HILANGKAN GLITCH MOBILE TANPA UBAH LAYOUT/MATERI
+         ===================================================== -->
+    <style>
+      html, body{
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      *, *::before, *::after{
+        max-width: 100%;
+      }
+      @media (max-width: 768px){
+        .blog-hero::before{
+          left: 0 !important;
+          right: 0 !important;
+        }
+      }
+      .hero-grid,
+      .blog-grid,
+      .footer-grid,
+      .nav,
+      .nav-links{
+        min-width: 0;
+      }
+      img{
+        max-width: 100%;
+        height: auto;
+      }
+      .toTop,
+      .waFloat{
+        max-width: calc(100vw - 36px);
+      }
+    </style>
+
   </main>
 
   <!-- =================== JAVASCRIPT =================== -->
